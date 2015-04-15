@@ -28,6 +28,6 @@ If you want to lazy load on scroll
 			new dll(el, callback)
 		}
 	}
-	
+</pre>	
 #License
 MIT License
