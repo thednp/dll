@@ -41,7 +41,8 @@ window.addEventListener('scroll', scrollExample, false);
 	}
 </pre>	
 
-A nasty example, lazy load a parent <code>&lt;div id="myElement" data-src="..image.png"&gt;</code> with many elements inside subject to dll.js object:
+# A nasty example
+Lazy load a parent <code>&lt;div id="myElement" data-src="..image.png"&gt;</code> with many elements inside subject to dll.js object:
 <pre>
 var el = document.getElementById('myElement'); //this is a parent
 new dll(el, callback)
