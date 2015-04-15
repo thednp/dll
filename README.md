@@ -8,9 +8,13 @@ Thanks to jsdelivr, we have CDN link <a href="http://www.jsdelivr.com/#!dll.js">
 <pre>  new dll('selector',callback);</pre>
 	
 # What it does
-* Do dll lazy loading for an element that is subject to lazy load via data-src, or
-* Do dll to all child items of a given element
-* Do dll <code>backgroundImage</code> to elements other than <code>&lt;img&gt;</code> if they have <code>data-src</code> attribute.
+* Do lazy loading for an element that is subject to lazy load via data-src, or
+* Do to all child items of a given element
+* Do <code>backgroundImage</code> to elements other than <code>&lt;img&gt;</code> if they have <code>data-src</code> attribute.
+* Do callback when load event is triggered for one element, or for the last child element of a given parent.
+
+# Works with
+Any valid selector.
   <pre>new dll('.uniqueClassName');</pre>
   <pre>new dll('#uniqueID');</pre>
     
@@ -36,5 +40,16 @@ window.addEventListener('scroll', scrollExample, false);
 		}
 	}
 </pre>	
+
+A nasty example, lazy load a parent <code>&lt;div id="myElement" data-src="..image.png"&gt;</code> with many elements inside subject to dll.js object:
+<pre>
+var el = document.getElementById('myElement'); //this is a parent
+new dll(el, callback)
+function callback(){
+	console.log('I just finished lazy loading the last element for #myElement')
+}
+
+</pre>
+
 #License
 <a href="https://github.com/thednp/dll.js/blob/master/LICENSE">MIT License</a>
