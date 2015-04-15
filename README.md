@@ -34,4 +34,4 @@ window.addEventListener('scroll', scrollExample, false);
 	}
 </pre>	
 #License
-MIT License
+<a href="https://github.com/thednp/dll.js/blob/master/LICENSE">MIT License</a>
