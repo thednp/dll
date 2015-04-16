@@ -12,11 +12,13 @@ Thanks to jsdelivr, we have CDN link <a href="http://www.jsdelivr.com/#!dll.js">
 * Do to all child items of a given element
 * Do <code>backgroundImage</code> to elements other than <code>&lt;img&gt;</code> if they have <code>data-src</code> attribute.
 * Do callback when load event is triggered for one element, or for the last child element of a given parent.
+* Do lazy load for all items having <code>data-src</code> attribute.
 
 # Works with
-Any valid selector.
-  <pre>new dll('.uniqueClassName');</pre>
-  <pre>new dll('#uniqueID');</pre>
+Any valid selector or no selector.
+<pre>new dll('.uniqueClassName'); // lazy loads an element with a given class and it's children if any have data-src</pre>
+<pre>new dll('#uniqueID'); // lazy loads an element with a given ID and it's children if any have data-src</pre>
+<pre>new dll(); // lazy loads any items with data-src from the entire page</pre>
     
 # Other examples
 If your script is in your site head, you should do this
