@@ -34,7 +34,7 @@ If you want to lazy load on scroll
 window.addEventListener('scroll', scrollExample, false);
 	function scrollExample(){
 		var el = document.getElementById('myItem');
-		if ( elementInViewport(el) ){
+		if ( new elementInViewport(el) ){
 			new dll(el, callback)
 		}
 		function callback(){
