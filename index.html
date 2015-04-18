@@ -193,14 +193,14 @@
 	<div class="content-wrap">
 		<h2>In case you missed the features</h2>
 		<ul>
-			<li>Lazy load a single element that has <code>data-src</code> attribute</li>
-			<li>Works for <code>&lt;img&gt;</code> and other elements as well, that's right: <code>background-image</code></li>
+			<li>Lazy load a single element that has <code>data-src</code> attribute, ideally an <code>&lt;img&gt;</code> or a layer element with no child elements</li>
+			<li>Works for <code>&lt;img&gt;</code> and other elements as well, that's right, it's <code>background-image</code></li>
 			<li>When an element other than image is targeted, it will also lazy load it's child elements having the <code>data-src</code> attribute</li>
-			<li>You can also call dll.js to do lazy load for all elements in a page at once, simply type <code>new dll();</code></li>
+			<li>You can also call DLL to do lazy load for all elements in a page at once, by simply using <code>new dll();</code></li>
 			<li>DLL has callback ability and it's triggered when the target element is loaded or it's last element is loaded</li>
+			<li>Includes an <code>elementInViewport</code> function to help you lazy load elements on scroll, like the example above</li>
 			<li>It's super light, around 1Kb in size and you can do so much with it</li>
-			<li>Includes am <code>elementInViewport</code> function to help you lazy load elements on scroll, like the example above</li>
-			<li>Give it <a href="http://polyfill.io">polyfills</a> and legacy browsers will say "Thank you"</li>
+			<li>Give it <a href="http://polyfill.io">polyfills</a> and legacy browsers will thank you</li>
 		</ul>
 	</div>	
 
