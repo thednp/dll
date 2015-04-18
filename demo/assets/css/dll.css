@@ -119,8 +119,6 @@ footer .content-wrap {
 /* WRAPPER STYLES
 -------------------------------------------------- */
 .content-wrap { position: relative; width: 980px; margin: 0 auto; max-width: 100% }
-.content-wrap ul,
-.content-wrap p { clear: both }
 
 /* check div consistency 
 div { background-color: rgba(0,0,0,0.2) }*/
@@ -142,7 +140,7 @@ h1, h3, [class*="col"] > h4 {margin: 0}
 	margin: 0 0 10px !important; padding: 25px 10px 15px; border-radius: 10px 
 }
 .columns > [class*="col"] { padding: 0 20px; float:left; position: relative }
-
+.columns + p {clear:both}
 .col2 { width: 50% }
 .col3 { width: 33.3% }
 .col4 { width: 25% }

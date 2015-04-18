@@ -63,7 +63,9 @@ for ( var i=0, itl=itms2.length; i<itl; i++ ){
 new dll('.cover',pageLoadFinished);
 function pageLoadFinished() {
 	var loader = document.querySelector('.page-loader'), isIE = document.documentElement.classList.contains('ie');
-	loader.getElementsByTagName('P')[0].innerHTML = 'Done. Now other examples.';
+	setTimeout(function() {
+		loader.getElementsByTagName('P')[0].innerHTML = 'Done, now other examples..'
+	}, 1000);
 	setTimeout(function() {
 		//play some KUTE tweens
 		if ( !isIE ) {
@@ -75,7 +77,7 @@ function pageLoadFinished() {
 		}
 		new KUTE.Animate('.cover', {from: { opacity: 0 }, to: { opacity: 1 }, duration: 2000, easing: 'exponentialIn' })
 		new KUTE.Animate('.navbar-wrapper', {from: { opacity: 0 }, to: { opacity: 1 }, delay: 2000, duration: 2000, easing: 'exponentialIn' })
-	}, 2000)
+	}, 3000)
 }
 
 // /////click
