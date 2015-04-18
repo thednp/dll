@@ -1,0 +1,235 @@
+/*!
+ * DLL.js v1.0 | https://github.com/thednp/dll.js/
+ * Licensed under MIT (https://github.com/thednp/dll.js/blob/master/LICENSE)
+ */
+
+/* GLOBAL STYLES
+-------------------------------------------------- */
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.8; /* ~25px */
+  color: #ddd;
+  background-color: #999;
+ 
+}
+
+body > .fill {
+	position: fixed; top: 0; left:0; right: 0; bottom:0; 
+}
+
+.fill { 
+	background-size: cover;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	width: 100%; height: 100%; 
+}
+.ie8 .fill {background-size: auto 100%}
+
+.overlay {
+	background-color: #000; 
+	opacity: 0.7; filter: alpha(opacity=70)
+}
+.cover { opacity: 0 }
+.ie8 .cover { filter: alpha(opacity=0) }
+
+
+footer {
+  clear: both; overflow: hidden; margin-top: 60px
+}
+
+footer .content-wrap {
+  padding-top: 5px;
+  border-top: 1px solid rgb(120,120,120); border-top: 1px solid rgba(255,255,255,0.2); 
+}
+
+/* site-wrapper */
+.site-wrapper { position: relative; opacity: 0; filter: alpha(opacity=0) }
+
+/* navbar */
+.navbar-wrapper { height: 140px; position: relative; padding: 25px 0; opacity: 0; filter: alpha(opacity=0); clear: both }
+.navbar-wrapper h1 { font-size: 32px; line-height: 25px; letter-spacing: -2px; float: left; padding-right: 25px; margin-right: 25px; border-right: 1px solid rgb(120,120,120); border-right: 1px solid rgba(255,255,255,0.2) }
+.navbar-wrapper h1 span { font-size: 24px; color: #159bd8; letter-spacing: -1px; }
+.navbar-wrapper .nav{ float: left; padding: 0  }
+.nav li { float: left; display: block; line-height: 25px; margin-right: 12px; list-style: none }
+.nav li a { color: #ccc }
+
+.columns { margin: 0 0 10px !important; padding: 25px 10px 15px; border-radius: 10px }
+
+.testCol1 { background-color: #069 }
+.btn.top-right { position: absolute; top:10px; right:0 }
+.testCol1 img,
+.testCol2,
+.testCol2 img { opacity: 0; filter: alpha(opacity=0) }
+
+/* UTILITY STYLES
+-------------------------------------------------- */
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.pull-right {
+  float: right !important;
+}
+.pull-left {
+  float: left !important;
+}
+.hide {
+  display: none !important;
+}
+.show {
+  display: block !important;
+}
+.invisible {
+  visibility: hidden;
+}
+.text-hide {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+
+/* WRAPPER STYLES
+-------------------------------------------------- */
+.content-wrap { position: relative; width: 980px; margin: 0 auto; max-width: 100% }
+
+/* check div consistency 
+div { background-color: rgba(0,0,0,0.2) }*/
+
+/* TYPO STYLES
+-------------------------------------------------- */
+p, ul, ol { margin: 0 0 10px }
+h1, h2, h3, h4, strong {color: #fff}
+h1 { font-size: 54px; letter-spacing:-4px; line-height: 0.92; font-weight: bold; }
+h2 { font-size: 46px; letter-spacing:-3px; line-height: 1.08; font-weight: bold; margin: 1.08em 0 0 }
+h3 { font-size: 36px; letter-spacing:-2px; line-height: 1.38; font-weight: bold; }
+h4 { font-size: 24px; letter-spacing:-1px; line-height: 1.41; font-weight: bold; }
+h1, h3, [class*="col"] > h4 {margin: 0}
+
+/* COLUMN STYLES
+-------------------------------------------------- */
+.columns { overflow: hidden; position: relative; width: auto; margin: 0 -20px; float: left; clear: both }
+.columns > [class*="col"] { padding: 0 20px; float:left; position: relative }
+.col2 { width: 50% }
+.col3 { width: 33.3% }
+.col4 { width: 25% }
+.col8 { width: 75% }
+
+@media (min-width: 480px) and (max-width: 768px){
+	.col3:last-child{width: 100%;}
+	.col3,
+	.col4 { width: 50% }
+	.col8 { width: 100% }
+}
+@media (max-width: 479px){
+	.columns > [class*="col"] { float:none; width: 100%; }
+}
+
+
+
+/* STYLING CONTENT
+-------------------------------------------------- */
+/* images */
+img { max-width: 100%; border-radius: 5px; }
+
+/* links */
+a {
+  color: #159bd8;
+  text-decoration: none;
+}
+a:hover,
+a:focus {
+  color: #ec1e71;
+  text-decoration: underline;
+}
+a:focus {
+  outline: none;
+}
+
+/* buttons */
+.btn { padding: 12px 15px; color:#fff; border:0; background-color: #999}
+.btn.active { background-color: #159bd8 }
+.btn:hover, .btn:active, .btn:focus { color: #fff; text-decoration: none; background-color: #777}
+.btn-olive, .bg-olive {background-color: #cd1a62} .btn-olive:hover, .btn-olive:active, .btn-olive:focus { background-color: #592673 }
+.btn-indigo, .bg-indigo { background-color: #592673;} .btn-indigo:hover, .btn-indigo:active, .btn-indigo:focus { background-color: #ffd626; color:#000 }
+.btn-green, .bg-green { background-color: #9ac730} .btn-green:hover, .btn-green:active, .btn-green:focus { background-color: #cd1a62 }
+.btn-red, .bg-red { background-color: #e91b1f} .btn-red:hover, .btn-red:active, .btn-red:focus { background-color: #9ac730 }
+.btn-yellow, .bg-yellow { background-color: #ffd626; color:#000} .btn-yellow:hover, .btn-yellow:active, .btn-yellow:focus { background-color: #9ac730; color: #000 }
+.btn-blue, .bg-blue { background-color: #159bd8} .btn-blue:hover, .btn-blue:active, .btn-blue:focus { background-color: #e91b1f }
+
+.icon-large { font-size: 78px; line-height: 0.64; text-shadow: 2px 2px 0 #FFF,3px 3px 0px #ccc;}
+.icon-large.fa-cogs:before { color: #9ac730 }
+.icon-large.fa-rocket:before { color: #592673 }
+.icon-large.fa-code-fork:before { color: #cd1a62 }
+
+
+/* STYLE CODE WRAPPING
+-------------------------------------------------- */
+code, kbd, pre {
+	font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+}
+pre {
+	display: block;
+	padding: 5px 10px;
+	margin: 0 0 10px;
+	font-size: 12px;
+	line-height: 2.08;
+	color: #999;
+	word-break: break-all;
+	background-color: rgb(11,11,11);
+	background-color: rgba(11,11,11,0.5);
+	border: 1px solid rgb(44,44,44);
+	border: 1px solid rgba(44,44,44,0.8);
+	border-radius: 4px;
+	overflow-x: auto;
+	text-align: left
+}
+code {
+	padding: 2px 4px;
+	font-size: 90%;
+	color: #ec1e71;
+	background-color: #222;
+	border-radius: 4px;
+	white-space: pre
+}
+kbd {
+	padding: 2px 4px;
+	font-size: 90%;
+	color: #fff;
+	background-color: #333;
+	border-radius: 3px;
+	-webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
+	box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
+}
+
+/* loader */
+.page-loader {
+	width: 286px; height: 86px;
+	position: fixed; top: 50%; left: 50%; margin: -43px 0 0 -143px; 
+}
+
+/* code wrapping */
+body .syntaxhighlighter {background: none !important; margin: 0  }
+body .syntaxhighlighter table { width: 100% }
+body .syntaxhighlighter .container:before,
+body .syntaxhighlighter .container:after { content: none }
+body .syntaxhighlighter .line.alt1,
+body .syntaxhighlighter .line.alt2 { background: none !important }
+.syntaxhighlighter code {background: none; padding:0}
+.syntaxhighlighter .container { padding:0; width: 860px !important}

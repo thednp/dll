@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<!--[if IE 7]><html class="ie ie7" lang="en"><![endif]-->
+<!--[if IE 8]><html class="ie ie8" lang="en"><![endif]-->
+<!--[if IE 9]><html class="ie ie9" lang="en"><![endif]-->
+
+<!--[if gte IE 9 | !IE ]><!--> <html lang="en"> <!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Double Lazy Load for lazy loading images and background images">
+    <meta name="keywords" content="Double Lazy Load,dll.js,Javascript,Native Javascript,vanilla javascript">
+    <meta name="author" content="dnp_theme">
+    <link rel="shortcut icon" href="./assets/img/favicon.png"> <!-- TO DO -->
+
+    <title>DLL.js | Double Lazy Load</title>
+	
+    <!-- RESET CSS -->
+    <link type="text/css" href="./assets/css/reset.css" rel="stylesheet">
+	
+	
+    <!-- DEMO DLL CSS -->
+    <link type="text/css" href="./assets/css/dll.css" rel="stylesheet">
+
+    <!-- Tooltip CSS -->
+    <link type="text/css" href="./assets/css/tooltip.min.css" rel="stylesheet">
+		
+	<!-- Synthax highlighter -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shThemeMidnight.css" rel="stylesheet">	
+	
+	<!-- legacy browsers support via polyfill -->
+	<script src="https://cdn.polyfill.io/v1/polyfill.js"> </script>
+	
+</head>
+
+<body>
+  <div class="fill cover" data-src="http://img.dummy-image-generator.com/animals/dummy-7680x4320-Jellyfish.jpg"></div>
+  <div class="fill overlay"></div>
+  
+  <div class="site-wrapper">
+ 
+	<div class="navbar-wrapper">
+      <div class="content-wrap">
+		<h1>DLL.<span>js</span></h1>
+		<ul class="nav">
+			<li><a href="https://github.com/thednp/dll.js">Github</a></li>
+			<li><a href="https://github.com/thednp/dll.js/archive/master.zip">Download</a></li>
+			<li><a href="http://www.jsdelivr.com/#!dll.js">CDN</a></li>
+		</ul>
+      </div>
+    </div>
+	
+
+	<div class="content-wrap">
+		<h2>Let's check this demo, shall we?</h2>
+		<p>What happened when loading this page? DLL.js lazy loaded a 4K image then triggered a callback function. Here's what was actually in place:</p>
+		<pre><span class="brush: js; ruler: true; toolbar:false; gutter: false">
+			// we do dll.js to the first encounter of the .fill class element
+			new dll('.fill',pageLoadFinished); 
+			function pageLoadFinished() {
+				//doin some cool stuff, you gonna check the scripts.js
+			}
+		</span></pre>
+		<p>Unlike the examples below, this is an example where the target element is the only subject to DLL lazy load.</p>
+	</div>
+	
+	<div class="content-wrap">
+		<h2>Let's do some lazy load on click</h2>
+		<p>In this example, we target the parent <code>.testCol1</code> element with our function, and DLL lazy loads it's inner elements. </p>
+		<a href="#" class="btn btn-olive top-right">Click me</a>
+		<div class="columns testCol1 fill">
+			<div class="col2">
+				<img src="./assets/img/img-blank.gif" data-src="http://placehold.it/450x205/555/555/">
+			</div>
+			<div class="col2">
+				<img src="./assets/img/img-blank.gif" data-src="http://placehold.it/450x205/777/777/">
+			</div>
+			<div class="col2">
+				<img src="./assets/img/img-blank.gif" data-src="http://placehold.it/450x205/555/555/">
+			</div>
+			<div class="col2">
+				<img src="./assets/img/img-blank.gif" data-src="http://placehold.it/450x205/777/777/">
+			</div>
+			<div class="col2">
+				<img src="./assets/img/img-blank.gif" data-src="http://placehold.it/450x205/555/555/">
+			</div>
+			<div class="col2">
+				<img src="./assets/img/img-blank.gif" data-src="http://placehold.it/450x205/777/777/">
+			</div>
+		</div>
+		<p>What happened here? DLL.js lazy loaded an element's children and triggered a function when last item loaded. The code looks like this:</p>
+		<pre><span class="brush: js; ruler: true; toolbar:false; gutter: false">
+			//listening to button click
+			var btn = document.querySelector('.btn');
+			btn.addEventListener('click', clickExample, false);
+
+			function clickExample(){
+				var el = document.querySelector('.testCol1');
+				
+				// if element is not loaded, we initiate dll.js
+				if ( !el.classList.contains('loaded') ){
+					new dll(el, callback);
+				}
+				
+				//when load is complete, we run a callback function
+				function callback(){					
+					//do some animation for the element and all children having data-src attribute
+
+					//add loaded class 
+					el.classList.add('loaded')
+				}
+			}
+		</span></pre>		
+		
+	</div>
+	
+	<div class="content-wrap">
+		<h2>Let's do some lazy load on scroll</h2>
+		<p>In this example, we target the parent <code>.testCol2</code> element with our function, and DLL lazy loads it and it's inner elements. </p>
+	
+		<div class="columns testCol2 fill" data-src="http://placehold.it/980x205/555/555/">
+			<div class="col2">
+				<img src="./assets/img/img-blank.gif" data-src="http://placehold.it/450x205/555/555/">
+			</div>
+			<div class="col2">
+				<img src="./assets/img/img-blank.gif" data-src="http://placehold.it/450x205/777/777/">
+			</div>
+			<div class="col2">
+				<img src="./assets/img/img-blank.gif" data-src="http://placehold.it/450x205/555/555/">
+			</div>
+			<div class="col2">
+				<img src="./assets/img/img-blank.gif" data-src="http://placehold.it/450x205/777/777/">
+			</div>
+			<div class="col2">
+				<img src="./assets/img/img-blank.gif" data-src="http://placehold.it/450x205/555/555/">
+			</div>
+			<div class="col2">
+				<img src="./assets/img/img-blank.gif" data-src="http://placehold.it/450x205/777/777/">
+			</div>
+		</div>
+		<p>What happened here? DLL.js lazy loaded an element with all it's children and triggered a function when last item loaded. The code looks like this:</p>
+		<pre><span class="brush: js; ruler: true; toolbar:false; gutter: false">
+			//listening to window scroll
+			window.addEventListener('scroll', scrollExample, false);
+
+			function scrollExample(){
+				var el = document.querySelector('.testCol2');
+				
+				//when element is in viewport, we initiate dll.js
+				if ( new elementInViewport(el) && !el.classList.contains('loaded') ){
+					new dll(el, callback);
+				}
+				
+				//when load is complete, we run a callback function
+				function callback(){					
+					//do some animation for the element's children having data-src attribute
+					
+					//add a class to parent element, to make sure things only work once 
+					el.classList.add('.loaded');
+				}
+			}
+		</span></pre>		
+		
+	</div>
+
+	<div class="content-wrap">
+		<h2>In case you missed the features</h2>
+		<ul>
+			<li>Lazy load a single element that has <code>data-src</code> attribute</li>
+			<li>Works for <code>&lt;img&gt;</code> and other elements as well, that's right: <code>background-image</code></li>
+			<li>When an element other than image is targeted, it will also lazy load it's child elements having the <code>data-src</code> attribute</li>
+			<li>You can also call dll.js to do lazy load for all elements in a page at once, simply type <code>new dll();</code></li>
+			<li>DLL has callback ability and it's triggered when the target element is loaded or it's last element is loaded</li>
+			<li>It's super light, around 1Kb in size and you can do so much with it</li>
+			<li>Includes am <code>elementInViewport</code> function to help you lazy load elements on scroll, like the example below</li>
+		</ul>
+	</div>	
+	
+	<div class="content-wrap">
+		<h2>I highly recommend</h2>
+		<ul>
+			<li>For SEO reasons, don't use it for content images unless their really big and affect the page load speed</li>
+			<li>Use it wisely and you can achieve higher page load speed while allowing crawlers to cache your images, this can be done using two images: one hidden, with proper <code>src</code> attribute and another one visible with <code>data-src</code> attribute</li>
+			<li>Don't do <code>new dll();</code> or <code>new dll('body');</code> unless you really want to do that, you may want to change what happens with each element alone</li>
+			<li>You may want to add a CSS class to a parent target and check it when a certain event such as scroll is used, you don't want bubbles, right?</li>
+
+		</ul>
+	</div>	
+	  
+      <!-- FOOTER -->
+     <footer>
+		<div class="content-wrap">
+			<p class="pull-right"><a href="#">Back to top</a></p>
+			<p>&copy; 2007 - 2015 &middot; <a href="http://themeforest.net/user/dnp_theme?ref=dnp_theme">dnp_theme</a>.</p>
+		</div>
+    </footer>
+
+ </div><!-- /.site-wrapper -->
+ 
+<div class="page-loader">
+  <div class="page-loader-wrap">
+	<h1>Hi. I'm DLL.js</h1>
+	<p>lazy loading a random 4K image...</p>
+  </div>
+</div>
+
+<!-- JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->	
+
+<script src="./assets/js/tooltip-native.min.js"></script> <!-- Tooltip -->
+<!-- highlighter -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shCore.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shAutoloader.js" type="text/javascript"></script>	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.js" type="text/javascript"></script>	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCss.js" type="text/javascript"></script>	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushXml.js" type="text/javascript"></script>
+	
+<!--<script src="http://cdn.jsdelivr.net/dll.js/0.9.0/dll.min.js"></script>  lazy-load CDN -->
+<script src="./src/dll.js"></script> <!-- lazy-load LOCAL -->
+<script src="http://cdn.jsdelivr.net/kute.js/0.9.0/kute.full.min.js"></script> <!-- KUTE CDN -->
+
+<script src="./assets/js/scripts.js"></script> <!-- some stuff -->
+</body>
+</html>
