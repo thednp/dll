@@ -4,6 +4,9 @@ Double Lazy Load for images and background images.
 # CDN
 Thanks to jsdelivr, we have CDN link <a href="http://www.jsdelivr.com/#!dll.js">here</a>.
 
+# Demo
+Right <a href="http://thednp.github.io/dll.js/">here</a>
+
 # Base syntax
 <pre>  new dll('selector',callback);</pre>
 	
