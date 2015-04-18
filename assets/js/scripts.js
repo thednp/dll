@@ -113,9 +113,9 @@ function scrollExample(){
 		if ( !el.classList.contains('loaded') ){
 			el.classList.add('loaded');
 			var itms = el.getElementsByTagName('IMG'), il = itms.length;
-			new KUTE.Animate(el, {from: { opacity: 0 }, to: { opacity: 1 }, duration: 2000, easing: 'exponentialOut' });
+			new KUTE.Animate(el, {from: { opacity: 0 }, to: { opacity: 1 }, delay: 500, duration: 2000, easing: 'exponentialOut' });
 			for ( var i = 0; i<il; i++ ) {
-				var dl = parseInt(250*i + 2000);
+				var dl = parseInt(250*i + 2500);
 				new KUTE.Animate(itms[i], {from: { scale: 0.2, opacity: 0 }, to: { scale: 1, opacity: 1 }, delay: dl, duration: 500, easing: 'backOut' });	
 			}
 		}
