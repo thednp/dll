@@ -57,11 +57,9 @@ footer .content-wrap {
 
 .navbar-wrapper h1 { font-size: 32px; line-height: 25px; letter-spacing: -2px; float: left; padding-right: 25px; margin-right: 25px; border-right: 1px solid rgb(120,120,120); border-right: 1px solid rgba(255,255,255,0.2) }
 .navbar-wrapper h1 span { font-size: 24px; color: #159bd8; letter-spacing: -1px; }
-.navbar-wrapper .nav{ float: left; padding: 0; clear: none  }
+.navbar-wrapper .nav { float: left; padding: 0;  }
 .nav li { float: left; display: block; line-height: 25px; margin-right: 12px; list-style: none }
 .nav li a { color: #ccc }
-
-.columns { margin: 0 0 10px !important; padding: 25px 10px 15px; border-radius: 10px }
 
 .testCol1 { background-color: #158d36 }
 .btn.top-right { position: absolute; top:10px; right:0 }
@@ -121,13 +119,15 @@ footer .content-wrap {
 /* WRAPPER STYLES
 -------------------------------------------------- */
 .content-wrap { position: relative; width: 980px; margin: 0 auto; max-width: 100% }
+.content-wrap ul,
+.content-wrap p { clear: both }
 
 /* check div consistency 
 div { background-color: rgba(0,0,0,0.2) }*/
 
 /* TYPO STYLES
 -------------------------------------------------- */
-p, ul, ol { margin: 0 0 10px; clear: both }
+p, ul, ol { margin: 0 0 10px }
 h1, h2, h3, h4, strong {color: #fff}
 h1 { font-size: 54px; letter-spacing:-4px; line-height: 0.92; font-weight: bold; }
 h2 { font-size: 46px; letter-spacing:-3px; line-height: 1.08; font-weight: bold; margin: 1.08em 0 0 }
@@ -137,8 +137,12 @@ h1, h3, [class*="col"] > h4 {margin: 0}
 
 /* COLUMN STYLES
 -------------------------------------------------- */
-.columns { overflow: hidden; position: relative; width: auto; margin: 0 -20px; float: left; clear: both }
+.columns { 
+	overflow: hidden; position: relative; width: auto; float: left; clear: both;
+	margin: 0 0 10px !important; padding: 25px 10px 15px; border-radius: 10px 
+}
 .columns > [class*="col"] { padding: 0 20px; float:left; position: relative }
+
 .col2 { width: 50% }
 .col3 { width: 33.3% }
 .col4 { width: 25% }
