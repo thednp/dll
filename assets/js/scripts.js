@@ -1,7 +1,7 @@
 //generate a random image from http://dummy-image-generator.com/
 var fl = document.querySelector('.fill'),
 	size4k = '3840x2160',
-	sizeSmall = '450x205',
+	sizeSmall = '900x410',
 	imgs =  [ 
 	{type: 'people', 	name: 'Eye'}, 
 	{type: 'abstract',	name: 'DesiccationCracks'},
@@ -60,7 +60,7 @@ for ( var i=0, itl=itms2.length; i<itl; i++ ){
 
 
 //some DLL demo
-new dll('.fill',pageLoadFinished);
+new dll('.cover',pageLoadFinished);
 function pageLoadFinished() {
 	var loader = document.querySelector('.page-loader'), isIE = document.documentElement.classList.contains('ie');
 	loader.getElementsByTagName('P')[0].innerHTML = 'Done. Now other examples.';
@@ -68,13 +68,13 @@ function pageLoadFinished() {
 		//play some KUTE tweens
 		if ( !isIE ) {
 			new KUTE.Animate(loader, {from: { translate: {y: 0}, opacity:1 }, to: { translate: {y: -1000}, opacity:0}, duration: 1500, easing: 'exponentialInOut' });
-			new KUTE.Animate('.site-wrapper', {from: { translate: { y: '100%'}, opacity: 0 }, to: { translate: { y: '0%'}, opacity: 1 }, delay: 500, duration: 1200, easing: 'exponentialInOut' })
+			new KUTE.Animate('.site-wrapper', {from: { translate: { y: 550 }, opacity: 0 }, to: { translate: { y: 0}, opacity: 1 }, delay: 500, duration: 1200, easing: 'exponentialInOut' })
 		} else {
-			new KUTE.Animate(loader, {from: { position: {top: '50%'}, opacity:1 }, to: { position: {top: '-10%'}, opacity:0}, duration: 1500, easing: 'exponentialInOut' });			
-			new KUTE.Animate('.site-wrapper', {from: { position: {top: '100%'}, opacity: 0 }, to: { position: { top: '0%'}, opacity: 1 }, delay: 500, duration: 1200, easing: 'exponentialInOut' })
+			new KUTE.Animate(loader, {from: { position: {top: '50%'}, opacity:1 }, to: { position: {top: '-5%'}, opacity:0}, duration: 1500, easing: 'exponentialInOut' });			
+			new KUTE.Animate('.site-wrapper', {from: { position: {top: 550}, opacity: 0 }, to: { position: { top: 0}, opacity: 1 }, delay: 500, duration: 1200, easing: 'exponentialInOut' })
 		}
-		new KUTE.Animate('.cover', {from: { opacity: 0 }, to: { opacity: 1 }, duration: 2000, easing: 'linear' })
-		new KUTE.Animate('.navbar-wrapper', {from: { opacity: 0 }, to: { opacity: 1 }, delay: 2000, duration: 2000, easing: 'linear' })
+		new KUTE.Animate('.cover', {from: { opacity: 0 }, to: { opacity: 1 }, duration: 2000, easing: 'exponentialIn' })
+		new KUTE.Animate('.navbar-wrapper', {from: { opacity: 0 }, to: { opacity: 1 }, delay: 2000, duration: 2000, easing: 'exponentialIn' })
 	}, 2000)
 }
 
@@ -93,8 +93,8 @@ function clickExample(e){
 		el.classList.add('loaded');
 		var itms = el.getElementsByTagName('IMG'), il = itms.length;
 		for ( var i = 0; i<il; i++ ) {
-			var dl = 550*i;
-			new KUTE.Animate(itms[i], {from: { scale: 1.5, opacity: 0 }, to: { scale: 1, opacity: 1 }, delay: dl, duration: 700, easing: 'elasticOut' });	
+			var dl = 350*i;
+			new KUTE.Animate(itms[i], {from: { scale: 1.5, opacity: 0 }, to: { scale: 1, opacity: 1 }, delay: dl, duration: 700, easing: 'exponentialOut' });	
 		}
 	}
 }
@@ -104,19 +104,21 @@ window.addEventListener('scroll', scrollExample, false);
 
 function scrollExample(){
 	var el = document.querySelector('.testCol2');
-	if ( new elementInViewport(el) && !el.classList.contains('loaded') ){
-		new dll(el, cbi);
+		
+	if ( elementInViewport(el) ){
+		new dll(el, callback);
 	}
-	function cbi(){
-		el.classList.add('loaded');
-		var itms = el.getElementsByTagName('IMG'), il = itms.length;
-		new KUTE.Animate(el, {from: { opacity: 0 }, to: { opacity: 1 }, duration: 2000, easing: 'linear' });
-		setTimeout(function(){
+	function callback(){
+		
+		if ( !el.classList.contains('loaded') ){
+			el.classList.add('loaded');
+			var itms = el.getElementsByTagName('IMG'), il = itms.length;
+			new KUTE.Animate(el, {from: { opacity: 0 }, to: { opacity: 1 }, duration: 2000, easing: 'exponentialOut' });
 			for ( var i = 0; i<il; i++ ) {
-				var dl = 250*i;
+				var dl = parseInt(250*i + 2000);
 				new KUTE.Animate(itms[i], {from: { scale: 0.2, opacity: 0 }, to: { scale: 1, opacity: 1 }, delay: dl, duration: 500, easing: 'backOut' });	
 			}
-		}, 1500)
+		}
 	}
 }
 

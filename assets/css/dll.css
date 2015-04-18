@@ -11,6 +11,7 @@ body {
   line-height: 1.8; /* ~25px */
   color: #ddd;
   background-color: #999;
+  position: relative
  
 }
 
@@ -28,9 +29,11 @@ body > .fill {
 
 .overlay {
 	background-color: #000; 
-	opacity: 0.7; filter: alpha(opacity=70)
+	opacity: 0.7
 }
 .cover { opacity: 0 }
+
+.ie8 .overlay { filter: alpha(opacity=70) }
 .ie8 .cover { filter: alpha(opacity=0) }
 
 
@@ -44,23 +47,33 @@ footer .content-wrap {
 }
 
 /* site-wrapper */
-.site-wrapper { position: relative; opacity: 0; filter: alpha(opacity=0) }
+.site-wrapper { position: relative; opacity: 0 }
+.ie8 .site-wrapper { filter: alpha(opacity=0); top: 250px }
+.ie8 .site-wrapper * { filter: inherit }
 
 /* navbar */
-.navbar-wrapper { height: 140px; position: relative; padding: 25px 0; opacity: 0; filter: alpha(opacity=0); clear: both }
+.navbar-wrapper { opacity: 0; height: 140px; position: relative; padding: 25px 0; clear: both }
+.ie8 .navbar-wrapper { filter: alpha(opacity=0) }
+
 .navbar-wrapper h1 { font-size: 32px; line-height: 25px; letter-spacing: -2px; float: left; padding-right: 25px; margin-right: 25px; border-right: 1px solid rgb(120,120,120); border-right: 1px solid rgba(255,255,255,0.2) }
 .navbar-wrapper h1 span { font-size: 24px; color: #159bd8; letter-spacing: -1px; }
-.navbar-wrapper .nav{ float: left; padding: 0  }
+.navbar-wrapper .nav{ float: left; padding: 0; clear: none  }
 .nav li { float: left; display: block; line-height: 25px; margin-right: 12px; list-style: none }
 .nav li a { color: #ccc }
 
 .columns { margin: 0 0 10px !important; padding: 25px 10px 15px; border-radius: 10px }
 
-.testCol1 { background-color: #069 }
+.testCol1 { background-color: #158d36 }
 .btn.top-right { position: absolute; top:10px; right:0 }
+.ie8 .btn.top-right { top:55px }
+
 .testCol1 img,
 .testCol2,
-.testCol2 img { opacity: 0; filter: alpha(opacity=0) }
+.testCol2 img { opacity: 0 }
+
+.ie8 .testCol1 img,
+.ie8 .testCol2,
+.ie8 .testCol2 img { filter: alpha(opacity=0) }
 
 /* UTILITY STYLES
 -------------------------------------------------- */
@@ -114,7 +127,7 @@ div { background-color: rgba(0,0,0,0.2) }*/
 
 /* TYPO STYLES
 -------------------------------------------------- */
-p, ul, ol { margin: 0 0 10px }
+p, ul, ol { margin: 0 0 10px; clear: both }
 h1, h2, h3, h4, strong {color: #fff}
 h1 { font-size: 54px; letter-spacing:-4px; line-height: 0.92; font-weight: bold; }
 h2 { font-size: 46px; letter-spacing:-3px; line-height: 1.08; font-weight: bold; margin: 1.08em 0 0 }
