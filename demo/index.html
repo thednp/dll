@@ -57,14 +57,23 @@
 		<h2>Let's check this demo, shall we?</h2>
 		<p>What happened when loading this page? DLL.js lazy loaded a 4K image then triggered a callback function. Here's what was actually in place:</p>
 		<pre><span class="brush: js; ruler: true; toolbar:false; gutter: false">
-			// we do dll.js to the first encounter of the .fill class element
-			new dll('.fill',pageLoadFinished); 
+			// we lazy load to the .cover class element
+			new dll('.cover',pageLoadFinished); 
+			
+			//when finished do some callback
 			function pageLoadFinished() {
 				//doin some cool stuff, you gonna check the scripts.js
 			}
 		</span></pre>
-		<p>Unlike the examples below, this is an example where the target element is the only subject to DLL lazy load.</p>
+		<p>Unlike the examples below, this is an example where the target element has no child elements and is the only subject to DLL lazy load.</p>
 	</div>
+
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
 	
 	<div class="content-wrap">
 		<h2>Let's do some lazy load on click</h2>
@@ -116,10 +125,19 @@
 		
 	</div>
 	
-	<div class="content-wrap">
-		<h2>Let's do some lazy load on scroll</h2>
-		<p>In this example, we target the parent <code>.testCol2</code> element with our function, and DLL lazy loads it and it's inner elements. </p>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
 	
+	
+	
+	<div class="content-wrap onscroll">
+		<h2>Let's do some lazy load on scroll</h2>
+		<p>In this example, we target the parent <code>.testCol2</code> element with our function, and DLL lazy loads it and it's inner elements. And now we'll scroll down a bit.</p>
+				
 		<div class="columns testCol2 fill" data-src="http://placehold.it/980x205/555/555/">
 			<div class="col2">
 				<img src="./assets/img/img-blank.gif" data-src="http://placehold.it/450x205/555/555/">
@@ -149,7 +167,7 @@
 				var el = document.querySelector('.testCol2');
 				
 				//when element is in viewport, we initiate dll.js
-				if ( new elementInViewport(el) && !el.classList.contains('loaded') ){
+				if ( elementInViewport(el) && !el.classList.contains('loaded') ){
 					new dll(el, callback);
 				}
 				
@@ -161,10 +179,17 @@
 					el.classList.add('.loaded');
 				}
 			}
-		</span></pre>		
-		
+		</span></pre>				
 	</div>
 
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	
+	
 	<div class="content-wrap">
 		<h2>In case you missed the features</h2>
 		<ul>
@@ -177,6 +202,13 @@
 			<li>Includes am <code>elementInViewport</code> function to help you lazy load elements on scroll, like the example below</li>
 		</ul>
 	</div>	
+
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
 	
 	<div class="content-wrap">
 		<h2>I highly recommend</h2>
@@ -210,7 +242,6 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->	
 
-<script src="./assets/js/tooltip-native.min.js"></script> <!-- Tooltip -->
 <!-- highlighter -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shCore.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shAutoloader.js" type="text/javascript"></script>	
@@ -219,8 +250,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushXml.js" type="text/javascript"></script>
 	
 <script src="http://cdn.jsdelivr.net/dll.js/0.9.1/dll.min.js"></script> <!-- lazy-load CDN -->
-<!--<script src="./src/dll.js"></script>  lazy-load LOCAL -->
-<script src="http://cdn.jsdelivr.net/kute.js/0.9.0/kute.full.min.js"></script> <!-- KUTE CDN -->
+<script src="http://cdn.jsdelivr.net/kute.js/0.9.0/kute.min.js"></script> <!-- KUTE CDN -->
 
 <script src="./assets/js/scripts.js"></script> <!-- some stuff -->
 </body>
