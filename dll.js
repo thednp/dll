@@ -1,31 +1,6 @@
-/*! Double Lazy Load / dll.js | by dnp_theme
- * MIT License (http://www.opensource.org/licenses/mit-license.html)
- *
- QUICK USAGE
-	-----------
-	//base syntax
-    new dll('selector',callback);
-	
-	//do dll for an element that is subject to lazy load and has data-src
-	//or
-	//do dll to all child items of a given element
-    new dll('selector');
-    
-	//if your script is in your site head, you should do this
-	window.addEventListener('load', loadFunctionExample, false);
-	function loadFunctionExample(){
-		new dll('[data-src]', myFunction);
-	}
-	
-	//if you want to lazy load on scroll
-	window.addEventListener('scroll', scrollExample, false);
-	function scrollExample(){
-		var el = document.getElementById('myCarousel1');
-		if ( elementInViewport(el) ){
-			new dll(el, callback)
-		}
-	}
-*/
+// Double Lazy Load / dll.js | by dnp_theme
+// MIT License (http://www.opensource.org/licenses/mit-license.html)
+
 
 // function(w){
 	
@@ -34,7 +9,6 @@
 		this.fn = typeof fn === 'function' ? fn : null; // callback function
 		this.src = this.el && this.el.getAttribute('data-src') || null; //element has own data-src attribute
 		if (this.src||this.el.querySelector('[data-src]') !== null) { this.init() }
-		if( self.fn ) console.log(self.fn)
 	}
 	dll.prototype = {
 		init: function() {
@@ -62,21 +36,20 @@
 		},
 		
 		getElements: function() { //we get images of a given object or itself
-			var q, self = this, imgs = [], hasItems = this.el.querySelector('[data-src]'), items = this.el.querySelectorAll('[data-src]');
-			if ( this.src && this.src !== undefined && !hasItems) {
-				q = this.el		
-			} else if ( !this.src && hasItems ) {
+			var q, self = this, imgs = [], items = this.el.querySelectorAll('[data-src]');
+			if ( this.src && !items) {
+				q = [this.el]		
+			} else if ( !this.src && items ) {
 				q = items
-			} else if ( this.src && hasItems ){
+			} else if ( this.src && items ){
 				q = items;
 				imgs.push(this.el);				
-			} else if ( !this.el && !this.src && !hasItems ){
+			} else if ( !this.src && !items ){
 				q = document.querySelectorAll('[data-src]')
 			}
-			for (var i = 0; i < q.length; i++) {
-				imgs.push(q[i])
-			}
-
+			
+			for (var i = 0; i < q.length; i++) { imgs.push(q[i]) }
+			
 			return imgs
 		}
 	};
@@ -88,6 +61,5 @@
 			&& rect.top <= (window.innerHeight || document.documentElement.clientHeight)
 		)
 	};
-	
 	
 // }(window);
