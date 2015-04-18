@@ -235,8 +235,11 @@ kbd {
 
 /* loader */
 .page-loader {
-	width: 286px; height: 86px;
-	position: fixed; top: 50%; left: 50%; margin: -43px 0 0 -143px; 
+	width: 360px; height: 86px;
+	position: fixed; top: 50%; left: 50%; margin: -43px 0 0 -180px; 
+}
+.page-loader img { 
+	width: 64px; height: auto; float: left; margin: 5px 10px 0 0;
 }
 
 /* code wrapping */

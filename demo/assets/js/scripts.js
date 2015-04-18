@@ -81,13 +81,16 @@ function pageLoadFinished() {
 }
 
 // /////click
-document.querySelector('.btn').addEventListener('click', clickExample, false);
+var btn = document.querySelector('.btn');
+btn.addEventListener('click', clickExample, false);
 
 function clickExample(e){
 	e.preventDefault();
+	
 	var el = document.querySelector('.testCol1');
 	
 	if ( !el.classList.contains('loaded') ){
+		btn.innerHTML = 'Loading..';
 		new dll(el, cbi);
 	}	
 
@@ -96,7 +99,12 @@ function clickExample(e){
 		var itms = el.getElementsByTagName('IMG'), il = itms.length;
 		for ( var i = 0; i<il; i++ ) {
 			var dl = 350*i;
-			new KUTE.Animate(itms[i], {from: { scale: 1.5, opacity: 0 }, to: { scale: 1, opacity: 1 }, delay: dl, duration: 700, easing: 'exponentialOut' });	
+			fn = i===(il-1) ? finished : '';
+			new KUTE.Animate(itms[i], {from: { scale: 1.5, opacity: 0 }, to: { scale: 1, opacity: 1 }, delay: dl, duration: 700, easing: 'exponentialOut', finish: fn });	
+		}
+		btn.innerHTML = 'Animating...';
+		function finished(){
+			btn.innerHTML = 'All right!';		
 		}
 	}
 }
@@ -122,6 +130,15 @@ function scrollExample(){
 			}
 		}
 	}
+}
+
+//scroll top?
+var toTop = document.getElementById('toTop');
+toTop.addEventListener('click',topHandler,false);
+
+function topHandler(e){
+	e.preventDefault(); 
+	new KUTE.Animate( 'div', { to : { scroll: 0 }, easing: 'quarticOut', duration : 1500  } );
 }
 
 //syntax highlighter
