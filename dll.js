@@ -1,5 +1,5 @@
 // Double Lazy Load / dll.js | by dnp_theme
-// MIT License (http://www.opensource.org/licenses/mit-license.html)
+// MIT License 
 
 
 // function(w){
@@ -43,7 +43,10 @@
 				q = items
 			} else if ( this.src && items ){
 				q = items;
-				imgs.push(this.el);				
+				/* put element first in line, it may have a bigger image 
+				 * to load than all childNodes combined */
+				// imgs.push(this.el);
+				imgs.unshift(this.el); 								
 			} else if ( !this.src && !items ){
 				q = document.querySelectorAll('[data-src]')
 			}
