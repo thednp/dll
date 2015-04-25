@@ -1,10 +1,12 @@
 //generate a random image from http://dummy-image-generator.com/
+
 var fl = document.querySelector('.fill'),
 	size4k = '3840x2160',
 	sizeSmall = '900x410',
 	imgs =  [ 
 	{type: 'people', 	name: 'Eye'}, 
 	{type: 'abstract',	name: 'DesiccationCracks'},
+	{type: 'abstract',	name: 'Menu'},
 	{type: 'abstract',	name: 'Utrecht'},
 	{type: 'abstract',	name: 'Rope'},
 	{type: 'abstract',	name: 'Stripes'},
@@ -34,7 +36,9 @@ var fl = document.querySelector('.fill'),
 	{type: 'nature',	name: 'LaceFlower' },
 	{type: 'nature',	name: 'Raindrops' },
 	{type: 'nature',	name: 'Orchid' },
-	{type: 'bw',		name: 'Staining' }
+	{type: 'bw',		name: 'Railway' },
+	{type: 'bw',		name: 'Staining' },
+	{type: 'bw',		name: 'See' }
 ];
 var iml = imgs.length;
 var n = Math.floor(Math.random()*iml);
@@ -62,21 +66,22 @@ for ( var i=0, itl=itms2.length; i<itl; i++ ){
 //some DLL demo
 new dll('.cover',pageLoadFinished);
 function pageLoadFinished() {
-	var loader = document.querySelector('.page-loader'), isIE = document.documentElement.classList.contains('ie');
+	var loader = document.querySelector('.page-loader'), loaderImg = loader.getElementsByTagName('IMG')[0], isIE = document.documentElement.classList.contains('ie');
 	setTimeout(function() {
+		new KUTE.Animate(loaderImg, {from: { opacity:1 }, to: { opacity:0}, duration: 1500, easing: 'linear' });
 		loader.getElementsByTagName('P')[0].innerHTML = 'Done, now other examples..'
-	}, 1000);
+	}, 500);
 	setTimeout(function() {
 		//play some KUTE tweens
 		if ( !isIE ) {
-			new KUTE.Animate(loader, {from: { translate: {y: 0}, opacity:1 }, to: { translate: {y: -1000}, opacity:0}, duration: 1500, easing: 'exponentialInOut' });
-			new KUTE.Animate('.site-wrapper', {from: { translate: { y: 550 }, opacity: 0 }, to: { translate: { y: 0}, opacity: 1 }, delay: 500, duration: 1200, easing: 'exponentialInOut' })
+			new KUTE.Animate(loader, {from: { translate: {y: 0}, opacity:1 }, to: { translate: {y: -1000}, opacity:0}, duration: 700, easing: 'exponentialIn' });
+			new KUTE.Animate('.site-wrapper', {from: { translate: { y: 550 }, opacity: 0 }, to: { translate: { y: 0}, opacity: 1 }, delay: 700, duration: 1200, easing: 'exponentialInOut' })
 		} else {
-			new KUTE.Animate(loader, {from: { position: {top: '50%'}, opacity:1 }, to: { position: {top: '-5%'}, opacity:0}, duration: 1500, easing: 'exponentialInOut' });			
-			new KUTE.Animate('.site-wrapper', {from: { position: {top: 550}, opacity: 0 }, to: { position: { top: 0}, opacity: 1 }, delay: 500, duration: 1200, easing: 'exponentialInOut' })
+			new KUTE.Animate(loader, {from: { position: {top: '50%'}, opacity:1 }, to: { position: {top: '-5%'}, opacity:0}, duration: 700, easing: 'exponentialIn' });			
+			new KUTE.Animate('.site-wrapper', {from: { position: {top: 550}, opacity: 0 }, to: { position: { top: 0}, opacity: 1 }, delay: 700, duration: 1200, easing: 'exponentialInOut' })
 		}
-		new KUTE.Animate('.cover', {from: { opacity: 0 }, to: { opacity: 1 }, duration: 2000, easing: 'exponentialIn' })
-		new KUTE.Animate('.navbar-wrapper', {from: { opacity: 0 }, to: { opacity: 1 }, delay: 2000, duration: 2000, easing: 'exponentialIn' })
+			new KUTE.Animate('.cover', {from: { opacity: 0 }, to: { opacity: 1 }, delay: 2000, duration: 2000, easing: 'exponentialIn' })
+			new KUTE.Animate('.navbar-wrapper', {from: { opacity: 0 }, to: { opacity: 1 }, delay: 4000, duration: 2000, easing: 'linear' })
 	}, 3000)
 }
 
@@ -91,10 +96,10 @@ function clickExample(e){
 	
 	if ( !el.classList.contains('loaded') ){
 		btn.innerHTML = 'Loading..';
-		new dll(el, cbi);
+		new dll(el, callback);
 	}	
 
-	function cbi(){
+	function callback(){
 		el.classList.add('loaded');
 		var itms = el.getElementsByTagName('IMG'), il = itms.length;
 		for ( var i = 0; i<il; i++ ) {
