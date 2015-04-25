@@ -43,16 +43,14 @@
 				q = items
 			} else if ( this.src && items ){
 				q = items;
-				/* put element first in line, it may have a bigger image 
-				 * to load than all childNodes combined */
-				// imgs.push(this.el);
-				imgs.unshift(this.el); 								
+				// put element last in array, it may have a bigger image to load
+				// than all childNodes combined
+				imgs.push(this.el);
 			} else if ( !this.src && !items ){
 				q = document.querySelectorAll('[data-src]')
 			}
 			
-			for (var i = 0; i < q.length; i++) { imgs.push(q[i]) }
-			
+			for (var i = q.length - 1; i >= 0; i--) { imgs.unshift(q[i]) }			
 			return imgs
 		}
 	};
