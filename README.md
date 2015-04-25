@@ -14,16 +14,15 @@ Thanks to jsdelivr, we have CDN link <a href="http://www.jsdelivr.com/#!dll.js">
 # Demo
 Right <a href="http://thednp.github.io/dll.js/">here</a>
 
-# Base syntax
-<pre>  new dll('selector',callback);</pre>
+# Base usage
+<pre>new dll('selector',callback);</pre>
 	
-# Works with
-Any valid selector or no selector.
+<b>Works with</b> any valid selector or no selector.
 <pre>new dll('validSelector'); // run dll for an element with any valid selector #myElement / .myElementClass</pre>
 <pre>new dll(); // lazy loads any items with data-src from the entire page</pre>
     
 # Other examples
-If your script is in your site head, you should do this
+If you link the script in the site <code>&lt;head&gt;<code>, you should do this
 <pre>
 window.addEventListener('load', loadFunctionExample, false);
 function loadFunctionExample(){
