@@ -1,5 +1,12 @@
 # Double Lazy Load | dll.js
-Double Lazy Load for images and background images.
+Double Lazy Load for images and background images. The name of the script lies in what it does, so check below or see the demo.
+
+# What it does
+* Do lazy loading for an element that is subject to lazy load via data-src, or
+* Do to all child items of a given element
+* Do <code>backgroundImage</code> to elements other than <code>&lt;img&gt;</code> if they have <code>data-src</code> attribute.
+* Do callback when load event is triggered for one element, or for the last child element of a given parent.
+* Do lazy load for all items having <code>data-src</code> attribute.
 
 # CDN
 Thanks to jsdelivr, we have CDN link <a href="http://www.jsdelivr.com/#!dll.js">here</a>.
@@ -10,17 +17,9 @@ Right <a href="http://thednp.github.io/dll.js/">here</a>
 # Base syntax
 <pre>  new dll('selector',callback);</pre>
 	
-# What it does
-* Do lazy loading for an element that is subject to lazy load via data-src, or
-* Do to all child items of a given element
-* Do <code>backgroundImage</code> to elements other than <code>&lt;img&gt;</code> if they have <code>data-src</code> attribute.
-* Do callback when load event is triggered for one element, or for the last child element of a given parent.
-* Do lazy load for all items having <code>data-src</code> attribute.
-
 # Works with
 Any valid selector or no selector.
-<pre>new dll('.uniqueClassName'); // lazy loads an element with a given class and it's children if any have data-src</pre>
-<pre>new dll('#uniqueID'); // lazy loads an element with a given ID and it's children if any have data-src</pre>
+<pre>new dll('validSelector'); // run dll for an element with any valid selector #myElement / .myElementClass</pre>
 <pre>new dll(); // lazy loads any items with data-src from the entire page</pre>
     
 # Other examples
