@@ -22,7 +22,7 @@ Right <a href="http://thednp.github.io/dll.js/">here</a>
 <pre>new dll(); // lazy loads any items with data-src from the entire page</pre>
     
 # Other examples
-If you link the script in the site <code>&lt;head&gt;<code>, you should do this
+If you link the script in the site <code>&lt;head&gt;</code>, you should do this
 <pre>
 window.addEventListener('load', loadFunctionExample, false);
 function loadFunctionExample(){
