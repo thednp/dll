@@ -27,34 +27,37 @@ new dll('selector',callback);
 # Works with
 Any valid selector or no selector.
 ```js
-new dll('.uniqueClassName'); // lazy loads an element with a given class and it's children if any have data-src
+// lazy loads an element with a given class and it's children if any have data-src
+new dll('.uniqueClassName'); 
 
-new dll('#uniqueID'); // lazy loads an element with a given ID and it's children if any have data-src
+// lazy loads an element with a given ID and it's children if any have data-src
+new dll('#uniqueID'); 
 
-new dll(); // lazy loads any items with data-src from the entire page
+// lazy loads any items with data-src from the entire page
+new dll(); 
 ```
     
 # Other examples
 If your script is in your site head, you should do this
 ```js
-window.addEventListener('load', loadFunctionExample, false);
 function loadFunctionExample(){
 	new dll('[data-src]', myFunction);
 }
+window.addEventListener('load', loadFunctionExample, false);
 ```
 
 If you want to lazy load on scroll
 ```js
-window.addEventListener('scroll', scrollExample, false);
-	function scrollExample(){
-		var el = document.getElementById('myItem');
-		if ( elementInViewport(el) ){
-			new dll(el, callback)
-		}
-		function callback(){
-			//do some stuff when loading finished
-		}
+function scrollExample(){
+	var el = document.getElementById('myItem');
+	if ( elementInViewport(el) ){
+		new dll(el, callback)
 	}
+	function callback(){
+		//do some stuff when loading finished
+	}
+}
+window.addEventListener('scroll', scrollExample, false);
 ```	
 
 # A nasty example
