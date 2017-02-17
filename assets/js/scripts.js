@@ -1,3 +1,13 @@
+// utility
+var elementInViewport = function(el) { //check element is in viewport
+	var rect = el.getBoundingClientRect();
+	return ( 
+		rect.top >= 0
+		&& rect.left >= 0
+		&& rect.top <= (window.innerHeight || document.documentElement.clientHeight)
+	)
+};
+
 //generate a random image from http://dummy-image-generator.com/
 
 var fl = document.querySelector('.fill'),
@@ -66,22 +76,23 @@ for ( var i=0, itl=itms2.length; i<itl; i++ ){
 //some DLL demo
 new dll('.cover',pageLoadFinished);
 function pageLoadFinished() {
-	var loader = document.querySelector('.page-loader'), loaderImg = loader.getElementsByTagName('IMG')[0], isIE = document.documentElement.classList.contains('ie');
+	var loader = document.querySelector('.page-loader'), loaderImg = loader.getElementsByTagName('IMG')[0], 
+			isIE = document.documentElement.classList.contains('ie');
 	setTimeout(function() {
-		new KUTE.Animate(loaderImg, {from: { opacity:1 }, to: { opacity:0}, duration: 1500, easing: 'linear' });
+		KUTE.fromTo(loaderImg, { opacity:1 }, { opacity:0}, { duration: 1500, easing: 'linear'}).start();
 		loader.getElementsByTagName('P')[0].innerHTML = 'Done, now other examples..'
 	}, 500);
 	setTimeout(function() {
 		//play some KUTE tweens
 		if ( !isIE ) {
-			new KUTE.Animate(loader, {from: { translate: {y: 0}, opacity:1 }, to: { translate: {y: -1000}, opacity:0}, duration: 700, easing: 'exponentialIn' });
-			new KUTE.Animate('.site-wrapper', {from: { translate: { y: 550 }, opacity: 0 }, to: { translate: { y: 0}, opacity: 1 }, delay: 700, duration: 1200, easing: 'exponentialInOut' })
+			KUTE.fromTo(loader,{ translate: [0,0], opacity:1 }, { translate: [0,-1000], opacity:0}, { duration: 700, easing: 'easingExponentialIn' }).start();
+			KUTE.fromTo('.site-wrapper', { translate: [0,550], opacity: 0 }, { translate: [0,0], opacity: 1 }, { delay: 700, duration: 1200, easing: 'easingExponentialInOut' }).start()
 		} else {
-			new KUTE.Animate(loader, {from: { position: {top: '50%'}, opacity:1 }, to: { position: {top: '-5%'}, opacity:0}, duration: 700, easing: 'exponentialIn' });			
-			new KUTE.Animate('.site-wrapper', {from: { position: {top: 550}, opacity: 0 }, to: { position: { top: 0}, opacity: 1 }, delay: 700, duration: 1200, easing: 'exponentialInOut' })
+			KUTE.fromTo(loader, { position: {top: '50%'}, opacity:1 }, { position: {top: '-5%'}, opacity:0}, { duration: 700, easing: 'easingExponentialIn' }).start();			
+			KUTE.fromTo('.site-wrapper', { position: {top: 550}, opacity: 0 }, { position: { top: 0}, opacity: 1 }, { delay: 700, duration: 1200, easing: 'easingExponentialInOut' }).start()
 		}
-			new KUTE.Animate('.cover', {from: { opacity: 0 }, to: { opacity: 1 }, delay: 2000, duration: 2000, easing: 'exponentialIn' })
-			new KUTE.Animate('.navbar-wrapper', {from: { opacity: 0 }, to: { opacity: 1 }, delay: 4000, duration: 2000, easing: 'linear' })
+			KUTE.fromTo('.cover', { opacity: 0 }, { opacity: 1 }, { delay: 2000, duration: 2000, easing: 'easingExponentialIn' }).start()
+			KUTE.fromTo('.navbar-wrapper', { opacity: 0 }, { opacity: 1 }, { delay: 4000, duration: 2000, easing: 'linear' }).start()
 	}, 3000)
 }
 
@@ -105,7 +116,7 @@ function clickExample(e){
 		for ( var i = 0; i<il; i++ ) {
 			var dl = 350*i;
 			fn = i===(il-1) ? finished : '';
-			new KUTE.Animate(itms[i], {from: { scale: 1.5, opacity: 0 }, to: { scale: 1, opacity: 1 }, delay: dl, duration: 700, easing: 'exponentialOut', finish: fn });	
+			KUTE.fromTo(itms[i], { scale: 1.5, opacity: 0 }, { scale: 1, opacity: 1 }, { delay: dl, duration: 700, easing: 'easingExponentialOut', finish: fn }).start();	
 		}
 		btn.innerHTML = 'Animating...';
 		function finished(){
@@ -128,22 +139,23 @@ function scrollExample(){
 		if ( !el.classList.contains('loaded') ){
 			el.classList.add('loaded');
 			var itms = el.getElementsByTagName('IMG'), il = itms.length;
-			new KUTE.Animate(el, {from: { opacity: 0 }, to: { opacity: 1 }, delay: 500, duration: 2000, easing: 'exponentialOut' });
+			KUTE.fromTo(el, { opacity: 0 }, { opacity: 1 }, { delay: 500, duration: 2000, easing: 'easingExponentialOut' }).start();
 			for ( var i = 0; i<il; i++ ) {
 				var dl = parseInt(250*i + 2500);
-				new KUTE.Animate(itms[i], {from: { scale: 0.2, opacity: 0 }, to: { scale: 1, opacity: 1 }, delay: dl, duration: 500, easing: 'backOut' });	
+				KUTE.fromTo(itms[i], { scale: 0.2, opacity: 0 }, { scale: 1, opacity: 1 }, { delay: dl, duration: 500, easing: 'easingBackOut' }).start();	
 			}
 		}
 	}
 }
 
 //scroll top?
-var toTop = document.getElementById('toTop');
+var toTop = document.getElementById('toTop'),
+	toTopTween = KUTE.to( 'window', { scroll: 0 }, { easing: 'easingQuarticOut', duration : 1500  } );
 toTop.addEventListener('click',topHandler,false);
 
 function topHandler(e){
 	e.preventDefault(); 
-	new KUTE.Animate( 'div', { to : { scroll: 0 }, easing: 'quarticOut', duration : 1500  } );
+	toTopTween.start();
 }
 
 //syntax highlighter
