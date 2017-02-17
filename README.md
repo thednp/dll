@@ -1,6 +1,22 @@
 # Double Lazy Load | dll.js
-Double Lazy Load for images and background images. The name of the script lies in what it does, so check below or see the demo.
+Double Lazy Load for images and background images.
 
+# CDN
+Thanks to jsdelivr, we have CDN link <a href="http://www.jsdelivr.com/#!dll.js">here</a>.
+
+# npm
+```
+npm install dll.js
+```
+
+# Demo
+Right <a href="http://thednp.github.io/dll.js/">here</a>
+
+# Base syntax
+```js
+new dll('selector',callback);
+```
+	
 # What it does
 * Do lazy loading for an element that is subject to lazy load via data-src, or
 * Do to all child items of a given element
@@ -8,30 +24,27 @@ Double Lazy Load for images and background images. The name of the script lies i
 * Do callback when load event is triggered for one element, or for the last child element of a given parent.
 * Do lazy load for all items having <code>data-src</code> attribute.
 
-# CDN
-Thanks to jsdelivr, we have CDN link <a href="http://www.jsdelivr.com/#!dll.js">here</a>.
+# Works with
+Any valid selector or no selector.
+```js
+new dll('.uniqueClassName'); // lazy loads an element with a given class and it's children if any have data-src
 
-# Demo
-Right <a href="http://thednp.github.io/dll.js/">here</a>
+new dll('#uniqueID'); // lazy loads an element with a given ID and it's children if any have data-src
 
-# Base usage
-<pre>new dll('selector',callback);</pre>
-	
-<b>Works with</b> any valid selector or no selector.
-<pre>new dll('validSelector'); // run dll for an element with any valid selector #myElement / .myElementClass</pre>
-<pre>new dll(); // lazy loads any items with data-src from the entire page</pre>
+new dll(); // lazy loads any items with data-src from the entire page
+```
     
 # Other examples
-If you link the script in the site <code>&lt;head&gt;</code>, you should do this
-<pre>
+If your script is in your site head, you should do this
+```js
 window.addEventListener('load', loadFunctionExample, false);
 function loadFunctionExample(){
 	new dll('[data-src]', myFunction);
 }
-</pre>
+```
 
 If you want to lazy load on scroll
-<pre>
+```js
 window.addEventListener('scroll', scrollExample, false);
 	function scrollExample(){
 		var el = document.getElementById('myItem');
@@ -42,18 +55,17 @@ window.addEventListener('scroll', scrollExample, false);
 			//do some stuff when loading finished
 		}
 	}
-</pre>	
+```	
 
 # A nasty example
-Lazy load a parent <code>&lt;div id="myElement" data-src="..image.png"&gt;</code> with many elements inside subject to dll.js object:
-<pre>
+Lazy load a parent `<div id="myElement" data-src="..image.png">` with many elements inside subject to dll.js object:
+```js
 var el = document.getElementById('myElement'); //this is a parent
 new dll(el, callback)
 function callback(){
 	console.log('I just finished lazy loading the last element for #myElement')
 }
-
-</pre>
+```
 
 #License
 <a href="https://github.com/thednp/dll.js/blob/master/LICENSE">MIT License</a>

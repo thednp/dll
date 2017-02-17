@@ -1,0 +1,30 @@
+{
+  "name": "dll.js",
+  "version": "0.9.3",
+  "description": "Double Lazy Load for images and background images.",
+  "main": "dll.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "min": "node build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thednp/dll.js.git"
+  },
+  "keywords": [
+    "dll.js",
+    "lazy load",
+    "double lazy load",
+    "vanilla js",
+    "vanilla javascript"
+  ],
+  "author": "dnp_theme",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thednp/dll.js/issues"
+  },
+  "homepage": "https://thednp.github.io/dll.js/",
+  "devDependencies": {
+    "uglify-js": "^2.7.3"
+  }
+}
