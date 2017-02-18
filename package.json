@@ -1,6 +1,6 @@
 {
   "name": "dll.js",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "description": "Double Lazy Load for images and background images.",
   "main": "dll.js",
   "scripts": {
