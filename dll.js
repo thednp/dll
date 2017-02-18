@@ -19,6 +19,7 @@
   var getAttribute = 'getAttribute',
       dataSRC = 'data-src',
       srcSelector = '['+dataSRC+']',
+      querySelector = 'querySelector',
       querySelectorAll = 'querySelectorAll',
       length = 'length';
 
@@ -27,7 +28,7 @@
   return function(element,callbackFn){
 
     // constructor element
-    element = typeof element === 'object' ? element : document.querySelector(element);
+    element = typeof element === 'object' ? element : document[querySelector](element);
 
     // callback
     callbackFn = typeof callbackFn === 'function' ? callbackFn : null; // callback function
@@ -74,7 +75,7 @@
       };
 
     // init
-    if (elementSRC || element.querySelector(srcSelector) !== null) {
+    if (elementSRC || element[querySelector](srcSelector) !== null) {
       var images = getElements();
       for (var i = 0; i < images[length]; i++) {
         if ( i === images[length]-1 && callbackFn) {
