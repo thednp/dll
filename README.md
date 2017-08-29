@@ -1,5 +1,5 @@
 # Double Lazy Load | dll.js
-Double Lazy Load for images, background images and videos.
+Double Lazy Load for videos, images and background images.
 
 # CDN
 Thanks to jsdelivr, we have CDN link <a href="http://www.jsdelivr.com/#!dll.js">here</a>.
@@ -10,7 +10,7 @@ npm install dll.js
 ```
 
 # Demo
-Right <a href="http://thednp.github.io/dll.js/">here</a>
+Right <a href="http://thednp.github.io/dll.js/">here</a>. Also provides some tips on how to use.
 
 # Base syntax
 ```js
@@ -42,7 +42,7 @@ new dll();
 If your script is in your site head, you should do this
 ```js
 function loadFunctionExample(){
-	new dll('[data-src]', myFunction);
+  new dll('[data-src]', myFunction);
 }
 window.addEventListener('load', loadFunctionExample, false);
 ```
@@ -50,13 +50,13 @@ window.addEventListener('load', loadFunctionExample, false);
 If you want to lazy load on scroll, with [elementInViewport](https://gist.github.com/vincentorback/9ca8446a4c7c87ce3623) you can do:
 ```js
 function scrollExample(){
-	var el = document.getElementById('myItem');
-	if ( elementInViewport(el) ){
-		new dll(el, callback)
-	}
-	function callback(){
-		//do some stuff when loading finished
-	}
+  var el = document.getElementById('myItem');
+  if ( elementInViewport(el) ){
+    new dll(el, callback)
+  }
+  function callback(){
+    //do some stuff when loading finished
+  }
 }
 window.addEventListener('scroll', scrollExample, false);
 ```	
@@ -67,9 +67,9 @@ Lazy load a parent `<div id="myElement" data-src="..image.png">` with many eleme
 var el = document.getElementById('myElement'); //this is a parent
 new dll(el, callback)
 function callback(){
-	console.log('I just finished lazy loading the last element for #myElement')
+  console.log('I just finished lazy loading the last element for #myElement')
 }
 ```
 
-#License
+# License
 <a href="https://github.com/thednp/dll.js/blob/master/LICENSE">MIT License</a>
