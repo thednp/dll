@@ -69,9 +69,15 @@ footer .content-wrap {
 .testCol2,
 .testCol2 img { opacity: 0 }
 
+/* ie8 fix */
 .ie8 .testCol1 img,
 .ie8 .testCol2,
 .ie8 .testCol2 img { filter: alpha(opacity=0) }
+
+/* video */
+.testCol3 { opacity: 0; }
+.ie8 .testCol3 { filter: alpha(opacity=0) }
+.testCol3 video { opacity: 0; max-width: 100% }
 
 /* UTILITY STYLES
 -------------------------------------------------- */
@@ -203,7 +209,7 @@ pre {
 	display: block;
 	padding: 5px 10px;
 	margin: 0 0 10px;
-	font-size: 12px;
+	font-size: 16px;
 	line-height: 2.08;
 	color: #999;
 	word-break: break-all;

@@ -21,7 +21,9 @@
       srcSelector = '['+dataSRC+']',
       querySelector = 'querySelector',
       querySelectorAll = 'querySelectorAll',
-      length = 'length';
+      SOURCE = 'SOURCE', IMG = 'IMG', VIDEO = 'VIDEO',
+      length = 'length',
+      tagName = 'tagName';
 
   // DLL DEFINITION
   // ==============
@@ -33,45 +35,50 @@
     // callback
     callbackFn = typeof callbackFn === 'function' ? callbackFn : null; // callback function
 
-    var self = this, 
-
+    var self = this,
 
       // element's src attribute
       elementSRC = element && element[getAttribute](dataSRC) || null, //element has own data-src attribute
   
       // private methods
-      loader = function(elementImage, imageCallback) {
-        var img = new Image(), src = elementImage[getAttribute](dataSRC);
-        img.onload = function(){
-          if (elementImage.tagName === 'IMG') {
-            elementImage.src=src;
-          } else {
-            elementImage.style.backgroundImage = 'url("'+src+'")';
-          }  
-          elementImage.removeAttribute(dataSRC);
-          if (imageCallback) { imageCallback() }
+      loadMedia = function(mediaElement, imageCallback) {
+        var isVideo = mediaElement[tagName] === SOURCE,
+          loadMethod = isVideo ? 'onloadstart' : 'onload',
+          newVideo = isVideo ? document.createElement(VIDEO) : 0,
+          mediaObject = isVideo ? document.createElement(SOURCE) : new Image(),
+          loadTarget = isVideo ? newVideo : mediaObject, 
+          src = mediaElement[getAttribute](dataSRC);
+
+        loadTarget[loadMethod] = function(){
+          if (mediaElement[tagName] === IMG) { mediaElement.src=src; } // IMG 
+          else if (mediaElement[tagName] === SOURCE) { // VIDEO SOURCE
+            mediaElement.src=src;
+            mediaElement.parentNode.load();
+          } 
+          else {mediaElement.style.backgroundImage = 'url("'+src+'")'; } // background-image
+          mediaElement.removeAttribute(dataSRC);
+          imageCallback && imageCallback();
         }
-        img.src = src
+        mediaObject.src = src;
+        newVideo && ( newVideo.appendChild(mediaObject) );
+
       },
       getElements = function() { //we get images of a given object or itself
-        var queue, imgs = [], items = element[querySelectorAll](srcSelector);
-        if ( elementSRC && !items) {
+        var queue, mediaItems = [], matchedSelectors = element[querySelectorAll](srcSelector);
+        if ( elementSRC && !matchedSelectors) {
           queue = [element];
-        } else if ( !elementSRC && items ) {
-          queue = items;
-        } else if ( elementSRC && items ){
-          queue = items;
-          /* put element first in line, it may have a bigger image 
-           * to load than all childNodes combined */
-          // imgs.push(element);
-          imgs.unshift(element);                 
-        } else if ( !elementSRC && !items ){
+        } else if ( !elementSRC && matchedSelectors ) {
+          queue = matchedSelectors;
+        } else if ( elementSRC && matchedSelectors ){
+          queue = matchedSelectors;
+          mediaItems.unshift(element);                 
+        } else if ( !elementSRC && !matchedSelectors ){
           queue = document[querySelectorAll](srcSelector);
         }
         
-        for (var i = 0; i < queue[length]; i++) { imgs.push(queue[i]) }
+        for (var i = 0; i < queue[length]; i++) { mediaItems.push(queue[i]) }
         
-        return imgs;
+        return mediaItems;
       };
 
     // init
@@ -79,9 +86,9 @@
       var images = getElements();
       for (var i = 0; i < images[length]; i++) {
         if ( i === images[length]-1 && callbackFn) {
-          loader(images[i],callbackFn);
+          loadMedia(images[i],callbackFn);
         } else {
-          loader(images[i])
+          loadMedia(images[i])
         }
       }
     }

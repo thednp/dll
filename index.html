@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Double Lazy Load for lazy loading images and background images">
+    <meta name="description" content="Double Lazy Load for lazy loading images, background images and videos">
     <meta name="keywords" content="Double Lazy Load,dll.js,Javascript,Native Javascript,vanilla javascript">
     <meta name="author" content="dnp_theme">
     <link rel="shortcut icon" href="./assets/img/favicon.png"> <!-- TO DO -->
@@ -136,9 +136,9 @@
 	
 	<div class="content-wrap onscroll">
 		<h2>Let's do some lazy load on scroll</h2>
-		<p>In this example, we target the parent <code>.testCol2</code> element with our function, and DLL lazy loads it and it's inner elements. And now we'll scroll down a bit.</p>
+		<p>In this example, we target the parent <code>.img-wrapper</code> element with our function, and DLL lazy loads it and it's inner elements. And now we'll scroll down a bit.</p>
 				
-		<div class="columns testCol2 fill" data-src="http://placehold.it/980x205/555/555/">
+		<div class="columns testCol2 img-wrapper fill" data-src="http://placehold.it/980x205/555/555/">
 			<div class="col2">
 				<img src="./assets/img/img-blank.gif" data-src="http://placehold.it/450x205/555/555/">
 			</div>
@@ -179,7 +179,8 @@
 					el.classList.add('.loaded');
 				}
 			}
-		</span></pre>				
+		</span></pre>
+		<p>Grab the <code>elementInViewport</code> <a href="https://gist.github.com/vincentorback/9ca8446a4c7c87ce3623" target="_blank">right here</a>.</p>		
 	</div>
 
 	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
@@ -189,14 +190,70 @@
 	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
 	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
 	
-	
+
+	<div class="content-wrap onscroll">
+		<h2>Let's play with videos</h2>
+		<p>Similar to the above example, but this time we load a bunch of videos. Check notes below to get a glimpse on how it works:</p>
+		<div class="columns testCol3 video-wrapper fill" data-src="http://placehold.it/980x205/555/555/">
+			<div class="col2">
+				<video poster="https://img-9gag-fun.9cache.com/photo/a24K1Me_460s.jpg" autoplay loop muted>
+					<source data-src="https://img-9gag-fun.9cache.com/photo/a24K1Me_460sv.mp4" type="video/mp4">
+				</video>
+			</div>
+		<div class="col2">
+			<video poster="https://img-9gag-fun.9cache.com/photo/aDzY1YZ_460s.jpg" autoplay loop muted>
+				<source data-src="https://img-9gag-fun.9cache.com/photo/aDzY1YZ_460sv.mp4" type="video/mp4">
+				</video>
+			</div>
+			<div class="col2">
+				<video poster="https://img-9gag-fun.9cache.com/photo/a9A1x40_460s.jpg" autoplay loop muted>
+					<source data-src="https://img-9gag-fun.9cache.com/photo/a9A1x40_460sv.mp4" type="video/mp4">
+				</video>
+			</div>
+			<div class="col2">
+				<video poster="https://img-9gag-fun.9cache.com/photo/aY4VLyO_460s.jpg" autoplay loop muted>
+					<source data-src="https://img-9gag-fun.9cache.com/photo/aY4VLyO_460sv.mp4" type="video/mp4">
+				</video>
+			</div>
+		</div>
+
+
+		<p>DLL.js will only target videos with the following structure:</p>
+		<pre><span class="brush: html; ruler: true; toolbar:false; gutter: false">
+			&lt;video id="myVideo" poster="video/my-video.jpg"&gt;
+				&lt;source data-src="video/my-video.mp4" type="video/mp4"&gt;
+			&lt;/video&gt;
+		</span></pre>
+		
+		<p>If your content has the right structure, you can do everything else just like the usual:</p>
+		<pre><span class="brush: js; ruler: true; toolbar:false; gutter: false">
+			// grab a video
+			var myVideo = document.getElementById('myVideo');
+			// initialize for a single video element
+			new dll(myVideo, callback);
+
+			// grab a wrapper element
+			var myWrapper = document.getElementById('myWrapper');
+			// initialize for and element and/or all child elements
+			new dll(myWrapper, callback);
+		</span></pre>				
+	</div>
+
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+	<div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
+
+
 	<div class="content-wrap">
 		<h2>In case you missed the features</h2>
 		<ul>
 			<li>Lazy load a single element that has <code>data-src</code> attribute, ideally an <code>&lt;img&gt;</code> or a layer element with no child elements</li>
-			<li>By the way, do you want retina images loaded later?</li>
-			<li>Works for <code>&lt;img&gt;</code> and other elements as well, that's right, it's <code>background-image</code></li>
-			<li>When an element other than image is targeted, it will also lazy load it's child elements having the <code>data-src</code> attribute</li>
+			<li>With DLL.js version 1.0.0 it works with videos as well. How cool is that?</li>
+			<li>Works for <code>&lt;img&gt;</code> and other elements as well, to update the <code>background-image</code></li>
+			<li>When an element other than image/video is targeted, it will also lazy load it's child elements having the <code>data-src</code> attribute</li>
 			<li>You can also call DLL to do lazy load for all elements in a page at once, by simply using <code>new dll();</code></li>
 			<li>DLL has callback ability and it's triggered when the target element is loaded or it's last element is loaded</li>
 			<li>With a <code>elementInViewport</code> function you can lazy load elements on scroll, like the example above</li>
@@ -253,7 +310,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushXml.js" type="text/javascript"></script>
 	
 <!--<script src="http://cdn.jsdelivr.net/dll.js/0.9.1/dll.min.js"></script>  lazy-load CDN -->
-<script src="./dist/dll.min.js"></script> <!-- lazy-load local -->
+<script src="./dist/dll.min.js"></script><!--  lazy-load local -->
 <script src="https://cdn.jsdelivr.net/kute.js/1.6.2/kute.min.js"></script> <!-- KUTE CDN -->
 
 <script src="./assets/js/scripts.js"></script> <!-- some stuff -->

@@ -1,6 +1,6 @@
 {
   "name": "dll.js",
-  "version": "0.9.5",
+  "version": "1.0.0",
   "description": "Double Lazy Load for images and background images.",
   "main": "dll.js",
   "scripts": {
@@ -14,6 +14,8 @@
   "keywords": [
     "dll.js",
     "lazy load",
+    "lazy load image",
+    "lazy load video",
     "double lazy load",
     "vanilla js",
     "vanilla javascript"

@@ -72,6 +72,8 @@ for ( var i=0, itl=itms2.length; i<itl; i++ ){
 	makeSRC(itms2[i],sizeSmall,imgs[rd].type,imgs[rd].name);
 }
 
+var testCols3 = document.querySelector('.testCol3');
+makeSRC(testCols3,'980x800',imgs[n1].type,imgs[n1].name);
 
 //some DLL demo
 new dll('.cover',pageLoadFinished);
@@ -129,17 +131,37 @@ function clickExample(e){
 window.addEventListener('scroll', scrollExample, false);
 
 function scrollExample(){
+	// IMGAGES
 	var el = document.querySelector('.testCol2');
 		
 	if ( elementInViewport(el) ){
-		new dll(el, callback);
+		new dll(el, imgCallback);
 	}
-	function callback(){
+	function imgCallback(){
 		
 		if ( !el.classList.contains('loaded') ){
 			el.classList.add('loaded');
 			var itms = el.getElementsByTagName('IMG'), il = itms.length;
-			KUTE.fromTo(el, { opacity: 0 }, { opacity: 1 }, { delay: 500, duration: 2000, easing: 'easingExponentialOut' }).start();
+			KUTE.fromTo(el, { opacity: 0 }, { opacity: 1 }, { delay: 500, duration: 2000 }).start();
+			for ( var i = 0; i<il; i++ ) {
+				var dl = parseInt(250*i + 2500);
+				KUTE.fromTo(itms[i], { scale: 0.2, opacity: 0 }, { scale: 1, opacity: 1 }, { delay: dl, duration: 500, easing: 'easingBackOut' }).start();	
+			}
+		}
+	}
+	
+	// VIDEO
+	var videoWrapper = document.querySelector('.testCol3');
+	
+	if ( elementInViewport(videoWrapper) ){
+		new dll(videoWrapper, videoCallback);
+	}
+	function videoCallback(){
+		
+		if ( !videoWrapper.classList.contains('loaded') ){
+			videoWrapper.classList.add('loaded');
+			KUTE.fromTo(videoWrapper, { opacity: 0 }, { opacity: 1 }, { delay: 500, duration: 2000 }).start();
+			var itms = videoWrapper.getElementsByTagName('VIDEO'), il = itms.length;
 			for ( var i = 0; i<il; i++ ) {
 				var dl = parseInt(250*i + 2500);
 				KUTE.fromTo(itms[i], { scale: 0.2, opacity: 0 }, { scale: 1, opacity: 1 }, { delay: dl, duration: 500, easing: 'easingBackOut' }).start();	
