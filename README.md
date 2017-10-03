@@ -1,16 +1,17 @@
 # Double Lazy Load | dll.js
 Double Lazy Load for videos, images and background images.
 
-# CDN
-Thanks to jsdelivr, we have CDN link <a href="http://www.jsdelivr.com/#!dll.js">here</a>.
+[![NPM Version](https://img.shields.io/npm/v/dll.js.svg?style=flat-square)](https://www.npmjs.com/package/navbar.js)
+[![NPM Downloads](https://img.shields.io/npm/dm/dll.js.svg?style=flat-square)](http://npm-stat.com/charts.html?package=dll.js)
+[![jsDeliver](https://data.jsdelivr.com/v1/package/npm/dll.js/badge)](https://www.jsdelivr.com/package/npm/dll.js)
+
+# Demo
+Right [here](http://thednp.github.io/dll.js/). Also provides some tips on how to use.
 
 # npm
 ```
 npm install dll.js
 ```
-
-# Demo
-Right <a href="http://thednp.github.io/dll.js/">here</a>. Also provides some tips on how to use.
 
 # Base syntax
 ```js
@@ -72,4 +73,4 @@ function callback(){
 ```
 
 # License
-<a href="https://github.com/thednp/dll.js/blob/master/LICENSE">MIT License</a>
+[MIT License](https://github.com/thednp/dll.js/blob/master/LICENSE)
