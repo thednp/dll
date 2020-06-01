@@ -43,7 +43,7 @@ footer {
 
 footer .content-wrap {
   padding-top: 5px;
-  border-top: 1px solid rgb(120,120,120); border-top: 1px solid rgba(255,255,255,0.2); 
+  border-top: 1px solid rgba(255,255,255,0.2); 
 }
 
 /* site-wrapper */
@@ -61,7 +61,7 @@ footer .content-wrap {
 .nav li { float: left; display: block; line-height: 25px; margin-right: 12px; list-style: none }
 .nav li a { color: #ccc }
 
-.testCol1 { background-color: #158d36 }
+.testCol1 { background-color: rgba(255,255,255,0.1) }
 .btn.top-right { position: absolute; top:10px; right:0 }
 .ie8 .btn.top-right { top:55px }
 
@@ -124,7 +124,10 @@ footer .content-wrap {
 
 /* WRAPPER STYLES
 -------------------------------------------------- */
-.content-wrap { position: relative; width: 980px; margin: 0 auto; max-width: 100% }
+.content-wrap { position: relative; margin: 0 auto; max-width: 90% }
+@media(min-width: 1100px) {
+	.content-wrap { width: 980px; max-width: 100% }
+}
 
 /* check div consistency 
 div { background-color: rgba(0,0,0,0.2) }*/
@@ -206,20 +209,8 @@ code, kbd, pre {
 	font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
 }
 pre {
-	display: block;
-	padding: 5px 10px;
-	margin: 0 0 10px;
-	font-size: 16px;
-	line-height: 2.08;
-	color: #999;
-	word-break: break-all;
-	background-color: rgb(11,11,11);
-	background-color: rgba(11,11,11,0.5);
-	border: 1px solid rgb(44,44,44);
 	border: 1px solid rgba(44,44,44,0.8);
 	border-radius: 4px;
-	overflow-x: auto;
-	text-align: left
 }
 code {
 	padding: 2px 4px;
@@ -247,13 +238,3 @@ kbd {
 .page-loader img { 
 	width: 64px; height: auto; float: left; margin: 5px 10px 0 0;
 }
-
-/* code wrapping */
-body .syntaxhighlighter {background: none !important; margin: 0  }
-body .syntaxhighlighter table { width: 100% }
-body .syntaxhighlighter .container:before,
-body .syntaxhighlighter .container:after { content: none }
-body .syntaxhighlighter .line.alt1,
-body .syntaxhighlighter .line.alt2 { background: none !important }
-.syntaxhighlighter code {background: none; padding:0}
-.syntaxhighlighter .container { padding:0; width: 860px !important}
