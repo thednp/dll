@@ -23,7 +23,6 @@ makeSRC(fill,'3840/2160');
 var testCols1 = document.getElementsByClassName('testCol1')[0], 
 		itms1 = testCols1.getElementsByTagName('IMG');
 
-makeSRC(testCols1,avgSize);
 for ( var i=0, itl=itms1.length; i<itl; i++ ){
 	makeSRC(itms1[i],sizeSmall);
 }

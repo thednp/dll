@@ -19,12 +19,12 @@ new dll('selector',callback);
 ```
 	
 # What it does
-*
+* Integrates nicelly into your projects and provides build tools
 * Do lazy loading for an element that is subject to lazy load via `data-src`, or
 * Do to all child items of a given element
 * Do <code>backgroundImage</code> to elements other than <code>&lt;img&gt;</code> if they have <code>data-src</code> attribute.
 * Do callback when load event is triggered for one element, or for the last child element of a given parent.
-* Do lazy loading for video elements having `<source>` with `data-src` attribute
+* Do lazy loading for `<video>` elements having `<source>` with `data-src` attribute
 * Do lazy load for all items having <code>data-src</code> attribute.
 
 # Works with

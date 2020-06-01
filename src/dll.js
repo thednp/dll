@@ -12,12 +12,9 @@ export default function DLL (element,callbackFn){
 
   // callback
   callbackFn = typeof callbackFn === 'function' ? callbackFn : null; // callback function
-
-  // bind
-  let self = this,
     
-    // element's src attribute
-    elementSRC = element && element.getAttribute('data-src') || null, //element has own data-src attribute
+  // element's src attribute
+  let elementSRC = element && element.getAttribute('data-src') || null, //element has own data-src attribute
   
     // private method
     getElements = function() { // we get images of a given object or itself
@@ -36,32 +33,32 @@ export default function DLL (element,callbackFn){
       Array.from(queue).map(x=>mediaItems.push(x))
       
       return mediaItems;
-    };
+    },
 
-  // public methods
-  self.load = function(mediaElement, imageCallback) {
-    var isVideo = mediaElement.tagName === 'SOURCE',
-      loadMethod = isVideo ? 'onloadstart' : 'onload',
-      loadEvent = isVideo ? 'loadstart' : 'load',
-      newVideo = isVideo ? document.createElement('VIDEO') : 0,
-      mediaObject = isVideo ? document.createElement('SOURCE') : new Image(),
-      loadTarget = isVideo ? newVideo : mediaObject, 
-      src = mediaElement.getAttribute('data-src');
+    // public methods
+    load = function(mediaElement, imageCallback) {
+      var isVideo = mediaElement.tagName === 'SOURCE',
+        loadMethod = isVideo ? 'onloadstart' : 'onload',
+        loadEvent = isVideo ? 'loadstart' : 'load',
+        newVideo = isVideo ? document.createElement('VIDEO') : 0,
+        mediaObject = isVideo ? document.createElement('SOURCE') : new Image(),
+        loadTarget = isVideo ? newVideo : mediaObject, 
+        src = mediaElement.getAttribute('data-src');
 
-    one(loadTarget,loadEvent,()=>{
-      if (mediaElement.tagName === 'IMG') { mediaElement.src=src; } // 'IMG' 
-      else if (mediaElement.tagName === 'SOURCE') { // 'VIDEO' 'SOURCE'
-        mediaElement.src=src;
-        mediaElement.parentNode.load();
-      } 
-      else {mediaElement.style.backgroundImage = 'url("'+src+'")'; } // background-image
-      mediaElement.removeAttribute('data-src');
-      imageCallback && imageCallback();
-    })
-    mediaObject.src = src;
-    newVideo && ( newVideo.appendChild(mediaObject) );
+      one(loadTarget,loadEvent,()=>{
+        if (mediaElement.tagName === 'IMG') { mediaElement.src=src; } // 'IMG' 
+        else if (mediaElement.tagName === 'SOURCE') { // 'VIDEO' 'SOURCE'
+          mediaElement.src=src;
+          mediaElement.parentNode.load();
+        } 
+        else {mediaElement.style.backgroundImage = 'url("'+src+'")'; } // background-image
+        mediaElement.removeAttribute('data-src');
+        imageCallback && imageCallback();
+      })
+      mediaObject.src = src;
+      newVideo && ( newVideo.appendChild(mediaObject) );
 
-  }
+    }
 
   // init
   tryWrapper(()=>{
@@ -70,9 +67,9 @@ export default function DLL (element,callbackFn){
 
       mediaTargets.map((x,i)=>{
         if ( i === mediaTargets.length-1 && callbackFn) {
-          self.load(x,callbackFn);
+          load(x,callbackFn);
         } else {
-          self.load(x)
+          load(x)
         }
       })
     }
