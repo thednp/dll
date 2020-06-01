@@ -1,11 +1,14 @@
 {
   "name": "dll.js",
-  "version": "1.0.0",
-  "description": "Double Lazy Load for images and background images.",
-  "main": "dll.js",
+  "version": "1.5.0",
+  "description": "Double Lazy Load for Images, Videos and Background Images.",
+  "main": "dist/dll.min.js",
+  "module": "src/dll.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "min": "node build.js"
+    "build": "npm run build-umd && npm run build-umd-min",
+    "build-umd": "rollup --environment FORMAT:umd,MIN:false -c",
+    "build-umd-min": "rollup --environment FORMAT:umd,MIN:true -c"
   },
   "repository": {
     "type": "git",
@@ -20,13 +23,21 @@
     "vanilla js",
     "vanilla javascript"
   ],
-  "author": "dnp_theme",
+  "author": "thednp",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/thednp/dll.js/issues"
   },
   "homepage": "https://thednp.github.io/dll.js/",
+  "dependencies": {
+    "shorter-js": "^0.0.5"
+  },
   "devDependencies": {
-    "uglify-js": "^2.7.3"
+    "@rollup/plugin-buble": "^0.21.3",
+    "@rollup/plugin-json": "^4.0.3",
+    "@rollup/plugin-node-resolve": "^7.1.0",
+    "rollup": "^1.32.1",
+    "rollup-plugin-cleanup": "^3.1.1",
+    "rollup-plugin-terser": "^5.3.0"
   }
 }

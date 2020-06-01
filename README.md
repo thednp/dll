@@ -19,6 +19,7 @@ new dll('selector',callback);
 ```
 	
 # What it does
+*
 * Do lazy loading for an element that is subject to lazy load via `data-src`, or
 * Do to all child items of a given element
 * Do <code>backgroundImage</code> to elements other than <code>&lt;img&gt;</code> if they have <code>data-src</code> attribute.
@@ -39,27 +40,24 @@ new dll('#uniqueID', callBack);
 new dll(); 
 ```
     
-# Other examples
-If your script is in your site head, you should do this
-```js
-function loadFunctionExample(){
-  new dll('[data-src]', myFunction);
-}
-window.addEventListener('load', loadFunctionExample, false);
-```
 
 If you want to lazy load on scroll, with [elementInViewport](https://gist.github.com/vincentorback/9ca8446a4c7c87ce3623) you can do:
 ```js
-function scrollExample(){
-  var el = document.getElementById('myItem');
+// your target element
+var el = document.getElementById('myItem');
+
+// the callback
+function callback(){
+  //do some stuff when loading finished
+}
+
+// the scroll eventHandler
+function scrollHandler(){
   if ( elementInViewport(el) ){
     new dll(el, callback)
   }
-  function callback(){
-    //do some stuff when loading finished
-  }
 }
-window.addEventListener('scroll', scrollExample, false);
+window.addEventListener('scroll', scrollHandler, false);
 ```	
 
 # A nasty example
