@@ -4,7 +4,9 @@
   "description": "Double Lazy Load for Images, Videos and Background Images.",
   "main": "dist/dll.min.js",
   "module": "dist/dll-esm.min.js",
-  "files": ["dist/{css,js}/*.{css,js,map}"],
+  "files": [
+    "dist/{css,js}/*.{css,js,map}"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm-run-all --parallel build-*",
