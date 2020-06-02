@@ -1,5 +1,5 @@
 /*!
-  * DLL.js v1.5.1 (https://thednp.github.io/dll.js/)
+  * DLL.js v1.5.2 (https://thednp.github.io/dll.js/)
   * Copyright 2020 © thednp
   * Licensed under MIT (https://github.com/thednp/dll.js/blob/master/LICENSE)
   */
