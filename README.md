@@ -1,7 +1,7 @@
 # Double Lazy Load | dll.js
 Double Lazy Load for videos, images and background images.
 
-[![NPM Version](https://img.shields.io/npm/v/dll.js.svg?style=flat-square)](https://www.npmjs.com/package/navbar.js)
+[![NPM Version](https://img.shields.io/npm/v/dll.js.svg?style=flat-square)](https://www.npmjs.com/package/dll.js)
 [![NPM Downloads](https://img.shields.io/npm/dm/dll.js.svg?style=flat-square)](http://npm-stat.com/charts.html?package=dll.js)
 [![jsDeliver](https://data.jsdelivr.com/v1/package/npm/dll.js/badge)](https://www.jsdelivr.com/package/npm/dll.js)
 

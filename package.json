@@ -1,6 +1,6 @@
 {
   "name": "dll.js",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Double Lazy Load for Images, Videos and Background Images.",
   "main": "dist/dll.min.js",
   "module": "src/dll.js",
