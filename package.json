@@ -1,11 +1,13 @@
 {
   "name": "dll.js",
-  "version": "1.5.2",
+  "version": "1.5.4",
   "description": "Double Lazy Load for Images, Videos and Background Images.",
   "main": "dist/dll.min.js",
-  "module": "dist/dll-esm.min.js",
-  "files": [
-    "dist/{css,js}/*.{css,js,map}"
+  "module": "dist/dll-esm.js",
+  "jsnext": "src/dll.js",
+  "files" :[
+    "dist/*.{js,map}",
+    "src/*.{js,map}"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
