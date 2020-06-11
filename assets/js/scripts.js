@@ -48,10 +48,10 @@ function pageLoadFinished() {
 	}, 500);
 	setTimeout(function() {
 		//play some KUTE tweens
-		KUTE.fromTo(loader,{ translate: [0,0], opacity:1 }, { translate: [0,-1000], opacity:0}, { duration: 700, easing: 'easingExponentialIn' }).start();
-		KUTE.fromTo('.site-wrapper', { translate: [0,550], opacity: 0 }, { translate: [0,0], opacity: 1 }, { delay: 700, duration: 1200, easing: 'easingExponentialInOut' }).start()
+		KUTE.fromTo(loader,{ translate: [0,0], opacity:1 }, { translate: [0,-1000], opacity:0}, { duration: 700, easing: 'easingCircularIn' }).start();
+		KUTE.fromTo('.site-wrapper', { translate: [0,550], opacity: 0 }, { translate: [0,0], opacity: 1 }, { delay: 700, duration: 1200, easing: 'easingCircularInOut' }).start()
 
-		KUTE.fromTo('.cover', { opacity: 0 }, { opacity: 1 }, { delay: 2000, duration: 2000, easing: 'easingExponentialIn' }).start()
+		KUTE.fromTo('.cover', { opacity: 0 }, { opacity: 1 }, { delay: 2000, duration: 2000, easing: 'easingCircularIn' }).start()
 		KUTE.fromTo('.navbar-wrapper', { opacity: 0 }, { opacity: 1 }, { delay: 4000, duration: 2000, easing: 'linear' }).start()
 	}, 3000)
 }
@@ -128,7 +128,7 @@ function scrollExample(){
 
 //scroll top?
 var toTop = document.getElementById('toTop'),
-	toTopTween = KUTE.to( 'window', { scroll: 0 }, { easing: 'easingQuarticOut', duration : 1500  } );
+	toTopTween = KUTE.to( window, { scroll: 0 }, { easing: 'easingQuarticOut', duration : 1500  } );
 
 function topHandler(e){
 	e.preventDefault(); 
