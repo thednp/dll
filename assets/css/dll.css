@@ -5,6 +5,9 @@
 
 /* GLOBAL STYLES
 -------------------------------------------------- */
+html {
+	scroll-behavior: smooth;
+}
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -12,7 +15,6 @@ body {
   color: #ddd;
   background-color: #999;
   position: relative
- 
 }
 
 body > .fill {

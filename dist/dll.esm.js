@@ -1,37 +1,18 @@
 /*!
-  * DLL.js v1.5.4 (https://thednp.github.io/dll.js/)
+  * DLL.js v1.5.5 (https://thednp.github.io/dll.js/)
   * Copyright 2020 © thednp
   * Licensed under MIT (https://github.com/thednp/dll.js/blob/master/LICENSE)
   */
-function queryElement (selector, parent) {
+function queryElement(selector, parent) {
   var lookUp = parent && parent instanceof Element ? parent : document;
   return selector instanceof Element ? selector : lookUp.querySelector(selector);
 }
 
-function tryWrapper (fn,origin){
+function tryWrapper(fn,origin){
   try{ fn(); }
   catch(e){
-    console.error((origin + ": " + e));
+    console.error((origin + " " + e));
   }
-}
-
-function on (element, event, handler, options) {
-  options = options || false;
-  element.addEventListener(event, handler, options);
-}
-
-function off (element, event, handler, options) {
-  options = options || false;
-  element.removeEventListener(event, handler, options);
-}
-
-function one (element, event, handler, options) {
-  on(element, event, function handlerWrapper(e){
-    if (e.target === element) {
-      handler(e);
-      off(element, event, handlerWrapper, options);
-    }
-  }, options);
 }
 
 function loadMedia(mediaElement, imageCallback) {
@@ -41,7 +22,7 @@ function loadMedia(mediaElement, imageCallback) {
     mediaObject = isVideo ? document.createElement('SOURCE') : new Image(),
     loadTarget = isVideo ? newVideo : mediaObject,
     src = mediaElement.getAttribute('data-src');
-  one(loadTarget,loadEvent,function (){
+  loadTarget.addEventListener(loadEvent, function loadWrapper(){
     if (mediaElement.tagName === 'IMG') { mediaElement.src=src; }
     else if (mediaElement.tagName === 'SOURCE') {
       mediaElement.src=src;
@@ -50,6 +31,7 @@ function loadMedia(mediaElement, imageCallback) {
     else {mediaElement.style.backgroundImage = 'url("'+src+'")'; }
     mediaElement.removeAttribute('data-src');
     imageCallback && imageCallback();
+    loadTarget.removeEventListener(loadEvent, loadWrapper);
   });
   mediaObject.src = src;
   newVideo && ( newVideo.appendChild(mediaObject) );
@@ -91,10 +73,14 @@ function DLL (element,callbackFn){
   },'DLL.js:');
 }
 
-function initComponent() {
-  var DLLImages = Array.from(document.querySelectorAll('[data-src]'));
+function initComponent(lookup) {
+  lookup = lookup ? lookup : document;
+  var DLLImages = Array.from(lookup.querySelectorAll('[data-src]'));
   DLLImages.map(function (x){ return new DLL(x); });
 }
-document.body ? initComponent() : one(document, 'DOMContentLoaded', initComponent);
+document.body ? initComponent() : document.addEventListener( 'DOMContentLoaded', function initWrapper(){
+  initComponent();
+  document.removeEventListener( 'DOMContentLoaded', initWrapper );
+});
 
 export default DLL;
