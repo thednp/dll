@@ -1,11 +1,11 @@
 {
   "name": "dll.js",
-  "version": "1.5.5",
+  "version": "1.5.6",
   "description": "Double Lazy Load for Images, Videos and Background Images.",
   "main": "dist/dll.min.js",
   "module": "dist/dll.esm.js",
   "jsnext": "src/dll.js",
-  "files" :[
+  "files": [
     "dist/*.{js,map}",
     "src/*.{js,map}"
   ],
@@ -37,11 +37,11 @@
   },
   "homepage": "https://thednp.github.io/dll.js/",
   "dependencies": {
-    "shorter-js": "^0.0.5"
+    "shorter-js": "^0.1.0"
   },
   "devDependencies": {
     "@rollup/plugin-buble": "^0.21.3",
-    "@rollup/plugin-json": "^4.0.3",
+    "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^7.1.0",
     "npm-run-all": "^4.1.5",
     "rollup": "^1.32.1",

@@ -1,10 +1,13 @@
 import DLL from './dll.js'
-import {one} from 'shorter-js/src/event/one.js'
 
 // DATA API
-function initComponent() {
-  let DLLImages = Array.from(document.querySelectorAll('[data-src]'));
+function initComponent(lookup) {
+  lookup = lookup ? lookup : document;
+  let DLLImages = Array.from(lookup.querySelectorAll('[data-src]'));
   DLLImages.map(x=>new DLL(x))
 }
 // initialize when loaded
-document.body ? initComponent() : one(document, 'DOMContentLoaded', initComponent);
+document.body ? initComponent() : document.addEventListener( 'DOMContentLoaded', function initWrapper(){
+  initComponent()
+  document.removeEventListener( 'DOMContentLoaded', initWrapper )
+});

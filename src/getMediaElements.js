@@ -1,6 +1,6 @@
 
 // private method
-export default function getMediaElements(source) { // we get images of a given object or itself
+export default function(source) { // we get images of a given object or itself
   let queue, mediaItems = [], 
       matchedSelectors = source.querySelectorAll('[data-src]'),
       elementSRC = source ? source.getAttribute('data-src') : null; // element has own data-src attribute
