@@ -68,10 +68,9 @@ function callback(){
 	for ( var i = 0; i<il; i++ ) {
 		var dl = 350*i;
 		fn = i===(il-1) ? finished : '';
-		KUTE.fromTo(itms[i], { scale: 1.5, opacity: 0 }, { scale: 1, opacity: 1 }, { delay: dl, duration: 700, easing: 'easingSinusoidalOut', complete: fn }).start();	
+		KUTE.fromTo(itms[i], { scale: 1.5, opacity: 0 }, { scale: 1, opacity: 1 }, { delay: dl, duration: 700, easing: 'easingSinusoidalOut', onComplete: fn }).start();	
 	}
 	btn.innerHTML = 'Animating...';
-
 }
 function clickExample(e){
 	e.preventDefault();

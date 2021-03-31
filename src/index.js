@@ -1,5 +1,4 @@
-import DLL from './dll.js'
-import './init.js'
+import DLL from './dll.js';
+import './init.js';
 
-export default DLL
-
+export default DLL;

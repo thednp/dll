@@ -3,7 +3,6 @@ import buble from '@rollup/plugin-buble'
 import node from '@rollup/plugin-node-resolve'
 import json from '@rollup/plugin-json'
 import {terser} from 'rollup-plugin-terser'
-import cleanup from 'rollup-plugin-cleanup'
 import * as pkg from "./package.json";
 
 // set headers
@@ -30,15 +29,13 @@ const OUTPUT = {
 const PLUGINS = [
   node({mainFields: ['module']}),
   json(),
-  buble(),
-  cleanup()
+  buble()
 ]
 
 if (MIN){
   PLUGINS.push(terser({output: {preamble: miniBanner}}));
 } else {
   OUTPUT.banner = banner;
-  // PLUGINS.push(cleanup());
 }
 
 if (FORMAT!=='esm') {
