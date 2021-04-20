@@ -17,9 +17,12 @@ const miniBanner = `// DLL.js v${pkg.version} | ${year} © ${pkg.author} | ${pkg
 // set config
 const MIN = process.env.MIN === 'true' // true/false|unset
 const FORMAT = process.env.FORMAT // umd|iife|esm|cjs
+const ES = process.env.ES // es5|es6
 
 const INPUTFILE = process.env.INPUTFILE ? process.env.INPUTFILE : 'src/index.js'
-const OUTPUTFILE = process.env.OUTPUTFILE ? process.env.OUTPUTFILE : (FORMAT === 'umd' ? './dist/dll'+(MIN?'.min':'')+'.js' : './dist/dll.esm'+(MIN?'.min':'')+'.js')
+const OUTPUTFILE = process.env.OUTPUTFILE ? process.env.OUTPUTFILE : (FORMAT === 'umd'
+  ? './dist/dll'+(ES?`.${ES}`:'')+(MIN?'.min':'')+'.js'
+  : './dist/dll.esm'+(MIN?'.min':'')+'.js')
 
 const OUTPUT = {
   file: OUTPUTFILE,
@@ -28,14 +31,17 @@ const OUTPUT = {
 
 const PLUGINS = [
   node({mainFields: ['module']}),
-  json(),
-  buble()
+  json()
 ]
 
 if (MIN){
   PLUGINS.push(terser({output: {preamble: miniBanner}}));
 } else {
   OUTPUT.banner = banner;
+}
+
+if (ES==='es5') {
+  PLUGINS.push(buble());
 }
 
 if (FORMAT!=='esm') {

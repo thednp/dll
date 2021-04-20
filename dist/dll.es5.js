@@ -15,12 +15,12 @@
   }
 
   function loadMedia(mediaElement, imageCallback) {
-    const isVideo = mediaElement.tagName === 'SOURCE';
-    const loadEvent = isVideo ? 'loadstart' : 'load';
-    const newVideo = isVideo ? document.createElement('VIDEO') : 0;
-    const mediaObject = isVideo ? document.createElement('SOURCE') : new Image();
-    const loadTarget = isVideo ? newVideo : mediaObject;
-    const src = mediaElement.getAttribute('data-src');
+    var isVideo = mediaElement.tagName === 'SOURCE';
+    var loadEvent = isVideo ? 'loadstart' : 'load';
+    var newVideo = isVideo ? document.createElement('VIDEO') : 0;
+    var mediaObject = isVideo ? document.createElement('SOURCE') : new Image();
+    var loadTarget = isVideo ? newVideo : mediaObject;
+    var src = mediaElement.getAttribute('data-src');
 
     loadTarget.addEventListener(loadEvent, function loadWrapper() {
       if (mediaElement.tagName === 'IMG') { // 'IMG'
@@ -29,22 +29,22 @@
         mediaElement.src = src;
         mediaElement.parentNode.load();
       } else { // background-image
-        mediaElement.style.backgroundImage = `url("${src}")`;
+        mediaElement.style.backgroundImage = "url(\"" + src + "\")";
       }
       mediaElement.removeAttribute('data-src');
-      if (imageCallback) imageCallback();
+      if (imageCallback) { imageCallback(); }
       loadTarget.removeEventListener(loadEvent, loadWrapper);
     });
     mediaObject.src = src;
-    if (newVideo) newVideo.appendChild(mediaObject);
+    if (newVideo) { newVideo.appendChild(mediaObject); }
   }
 
   // private method
   function getMediaElements(source) { // we get images of a given object or itself
-    let queue;
-    const mediaItems = [];
-    const matchedSelectors = source.querySelectorAll('[data-src]');
-    const elementSRC = source ? source.getAttribute('data-src') : null; // element has own data-src attribute
+    var queue;
+    var mediaItems = [];
+    var matchedSelectors = source.querySelectorAll('[data-src]');
+    var elementSRC = source ? source.getAttribute('data-src') : null; // element has own data-src attribute
 
     if (elementSRC && !matchedSelectors) {
       queue = [source];
@@ -57,7 +57,7 @@
       queue = document.querySelectorAll('[data-src]');
     }
 
-    Array.from(queue).forEach((x) => mediaItems.push(x));
+    Array.from(queue).forEach(function (x) { return mediaItems.push(x); });
     return mediaItems;
   }
 
@@ -65,16 +65,16 @@
   // ==============
   function DLL(elem, callback) {
     // element
-    const element = queryElement(elem);
+    var element = queryElement(elem);
 
     // callback
-    const callbackFn = typeof callback === 'function' ? callback : null;
+    var callbackFn = typeof callback === 'function' ? callback : null;
 
-    const mediaTargets = getMediaElements(element);
-    const elementSRC = element ? element.getAttribute('data-src') : null;
+    var mediaTargets = getMediaElements(element);
+    var elementSRC = element ? element.getAttribute('data-src') : null;
 
     if (elementSRC || element.querySelector('[data-src]') !== null) {
-      mediaTargets.forEach((x, i) => {
+      mediaTargets.forEach(function (x, i) {
         if (i === mediaTargets.length - 1 && callbackFn) {
           loadMedia(x, callbackFn);
         } else {
@@ -86,12 +86,12 @@
 
   // DATA API
   function initComponent(context) {
-    const lookup = context instanceof Element ? context : document;
-    const DLLImages = Array.from(lookup.querySelectorAll('[data-src]'));
-    DLLImages.map((x) => new DLL(x));
+    var lookup = context instanceof Element ? context : document;
+    var DLLImages = Array.from(lookup.querySelectorAll('[data-src]'));
+    DLLImages.map(function (x) { return new DLL(x); });
   }
   // initialize when loaded
-  if (document.body) initComponent();
+  if (document.body) { initComponent(); }
   else {
     document.addEventListener('DOMContentLoaded', function initWrapper() {
       initComponent();

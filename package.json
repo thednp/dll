@@ -1,6 +1,6 @@
 {
   "name": "dll.js",
-  "version": "1.5.7-alpha1",
+  "version": "1.5.7-alpha2",
   "description": "Double Lazy Load for Images, Videos and Background Images.",
   "main": "dist/dll.min.js",
   "module": "dist/dll.esm.js",
@@ -17,7 +17,9 @@
     "build-esm": "rollup --environment FORMAT:esm,MIN:false -c",
     "build-esm-min": "rollup --environment FORMAT:esm,MIN:true -c",
     "build-umd": "rollup --environment FORMAT:umd,MIN:false -c",
-    "build-umd-min": "rollup --environment FORMAT:umd,MIN:true -c"
+    "build-umd-min": "rollup --environment FORMAT:umd,MIN:true -c",
+    "build-es5-umd": "rollup --environment FORMAT:umd,MIN:false,ES:es5 -c",
+    "build-es5-umd-min": "rollup --environment FORMAT:umd,MIN:true,ES:es5 -c"
   },
   "repository": {
     "type": "git",

@@ -1,5 +1,5 @@
 /*!
-  * DLL.js v1.5.7-alpha1 (https://thednp.github.io/dll.js/)
+  * DLL.js v1.5.7-alpha2 (https://thednp.github.io/dll.js/)
   * Copyright 2021 © thednp
   * Licensed under MIT (https://github.com/thednp/dll.js/blob/master/LICENSE)
   */
@@ -9,12 +9,12 @@ function queryElement(selector, parent) {
 }
 
 function loadMedia(mediaElement, imageCallback) {
-  var isVideo = mediaElement.tagName === 'SOURCE';
-  var loadEvent = isVideo ? 'loadstart' : 'load';
-  var newVideo = isVideo ? document.createElement('VIDEO') : 0;
-  var mediaObject = isVideo ? document.createElement('SOURCE') : new Image();
-  var loadTarget = isVideo ? newVideo : mediaObject;
-  var src = mediaElement.getAttribute('data-src');
+  const isVideo = mediaElement.tagName === 'SOURCE';
+  const loadEvent = isVideo ? 'loadstart' : 'load';
+  const newVideo = isVideo ? document.createElement('VIDEO') : 0;
+  const mediaObject = isVideo ? document.createElement('SOURCE') : new Image();
+  const loadTarget = isVideo ? newVideo : mediaObject;
+  const src = mediaElement.getAttribute('data-src');
 
   loadTarget.addEventListener(loadEvent, function loadWrapper() {
     if (mediaElement.tagName === 'IMG') { // 'IMG'
@@ -23,22 +23,22 @@ function loadMedia(mediaElement, imageCallback) {
       mediaElement.src = src;
       mediaElement.parentNode.load();
     } else { // background-image
-      mediaElement.style.backgroundImage = "url(\"" + src + "\")";
+      mediaElement.style.backgroundImage = `url("${src}")`;
     }
     mediaElement.removeAttribute('data-src');
-    if (imageCallback) { imageCallback(); }
+    if (imageCallback) imageCallback();
     loadTarget.removeEventListener(loadEvent, loadWrapper);
   });
   mediaObject.src = src;
-  if (newVideo) { newVideo.appendChild(mediaObject); }
+  if (newVideo) newVideo.appendChild(mediaObject);
 }
 
 // private method
 function getMediaElements(source) { // we get images of a given object or itself
-  var queue;
-  var mediaItems = [];
-  var matchedSelectors = source.querySelectorAll('[data-src]');
-  var elementSRC = source ? source.getAttribute('data-src') : null; // element has own data-src attribute
+  let queue;
+  const mediaItems = [];
+  const matchedSelectors = source.querySelectorAll('[data-src]');
+  const elementSRC = source ? source.getAttribute('data-src') : null; // element has own data-src attribute
 
   if (elementSRC && !matchedSelectors) {
     queue = [source];
@@ -51,7 +51,7 @@ function getMediaElements(source) { // we get images of a given object or itself
     queue = document.querySelectorAll('[data-src]');
   }
 
-  Array.from(queue).forEach(function (x) { return mediaItems.push(x); });
+  Array.from(queue).forEach((x) => mediaItems.push(x));
   return mediaItems;
 }
 
@@ -59,16 +59,16 @@ function getMediaElements(source) { // we get images of a given object or itself
 // ==============
 function DLL(elem, callback) {
   // element
-  var element = queryElement(elem);
+  const element = queryElement(elem);
 
   // callback
-  var callbackFn = typeof callback === 'function' ? callback : null;
+  const callbackFn = typeof callback === 'function' ? callback : null;
 
-  var mediaTargets = getMediaElements(element);
-  var elementSRC = element ? element.getAttribute('data-src') : null;
+  const mediaTargets = getMediaElements(element);
+  const elementSRC = element ? element.getAttribute('data-src') : null;
 
   if (elementSRC || element.querySelector('[data-src]') !== null) {
-    mediaTargets.forEach(function (x, i) {
+    mediaTargets.forEach((x, i) => {
       if (i === mediaTargets.length - 1 && callbackFn) {
         loadMedia(x, callbackFn);
       } else {
@@ -80,12 +80,12 @@ function DLL(elem, callback) {
 
 // DATA API
 function initComponent(context) {
-  var lookup = context instanceof Element ? context : document;
-  var DLLImages = Array.from(lookup.querySelectorAll('[data-src]'));
-  DLLImages.map(function (x) { return new DLL(x); });
+  const lookup = context instanceof Element ? context : document;
+  const DLLImages = Array.from(lookup.querySelectorAll('[data-src]'));
+  DLLImages.map((x) => new DLL(x));
 }
 // initialize when loaded
-if (document.body) { initComponent(); }
+if (document.body) initComponent();
 else {
   document.addEventListener('DOMContentLoaded', function initWrapper() {
     initComponent();
