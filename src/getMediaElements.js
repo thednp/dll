@@ -1,21 +1,33 @@
-// private method
-export default function getMediaElements(source) { // we get images of a given object or itself
-  let queue;
-  const mediaItems = [];
-  const matchedSelectors = source.querySelectorAll('[data-src]');
-  const elementSRC = source ? source.getAttribute('data-src') : null; // element has own data-src attribute
+import querySelectorAll from 'shorter-js/src/selectors/querySelectorAll';
+import getAttribute from 'shorter-js/src/attr/getAttribute';
+
+import dataSRC from './dataSRC';
+
+/**
+ * Returns an `Array` with all `<img>`, `<video>` or HTMLElement
+ * with `data-src` attribute.
+ *
+ * @param {(HTMLElement | Element)=} source
+ * @returns {(HTMLElement | Element | HTMLImageElement | HTMLSourceElement)[]?}
+ */
+export default function getMediaElements(source) {
+  // element chidlren with data-src attribute
+  const matchedSelectors = querySelectorAll(`[${dataSRC}]`, source);
+  // element has own data-src attribute
+  const elementSRC = source && getAttribute(source, dataSRC);
 
   if (elementSRC && !matchedSelectors) {
-    queue = [source];
-  } else if (!elementSRC && matchedSelectors) {
-    queue = matchedSelectors;
-  } else if (elementSRC && matchedSelectors) {
-    queue = matchedSelectors;
-    mediaItems.unshift(source);
-  } else if (!elementSRC && !matchedSelectors) {
-    queue = document.querySelectorAll('[data-src]');
+    return [source];
+  }
+  if (!elementSRC && matchedSelectors) {
+    return [...matchedSelectors];
+  }
+  if (elementSRC && matchedSelectors) {
+    return [source, ...matchedSelectors];
+  }
+  if (!elementSRC && !matchedSelectors) {
+    return [...querySelectorAll(`[${dataSRC}]`)];
   }
 
-  Array.from(queue).forEach((x) => mediaItems.push(x));
-  return mediaItems;
+  return null;
 }

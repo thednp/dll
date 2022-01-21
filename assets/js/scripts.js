@@ -68,7 +68,10 @@ function callback(){
 	for ( var i = 0; i<il; i++ ) {
 		var dl = 350*i;
 		fn = i===(il-1) ? finished : '';
-		KUTE.fromTo(itms[i], { scale: 1.5, opacity: 0 }, { scale: 1, opacity: 1 }, { delay: dl, duration: 700, easing: 'easingSinusoidalOut', onComplete: fn }).start();	
+		KUTE.fromTo(itms[i], 
+			{ opacity: 0 },
+			{ opacity: 1 },
+			{ delay: dl, duration: 700, easing: 'easingCubicOut', onComplete: fn }).start();	
 	}
 	btn.innerHTML = 'Animating...';
 }
@@ -90,10 +93,16 @@ function imgCallback(){
 	if ( !testCols2.classList.contains('loaded') ){
 		testCols2.classList.add('loaded');
 		var itms = testCols2.getElementsByTagName('IMG'), il = itms.length;
-		KUTE.fromTo(testCols2, { opacity: 0 }, { opacity: 1 }, { delay: 500, duration: 2000 }).start();
+		KUTE.fromTo(testCols2,
+			{ opacity: 0 },
+			{ opacity: 1 },
+			{ delay: 500, duration: 2000 }).start();
+
 		for ( var i = 0; i<il; i++ ) {
-			var dl = parseInt(250*i + 2500);
-			KUTE.fromTo(itms[i], { scale: 0.2, opacity: 0 }, { scale: 1, opacity: 1 }, { delay: dl, duration: 500, easing: 'easingBackOut' }).start();	
+			KUTE.fromTo(itms[i],
+				{ scale: 1.2, opacity: 0 },
+				{ scale: 1, opacity: 1 },
+				{ delay: (250*i + 2500), duration: 500, easing: 'easingBackOut' }).start();	
 		}
 	}
 }
@@ -102,25 +111,29 @@ function videoCallback(){
 		
 	if ( !testCols3.classList.contains('loaded') ){
 		testCols3.classList.add('loaded');
-		KUTE.fromTo(testCols3, { opacity: 0 }, { opacity: 1 }, { delay: 500, duration: 2000 }).start();
+
+		KUTE.fromTo(testCols3,
+			{ opacity: 0 },
+			{ opacity: 1 },
+			{ delay: 500, duration: 2000 }).start();
+
 		var itms = testCols3.getElementsByTagName('VIDEO'), il = itms.length;
 		for ( var i = 0; i<il; i++ ) {
-			var dl = parseInt(250*i + 2500);
-			KUTE.fromTo(itms[i], { scale: 0.2, opacity: 0 }, { scale: 1, opacity: 1 }, { delay: dl, duration: 500, easing: 'easingBackOut' }).start();	
+			KUTE.fromTo(itms[i],
+				{ opacity: 0 },
+				{ opacity: 1 },
+				{ delay: (250*i + 2500), duration: 500, easing: 'easingBackOut' }).start();	
 		}
 	}
 }
 
 function scrollExample(){
-		
 	if ( elementInViewport(testCols2) ){
 		new dll(testCols2, imgCallback);
 	}
 
-	
 	// VIDEO	
 	if ( elementInViewport(testCols3) ){
 		new dll(testCols3, videoCallback);
 	}
-
 }

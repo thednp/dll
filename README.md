@@ -1,5 +1,5 @@
 # Double Lazy Load | dll.js
-Double Lazy Load for videos, images and background images.
+Double Lazy Load for videos, images and background images. Sourced with ES6+ and strong TypeScript definitions.
 
 [![NPM Version](https://img.shields.io/npm/v/dll.js.svg?style=flat-square)](https://www.npmjs.com/package/dll.js)
 [![NPM Downloads](https://img.shields.io/npm/dm/dll.js.svg?style=flat-square)](http://npm-stat.com/charts.html?package=dll.js)
@@ -41,7 +41,7 @@ new dll();
 ```
     
 
-If you want to lazy load on scroll, with [elementInViewport](https://gist.github.com/vincentorback/9ca8446a4c7c87ce3623) you can do:
+If you want to lazy load on scroll, with [isElementInViewport](https://github.com/thednp/shorter-js/blob/master/src/is/isElementInViewport.js) you can do:
 ```js
 // your target element
 var el = document.getElementById('myItem');
@@ -53,9 +53,10 @@ function callback(){
 
 // the scroll eventHandler
 function scrollHandler(){
-  if ( elementInViewport(el) ){
+  if ( isElementInViewport(el) ){
     new dll(el, callback)
   }
+  window.removeEventListener('scroll', scrollHandler, false);
 }
 window.addEventListener('scroll', scrollHandler, false);
 ```	

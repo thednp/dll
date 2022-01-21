@@ -1,20 +1,30 @@
-import queryElement from 'shorter-js/src/misc/queryElement.js';
-import loadMedia from './loadMedia.js';
-import getMediaElements from './getMediaElements.js';
+import querySelector from 'shorter-js/src/selectors/querySelector';
+import isFunction from 'shorter-js/src/is/isFunction';
+
+import loadMedia from './loadMedia';
+import getMediaElements from './getMediaElements';
+// import dataSRC from './dataSRC';
 
 // DLL DEFINITION
 // ==============
-export default function DLL(elem, callback) {
+/**
+ * Lazy load one or more items with `data-src` attribute.
+ * * target can be  `<img>` | `<video>` | `HTMLElement`
+ * * or any `HTMLElement` that contains the above elements
+ * * or `HTMLElement` that has the `data-src` attribute
+ * @param {HTMLElement | string} target target
+ * @param {Function} callback
+ */
+export default function DLL(target, callback) {
   // element
-  const element = queryElement(elem);
+  const element = querySelector(target);
+  if (!element) return;
 
   // callback
-  const callbackFn = typeof callback === 'function' ? callback : null;
-
+  const callbackFn = isFunction(callback) ? callback : null;
   const mediaTargets = getMediaElements(element);
-  const elementSRC = element ? element.getAttribute('data-src') : null;
 
-  if (elementSRC || element.querySelector('[data-src]') !== null) {
+  if (mediaTargets && mediaTargets.length) {
     mediaTargets.forEach((x, i) => {
       if (i === mediaTargets.length - 1 && callbackFn) {
         loadMedia(x, callbackFn);

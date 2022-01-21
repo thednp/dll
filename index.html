@@ -2,7 +2,6 @@
 <html lang="en"> 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Double Lazy Load for lazy loading images, background images and videos">
     <meta name="keywords" content="Double Lazy Load,dll.js,Javascript,Native Javascript,vanilla javascript">
@@ -11,11 +10,10 @@
     <link rel="apple-touch-icon" href="./assets/img/apple-touch-icon.png">
 
     <title>DLL.js | Double Lazy Load</title>
-  
+
     <!-- RESET CSS -->
     <link type="text/css" href="./assets/css/reset.css" rel="stylesheet">
-  
-  
+
     <!-- DEMO DLL CSS -->
     <link type="text/css" href="./assets/css/dll.css" rel="stylesheet">
 
@@ -23,26 +21,25 @@
     <link type="text/css" href="./assets/css/tooltip.min.css" rel="stylesheet">
     
   <!-- Synthax highlighter -->
-  <link href="./assets/css/prism.css" rel="stylesheet">	
-  
+  <link href="./assets/css/prism.css" rel="stylesheet">
 </head>
 
 <body>
   <div class="fill cover"></div>
   <div class="fill overlay"></div>
   
-  <div class="site-wrapper">
+<div class="site-wrapper">
  
   <div class="navbar-wrapper">
-      <div class="content-wrap">
-    <h1>DLL.<span>js</span></h1>
-    <ul class="nav">
-      <li><a href="https://github.com/thednp/dll.js">Github</a></li>
-      <li><a href="https://github.com/thednp/dll.js/archive/master.zip">Download</a></li>
-      <li><a href="https://www.jsdelivr.com/package/npm/dll.js">CDN</a></li>
-    </ul>
-      </div>
+    <div class="content-wrap">
+      <h1>DLL.<span>js</span></h1>
+      <ul class="nav">
+        <li><a href="https://github.com/thednp/dll.js">Github</a></li>
+        <li><a href="https://github.com/thednp/dll.js/archive/master.zip">Download</a></li>
+        <li><a href="https://www.jsdelivr.com/package/npm/dll.js">CDN</a></li>
+      </ul>
     </div>
+  </div>
   
 
   <div class="content-wrap">
@@ -50,7 +47,7 @@
     <p>DLL.js lazy loaded a 4K image then triggered a callback function. Here's what was actually in place:</p>
 <pre><code class="language-javascript">// when finished do some callback
 function imageLoadFinished() {
-  //doin some cool stuff, you gonna check the scripts.js
+  // doin some cool stuff, you gonna check the scripts.js
 }
 
 // we lazy load to the .cover class element
@@ -73,22 +70,34 @@ new dll('.cover',imageLoadFinished);
     <a href="#" class="btn btn-olive top-right">Click me</a>
     <div class="columns testCol1 fill">
       <div class="col2">
-        <img src="./assets/img/img-blank.gif" alt="">
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDQwcHgiIGhlaWdodD0iMjAwcHgiIHZpZXdCb3g9IjAgMCA0NDAgMjIwIiB4
+        bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoIGZpbGw9InJnYmEoMTU1
+        LDE1NSwxNTUsMC4wMSkiIGQ9Ik0wIDBoNDQwdjE5NUgwWiIgLz4KPC9zdmc+" alt="">
       </div>
       <div class="col2">
-        <img src="./assets/img/img-blank.gif" alt="">
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDQwcHgiIGhlaWdodD0iMjAwcHgiIHZpZXdCb3g9IjAgMCA0NDAgMjIwIiB4
+        bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoIGZpbGw9InJnYmEoMTU1
+        LDE1NSwxNTUsMC4wMSkiIGQ9Ik0wIDBoNDQwdjE5NUgwWiIgLz4KPC9zdmc+" alt="">
       </div>
       <div class="col2">
-        <img src="./assets/img/img-blank.gif" alt="">
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDQwcHgiIGhlaWdodD0iMjAwcHgiIHZpZXdCb3g9IjAgMCA0NDAgMjIwIiB4
+        bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoIGZpbGw9InJnYmEoMTU1
+        LDE1NSwxNTUsMC4wMSkiIGQ9Ik0wIDBoNDQwdjE5NUgwWiIgLz4KPC9zdmc+" alt="">
       </div>
       <div class="col2">
-        <img src="./assets/img/img-blank.gif" alt="">
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDQwcHgiIGhlaWdodD0iMjAwcHgiIHZpZXdCb3g9IjAgMCA0NDAgMjIwIiB4
+        bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoIGZpbGw9InJnYmEoMTU1
+        LDE1NSwxNTUsMC4wMSkiIGQ9Ik0wIDBoNDQwdjE5NUgwWiIgLz4KPC9zdmc+" alt="">
       </div>
       <div class="col2">
-        <img src="./assets/img/img-blank.gif" alt="">
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDQwcHgiIGhlaWdodD0iMjAwcHgiIHZpZXdCb3g9IjAgMCA0NDAgMjIwIiB4
+        bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoIGZpbGw9InJnYmEoMTU1
+        LDE1NSwxNTUsMC4wMSkiIGQ9Ik0wIDBoNDQwdjE5NUgwWiIgLz4KPC9zdmc+" alt="">
       </div>
       <div class="col2">
-        <img src="./assets/img/img-blank.gif" alt="">
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDQwcHgiIGhlaWdodD0iMjAwcHgiIHZpZXdCb3g9IjAgMCA0NDAgMjIwIiB4
+        bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoIGZpbGw9InJnYmEoMTU1
+        LDE1NSwxNTUsMC4wMSkiIGQ9Ik0wIDBoNDQwdjE5NUgwWiIgLz4KPC9zdmc+" alt="">
       </div>
     </div>
     <p>What happened here? DLL.js lazy loaded an element's children and triggered a function when last item loaded. The code looks like this:</p>
@@ -100,9 +109,9 @@ var el = document.querySelector('.testCol1');
 
 // when load is complete, we run this callback function
 function callback(){					
-  //do some animation for the element and all children having data-src attribute
+  // do some animation for the element and all children having data-src attribute
 
-  //add loaded class 
+  // add loaded class 
   el.classList.add('loaded')
 }
 
@@ -135,22 +144,34 @@ btn.addEventListener('click', clickExample, false);
         
     <div class="columns testCol2 img-wrapper fill">
       <div class="col2">
-        <img src="./assets/img/img-blank.gif" alt="">
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDQwcHgiIGhlaWdodD0iMjAwcHgiIHZpZXdCb3g9IjAgMCA0NDAgMjIwIiB4
+        bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoIGZpbGw9InJnYmEoMTU1
+        LDE1NSwxNTUsMC4wMSkiIGQ9Ik0wIDBoNDQwdjE5NUgwWiIgLz4KPC9zdmc+" alt="">
       </div>
       <div class="col2">
-        <img src="./assets/img/img-blank.gif" alt="">
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDQwcHgiIGhlaWdodD0iMjAwcHgiIHZpZXdCb3g9IjAgMCA0NDAgMjIwIiB4
+        bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoIGZpbGw9InJnYmEoMTU1
+        LDE1NSwxNTUsMC4wMSkiIGQ9Ik0wIDBoNDQwdjE5NUgwWiIgLz4KPC9zdmc+" alt="">
       </div>
       <div class="col2">
-        <img src="./assets/img/img-blank.gif" alt="">
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDQwcHgiIGhlaWdodD0iMjAwcHgiIHZpZXdCb3g9IjAgMCA0NDAgMjIwIiB4
+        bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoIGZpbGw9InJnYmEoMTU1
+        LDE1NSwxNTUsMC4wMSkiIGQ9Ik0wIDBoNDQwdjE5NUgwWiIgLz4KPC9zdmc+" alt="">
       </div>
       <div class="col2">
-        <img src="./assets/img/img-blank.gif" alt="">
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDQwcHgiIGhlaWdodD0iMjAwcHgiIHZpZXdCb3g9IjAgMCA0NDAgMjIwIiB4
+        bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoIGZpbGw9InJnYmEoMTU1
+        LDE1NSwxNTUsMC4wMSkiIGQ9Ik0wIDBoNDQwdjE5NUgwWiIgLz4KPC9zdmc+" alt="">
       </div>
       <div class="col2">
-        <img src="./assets/img/img-blank.gif" alt="">
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDQwcHgiIGhlaWdodD0iMjAwcHgiIHZpZXdCb3g9IjAgMCA0NDAgMjIwIiB4
+        bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoIGZpbGw9InJnYmEoMTU1
+        LDE1NSwxNTUsMC4wMSkiIGQ9Ik0wIDBoNDQwdjE5NUgwWiIgLz4KPC9zdmc+" alt="">
       </div>
       <div class="col2">
-        <img src="./assets/img/img-blank.gif" alt="">
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDQwcHgiIGhlaWdodD0iMjAwcHgiIHZpZXdCb3g9IjAgMCA0NDAgMjIwIiB4
+        bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoIGZpbGw9InJnYmEoMTU1
+        LDE1NSwxNTUsMC4wMSkiIGQ9Ik0wIDBoNDQwdjE5NUgwWiIgLz4KPC9zdmc+" alt="">
       </div>
     </div>
     <p>What happened here? DLL.js lazy loaded an element with all it's children and triggered a function when last item loaded. The code looks like this:</p>
@@ -168,7 +189,7 @@ function callback(){
 // your scroll handler
 function scrollHandler(){
   //when element is in viewport, we initiate dll.js
-  if ( elementInViewport(el) && !el.classList.contains('loaded') ){
+  if ( isElementInViewport(el) && !el.classList.contains('loaded') ){
     new dll(el, callback);
   }
 }
@@ -176,7 +197,7 @@ function scrollHandler(){
 // another listener, yeey
 window.addEventListener('scroll', scrollHandler, false);
 </code></pre>
-    <p>Grab the <code>elementInViewport</code> <a href="https://gist.github.com/vincentorback/9ca8446a4c7c87ce3623" target="_blank">right here</a>.</p>		
+    <p>Grab the <code>isElementInViewport</code> <a href="https://github.com/thednp/shorter-js/blob/master/src/is/isElementInViewport.js" target="_blank">right here</a>.</p>		
   </div>
 
   <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div> <div class="clearfix"><br></div>
@@ -247,7 +268,7 @@ new dll(myWrapper, callback);
   <div class="content-wrap">
     <h2>In case you missed the features</h2>
     <ul>
-      <li>ES6+ scripted package</li>
+      <li>Strong TypeScript definitions and ES6+ sourced code</li>
       <li>Lazy load a single element that has <code>data-src</code> attribute, ideally an <code>&lt;img&gt;</code> or a layer element with no child elements</li>
       <li>With DLL.js works with videos as well. How cool is that?</li>
       <li>Works for <code>&lt;img&gt;</code> and other elements as well, to update the <code>background-image</code></li>
@@ -282,7 +303,7 @@ new dll(myWrapper, callback);
      <footer>
     <div class="content-wrap">
       <p class="pull-right"><a id="toTop" href="#">Back to top</a></p>
-      <p>2021 &copy; <a href="https://github.com/thednp">thednp</a></p>
+      <p>2015-2022 &copy; <a href="https://github.com/thednp">thednp</a></p>
     </div>
     </footer>
 

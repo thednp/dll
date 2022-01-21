@@ -9,7 +9,7 @@ import * as pkg from "./package.json";
 const year = (new Date).getFullYear()
 const banner = `/*!
   * DLL.js v${pkg.version} (${pkg.homepage})
-  * Copyright ${year} © ${pkg.author}
+  * Copyright 2015-${year} © ${pkg.author}
   * Licensed under MIT (https://github.com/thednp/dll.js/blob/master/LICENSE)
   */`
 const miniBanner = `// DLL.js v${pkg.version} | ${year} © ${pkg.author} | ${pkg.license}-License`
