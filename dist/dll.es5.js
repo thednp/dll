@@ -16,20 +16,20 @@
    * @returns {Document}
    */
   function getDocument(node) {
-    if (node instanceof HTMLElement) return node.ownerDocument;
-    if (node instanceof Window) return node.document;
+    if (node instanceof HTMLElement) { return node.ownerDocument; }
+    if (node instanceof Window) { return node.document; }
     return window.document;
   }
 
   /**
    * A global array of possible `ParentNode`.
    */
-  const parentNodes = [Document, Node, Element, HTMLElement];
+  var parentNodes = [Document, Node, Element, HTMLElement];
 
   /**
    * A global array with `Element` | `HTMLElement`.
    */
-  const elementNodes = [Element, HTMLElement];
+  var elementNodes = [Element, HTMLElement];
 
   /**
    * Utility to check if target is typeof `HTMLElement`, `Element`, `Node`
@@ -40,11 +40,11 @@
    * @return {(HTMLElement | Element)?} the `HTMLElement` or `querySelector` result
    */
   function querySelector(selector, parent) {
-    const selectorIsString = typeof selector === 'string';
-    const lookUp = parent && parentNodes.some((x) => parent instanceof x)
+    var selectorIsString = typeof selector === 'string';
+    var lookUp = parent && parentNodes.some(function (x) { return parent instanceof x; })
       ? parent : getDocument();
 
-    if (!selectorIsString && [...elementNodes].some((x) => selector instanceof x)) {
+    if (!selectorIsString && [].concat( elementNodes ).some(function (x) { return selector instanceof x; })) {
       return selector;
     }
     // @ts-ignore -- `ShadowRoot` is also a node
@@ -57,33 +57,33 @@
    * @param {any} element the target object
    * @returns {boolean} the query result
    */
-  const isFunction = (element) => element instanceof Function;
+  var isFunction = function (element) { return element instanceof Function; };
 
   /**
    * Shortcut for `HTMLElement.getAttribute()` method.
    * @param  {HTMLElement | Element} element target element
    * @param  {string} attribute attribute name
    */
-  const getAttribute = (element, attribute) => element.getAttribute(attribute);
+  var getAttribute = function (element, attribute) { return element.getAttribute(attribute); };
 
   /**
    * Shortcut for `HTMLElement.removeAttribute()` method.
    * @param  {HTMLElement | Element} element target element
    * @param  {string} attribute attribute name
    */
-  const removeAttribute = (element, attribute) => element.removeAttribute(attribute);
+  var removeAttribute = function (element, attribute) { return element.removeAttribute(attribute); };
 
   /**
    * A global namespace for `load` event.
    * @type {string}
    */
-  const loadEvent = 'load';
+  var loadEvent = 'load';
 
   /**
    * A global namespace for `loadstart` event.
    * @type {string}
    */
-  const loadstartEvent = 'loadstart';
+  var loadstartEvent = 'loadstart';
 
   /**
    * Remove eventListener from an `Element` | `HTMLElement` | `Document` | `Window` target.
@@ -94,7 +94,7 @@
    * @param {(EventListenerOptions | boolean)=} options other event options
    */
   function off(element, eventName, handler, options) {
-    const ops = options || false;
+    var ops = options || false;
     element.removeEventListener(eventName, handler, ops);
   }
 
@@ -107,12 +107,12 @@
    * @param {(EventListenerOptions | boolean)=} options other event options
    */
   function on(element, eventName, handler, options) {
-    const ops = options || false;
+    var ops = options || false;
     element.addEventListener(eventName, handler, ops);
   }
 
   /** Global namespace for the `data-src` attribute. */
-  const dataSRC = 'data-src';
+  var dataSRC = 'data-src';
 
   /**
    * Load media for single target.
@@ -120,19 +120,19 @@
    * @param {Function=} imageCallback callback function
    */
   function loadMedia(mediaElement, imageCallback) {
-    const isVideo = mediaElement.tagName === 'SOURCE';
-    const loadEv = isVideo ? loadstartEvent : loadEvent;
-    const newVideo = isVideo ? document.createElement('VIDEO') : null;
-    const mediaObject = isVideo ? document.createElement('SOURCE') : new Image();
-    const loadTarget = isVideo ? newVideo : mediaObject;
-    const src = getAttribute(mediaElement, dataSRC);
-    const mediaElements = [HTMLImageElement, HTMLSourceElement];
+    var isVideo = mediaElement.tagName === 'SOURCE';
+    var loadEv = isVideo ? loadstartEvent : loadEvent;
+    var newVideo = isVideo ? document.createElement('VIDEO') : null;
+    var mediaObject = isVideo ? document.createElement('SOURCE') : new Image();
+    var loadTarget = isVideo ? newVideo : mediaObject;
+    var src = getAttribute(mediaElement, dataSRC);
+    var mediaElements = [HTMLImageElement, HTMLSourceElement];
 
-    if (!loadTarget || !src) return;
+    if (!loadTarget || !src) { return; }
 
     on(loadTarget, loadEv, function loadWrapper() {
       // 'HTMLImageElement' | 'HTMLSourceElement'
-      if (mediaElements.some((x) => mediaElement instanceof x)) {
+      if (mediaElements.some(function (x) { return mediaElement instanceof x; })) {
         // @ts-ignore
         mediaElement.src = src;
         if (mediaElement instanceof HTMLSourceElement) {
@@ -142,17 +142,17 @@
       // `HTMLElement` background-image
       } else {
         // @ts-ignore
-        mediaElement.style.backgroundImage = `url("${src}")`;
+        mediaElement.style.backgroundImage = "url(\"" + src + "\")";
       }
       removeAttribute(mediaElement, dataSRC);
-      if (imageCallback) imageCallback();
+      if (imageCallback) { imageCallback(); }
       off(loadTarget, loadEv, loadWrapper);
     });
 
-    if (mediaElements.some((x) => mediaObject instanceof x)) {
+    if (mediaElements.some(function (x) { return mediaObject instanceof x; })) {
       // @ts-ignore
       mediaObject.src = src;
-      if (newVideo) newVideo.append(mediaObject);
+      if (newVideo) { newVideo.append(mediaObject); }
     }
   }
 
@@ -164,8 +164,8 @@
    * @return {NodeListOf<HTMLElement | Element>} the query result
    */
   function querySelectorAll(selector, parent) {
-    const lookUp = parent && parentNodes
-      .some((x) => parent instanceof x) ? parent : getDocument();
+    var lookUp = parent && parentNodes
+      .some(function (x) { return parent instanceof x; }) ? parent : getDocument();
     // @ts-ignore -- `ShadowRoot` is also a node
     return lookUp.querySelectorAll(selector);
   }
@@ -179,21 +179,21 @@
    */
   function getMediaElements(source) {
     // element chidlren with data-src attribute
-    const matchedSelectors = querySelectorAll(`[${dataSRC}]`, source);
+    var matchedSelectors = querySelectorAll(("[" + dataSRC + "]"), source);
     // element has own data-src attribute
-    const elementSRC = source && getAttribute(source, dataSRC);
+    var elementSRC = source && getAttribute(source, dataSRC);
 
     if (elementSRC && !matchedSelectors) {
       return [source];
     }
     if (!elementSRC && matchedSelectors) {
-      return [...matchedSelectors];
+      return [].concat( matchedSelectors );
     }
     if (elementSRC && matchedSelectors) {
-      return [source, ...matchedSelectors];
+      return [source ].concat( matchedSelectors);
     }
     if (!elementSRC && !matchedSelectors) {
-      return [...querySelectorAll(`[${dataSRC}]`)];
+      return [].concat( querySelectorAll(("[" + dataSRC + "]")) );
     }
 
     return null;
@@ -213,15 +213,15 @@
    */
   function DLL(target, callback) {
     // element
-    const element = querySelector(target);
-    if (!element) return;
+    var element = querySelector(target);
+    if (!element) { return; }
 
     // callback
-    const callbackFn = isFunction(callback) ? callback : null;
-    const mediaTargets = getMediaElements(element);
+    var callbackFn = isFunction(callback) ? callback : null;
+    var mediaTargets = getMediaElements(element);
 
     if (mediaTargets && mediaTargets.length) {
-      mediaTargets.forEach((x, i) => {
+      mediaTargets.forEach(function (x, i) {
         if (i === mediaTargets.length - 1 && callbackFn) {
           loadMedia(x, callbackFn);
         } else {
@@ -233,12 +233,12 @@
 
   // DATA API
   function initComponent(context) {
-    const lookup = context instanceof Element ? context : document;
-    const DLLImages = Array.from(lookup.querySelectorAll('[data-src]'));
-    DLLImages.map((x) => new DLL(x));
+    var lookup = context instanceof Element ? context : document;
+    var DLLImages = Array.from(lookup.querySelectorAll('[data-src]'));
+    DLLImages.map(function (x) { return new DLL(x); });
   }
   // initialize when loaded
-  if (document.body) initComponent();
+  if (document.body) { initComponent(); }
   else {
     document.addEventListener('DOMContentLoaded', function initWrapper() {
       initComponent();
