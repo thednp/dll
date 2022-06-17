@@ -1,4 +1,4 @@
-# Double Lazy Load | dll.js
+# Double Lazy Load | dll.js ![@thednp/shorty version](https://img.shields.io/badge/@thednp/shorty-1.0.3-brightgreen) ![typescript version](https://img.shields.io/badge/typescript-4.5.2-brightgreen)
 [![NPM Version](https://img.shields.io/npm/v/@thednp/dll.svg)](https://www.npmjs.com/package/@thednp/dll)
 [![NPM Downloads](https://img.shields.io/npm/dm/@thednp/dll.svg)](http://npm-stat.com/charts.html?package=@thednp/dll)
 [![jsDeliver](https://data.jsdelivr.com/v1/package/npm/@thednp/dll/badge)](https://www.jsdelivr.com/package/npm/@thednp/dll)
