@@ -1,16 +1,17 @@
 # Double Lazy Load | dll.js
+[![NPM Version](https://img.shields.io/npm/v/@thednp/dll.svg)](https://www.npmjs.com/package/@thednp/dll)
+[![NPM Downloads](https://img.shields.io/npm/dm/@thednp/dll.svg)](http://npm-stat.com/charts.html?package=@thednp/dll)
+[![jsDeliver](https://data.jsdelivr.com/v1/package/npm/@thednp/dll/badge)](https://www.jsdelivr.com/package/npm/@thednp/dll)
+
 Double Lazy Load for videos, images and background images. Sourced with ES6+ and strong TypeScript definitions.
 
-[![NPM Version](https://img.shields.io/npm/v/dll.js.svg?style=flat-square)](https://www.npmjs.com/package/dll.js)
-[![NPM Downloads](https://img.shields.io/npm/dm/dll.js.svg?style=flat-square)](http://npm-stat.com/charts.html?package=dll.js)
-[![jsDeliver](https://data.jsdelivr.com/v1/package/npm/dll.js/badge)](https://www.jsdelivr.com/package/npm/dll.js)
 
 # Demo
-Right [here](http://thednp.github.io/dll.js/). Also provides some tips on how to use.
+Right [here](http://thednp.github.io/dll). Also provides some tips on how to use.
 
 # npm
 ```
-npm install dll.js
+npm install @thednp/dll
 ```
 
 # Base syntax
@@ -41,7 +42,7 @@ new dll();
 ```
     
 
-If you want to lazy load on scroll, with [isElementInViewport](https://github.com/thednp/shorter-js/blob/master/src/is/isElementInViewport.js) you can do:
+If you want to lazy load on scroll, with [isElementInViewport](https://github.com/thednp/shorty/blob/master/src/is/isElementInViewport.js) you can do:
 ```js
 // your target element
 var el = document.getElementById('myItem');
@@ -72,4 +73,4 @@ function callback(){
 ```
 
 # License
-[MIT License](https://github.com/thednp/dll.js/blob/master/LICENSE)
+[MIT License](https://github.com/thednp/dll/blob/master/LICENSE)

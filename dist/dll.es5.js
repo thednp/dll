@@ -1,7 +1,7 @@
 /*!
-  * DLL.js v1.5.7-alpha3 (https://thednp.github.io/dll.js/)
+  * DLL.js v1.0.0-alpha1 (https://thednp.github.io/dll)
   * Copyright 2015-2022 © thednp
-  * Licensed under MIT (https://github.com/thednp/dll.js/blob/master/LICENSE)
+  * Licensed under MIT (https://github.com/thednp/dll/blob/master/LICENSE)
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
@@ -10,66 +10,119 @@
 }(this, (function () { 'use strict';
 
   /**
+   * Checks if an object is a `Node`.
+   *
+   * @param {any} node the target object
+   * @returns {boolean} the query result
+   */
+  var isNode = function (element) { return (element && [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    .some(function (x) { return +element.nodeType === x; })) || false; };
+
+  /**
+   * Check if a target object is `Window`.
+   * => equivalent to `object instanceof Window`
+   *
+   * @param {any} object the target object
+   * @returns {boolean} the query result
+   */
+  var isWindow = function (object) { return (object && object.constructor.name === 'Window') || false; };
+
+  /**
+   * Checks if an object is a `Document`.
+   * @see https://dom.spec.whatwg.org/#node
+   *
+   * @param {any} object the target object
+   * @returns {boolean} the query result
+   */
+  var isDocument = function (object) { return (object && object.nodeType === 9) || false; };
+
+  /**
    * Returns the `document` or the `#document` element.
    * @see https://github.com/floating-ui/floating-ui
-   * @param {(Node | HTMLElement | Element | globalThis)=} node
+   * @param {(Node | Window)=} node
    * @returns {Document}
    */
   function getDocument(node) {
-    if (node instanceof HTMLElement) { return node.ownerDocument; }
-    if (node instanceof Window) { return node.document; }
+    // node instanceof Document
+    if (isDocument(node)) { return node; }
+    // node instanceof Node
+    if (isNode(node)) { return node.ownerDocument; }
+    // node instanceof Window
+    if (isWindow(node)) { return node.document; }
+    // node is undefined | NULL
     return window.document;
   }
-
-  /**
-   * A global array of possible `ParentNode`.
-   */
-  var parentNodes = [Document, Node, Element, HTMLElement];
-
-  /**
-   * A global array with `Element` | `HTMLElement`.
-   */
-  var elementNodes = [Element, HTMLElement];
 
   /**
    * Utility to check if target is typeof `HTMLElement`, `Element`, `Node`
    * or find one that matches a selector.
    *
-   * @param {HTMLElement | Element | string} selector the input selector or target element
-   * @param {(HTMLElement | Element | Node | Document)=} parent optional node to look into
-   * @return {(HTMLElement | Element)?} the `HTMLElement` or `querySelector` result
+   * @param {Node | string} selector the input selector or target element
+   * @param {ParentNode=} parent optional node to look into
+   * @return {HTMLElement?} the `HTMLElement` or `querySelector` result
    */
   function querySelector(selector, parent) {
-    var selectorIsString = typeof selector === 'string';
-    var lookUp = parent && parentNodes.some(function (x) { return parent instanceof x; })
-      ? parent : getDocument();
-
-    if (!selectorIsString && [].concat( elementNodes ).some(function (x) { return selector instanceof x; })) {
+    if (isNode(selector)) {
       return selector;
     }
-    // @ts-ignore -- `ShadowRoot` is also a node
-    return selectorIsString ? lookUp.querySelector(selector) : null;
+    var lookUp = isNode(parent) ? parent : getDocument();
+
+    return lookUp.querySelector(selector);
   }
 
   /**
    * Checks if an object is a `Function`.
    *
-   * @param {any} element the target object
+   * @param {any} fn the target object
    * @returns {boolean} the query result
    */
-  var isFunction = function (element) { return element instanceof Function; };
+  var isFunction = function (fn) { return (fn && fn.constructor.name === 'Function') || false; };
+
+  /**
+   * Shortcut for `Object.assign()` static method.
+   * @param  {Record<string, any>} obj a target object
+   * @param  {Record<string, any>} source a source object
+   */
+  var ObjectAssign = function (obj, source) { return Object.assign(obj, source); };
+
+  /**
+   * This is a shortie for `document.createElement` method
+   * which allows you to create a new `HTMLElement` for a given `tagName`
+   * or based on an object with specific non-readonly attributes:
+   * `id`, `className`, `textContent`, `style`, etc.
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement
+   *
+   * @param {Record<string, string> | string} param `tagName` or object
+   * @return {HTMLElement} a new `HTMLElement` or `Element`
+   */
+  function createElement(param) {
+    if (!param) { return null; }
+
+    if (typeof param === 'string') {
+      return getDocument().createElement(param);
+    }
+
+    var tagName = param.tagName;
+    var attr = Object.assign({}, param);
+    var newElement = createElement(tagName);
+    delete attr.tagName;
+    ObjectAssign(newElement, attr);
+    return newElement;
+  }
 
   /**
    * Shortcut for `HTMLElement.getAttribute()` method.
-   * @param  {HTMLElement | Element} element target element
-   * @param  {string} attribute attribute name
+   * @param {HTMLElement} element target element
+   * @param {string} attribute attribute name
+   * @returns {string?} attribute value
    */
   var getAttribute = function (element, attribute) { return element.getAttribute(attribute); };
 
   /**
    * Shortcut for `HTMLElement.removeAttribute()` method.
-   * @param  {HTMLElement | Element} element target element
+   * @param  {HTMLElement} element target element
    * @param  {string} attribute attribute name
+   * @returns {void}
    */
   var removeAttribute = function (element, attribute) { return element.removeAttribute(attribute); };
 
@@ -86,29 +139,23 @@
   var loadstartEvent = 'loadstart';
 
   /**
-   * Remove eventListener from an `Element` | `HTMLElement` | `Document` | `Window` target.
+   * Remove eventListener from an `HTMLElement` | `Document` | `Window` target.
    *
-   * @param {HTMLElement | Element | Document | Window} element event.target
-   * @param {string} eventName event.type
-   * @param {EventListenerObject['handleEvent']} handler callback
-   * @param {(EventListenerOptions | boolean)=} options other event options
+   * @type {SHORTY.OnOff<EventTarget>}
    */
-  function off(element, eventName, handler, options) {
+  function off(element, eventName, listener, options) {
     var ops = options || false;
-    element.removeEventListener(eventName, handler, ops);
+    element.removeEventListener(eventName, listener, ops);
   }
 
   /**
-   * Add eventListener to an `Element` | `HTMLElement` | `Document` target.
+   * Add eventListener to an `HTMLElement` | `Document` target.
    *
-   * @param {HTMLElement | Element | Document | Window} element event.target
-   * @param {string} eventName event.type
-   * @param {EventListenerObject['handleEvent']} handler callback
-   * @param {(EventListenerOptions | boolean)=} options other event options
+   * @type {SHORTY.OnOff<EventTarget>}
    */
-  function on(element, eventName, handler, options) {
+  function on(element, eventName, listener, options) {
     var ops = options || false;
-    element.addEventListener(eventName, handler, ops);
+    element.addEventListener(eventName, listener, ops);
   }
 
   /** Global namespace for the `data-src` attribute. */
@@ -116,41 +163,38 @@
 
   /**
    * Load media for single target.
-   * @param {HTMLImageElement | HTMLSourceElement | HTMLElement | Element} mediaElement
+   * @param {HTMLImageElement | HTMLSourceElement | HTMLElement} mediaElement
    * @param {Function=} imageCallback callback function
    */
   function loadMedia(mediaElement, imageCallback) {
     var isVideo = mediaElement.tagName === 'SOURCE';
     var loadEv = isVideo ? loadstartEvent : loadEvent;
-    var newVideo = isVideo ? document.createElement('VIDEO') : null;
-    var mediaObject = isVideo ? document.createElement('SOURCE') : new Image();
+    var newVideo = isVideo ? createElement('VIDEO') : null;
+    var mediaObject = createElement(isVideo ? 'SOURCE' : 'IMG');
     var loadTarget = isVideo ? newVideo : mediaObject;
     var src = getAttribute(mediaElement, dataSRC);
-    var mediaElements = [HTMLImageElement, HTMLSourceElement];
+    var mediaElements = ['IMG', 'SOURCE'];
 
     if (!loadTarget || !src) { return; }
 
     on(loadTarget, loadEv, function loadWrapper() {
       // 'HTMLImageElement' | 'HTMLSourceElement'
-      if (mediaElements.some(function (x) { return mediaElement instanceof x; })) {
-        // @ts-ignore
+      if (mediaElements.includes(mediaElement.tagName)) {
         mediaElement.src = src;
-        if (mediaElement instanceof HTMLSourceElement) {
-          // @ts-ignore
+        if (isVideo) {
+        // if ( mediaElement instanceof HTMLSourceElement) {
           mediaElement.parentNode.load();
         }
       // `HTMLElement` background-image
       } else {
-        // @ts-ignore
-        mediaElement.style.backgroundImage = "url(\"" + src + "\")";
+        ObjectAssign(mediaElement.style, { backgroundImage: ("url(\"" + src + "\")") });
       }
       removeAttribute(mediaElement, dataSRC);
-      if (imageCallback) { imageCallback(); }
+      if (isFunction(imageCallback)) { imageCallback(); }
       off(loadTarget, loadEv, loadWrapper);
     });
 
-    if (mediaElements.some(function (x) { return mediaObject instanceof x; })) {
-      // @ts-ignore
+    if (mediaElements.includes(mediaObject.tagName)) {
       mediaObject.src = src;
       if (newVideo) { newVideo.append(mediaObject); }
     }
@@ -160,13 +204,11 @@
    * A shortcut for `(document|Element).querySelectorAll`.
    *
    * @param {string} selector the input selector
-   * @param {(HTMLElement | Element | Document | Node)=} parent optional node to look into
-   * @return {NodeListOf<HTMLElement | Element>} the query result
+   * @param {ParentNode=} parent optional node to look into
+   * @return {NodeListOf<HTMLElement>} the query result
    */
   function querySelectorAll(selector, parent) {
-    var lookUp = parent && parentNodes
-      .some(function (x) { return parent instanceof x; }) ? parent : getDocument();
-    // @ts-ignore -- `ShadowRoot` is also a node
+    var lookUp = isNode(parent) ? parent : getDocument();
     return lookUp.querySelectorAll(selector);
   }
 
@@ -174,8 +216,8 @@
    * Returns an `Array` with all `<img>`, `<video>` or HTMLElement
    * with `data-src` attribute.
    *
-   * @param {(HTMLElement | Element)=} source
-   * @returns {(HTMLElement | Element | HTMLImageElement | HTMLSourceElement)[]?}
+   * @param {HTMLElement=} source
+   * @returns {(HTMLElement | HTMLImageElement | HTMLSourceElement)[]?}
    */
   function getMediaElements(source) {
     // element chidlren with data-src attribute
@@ -199,8 +241,6 @@
     return null;
   }
 
-  // import dataSRC from './dataSRC';
-
   // DLL DEFINITION
   // ==============
   /**
@@ -219,6 +259,7 @@
     // callback
     var callbackFn = isFunction(callback) ? callback : null;
     var mediaTargets = getMediaElements(element);
+    // console.log(mediaTargets,callbackFn)
 
     if (mediaTargets && mediaTargets.length) {
       mediaTargets.forEach(function (x, i) {
@@ -231,20 +272,21 @@
     }
   }
 
+  /**
+   * A global namespace for `DOMContentLoaded` event.
+   * @type {string}
+   */
+  var DOMContentLoadedEvent = 'DOMContentLoaded';
+
   // DATA API
   function initComponent(context) {
-    var lookup = context instanceof Element ? context : document;
-    var DLLImages = Array.from(lookup.querySelectorAll('[data-src]'));
-    DLLImages.map(function (x) { return new DLL(x); });
+    var lookup = isNode(context) ? context : document;
+    [].concat( querySelectorAll(("[" + dataSRC + "]"), lookup) ).forEach(function (x) { return new DLL(x); });
   }
+
   // initialize when loaded
   if (document.body) { initComponent(); }
-  else {
-    document.addEventListener('DOMContentLoaded', function initWrapper() {
-      initComponent();
-      document.removeEventListener('DOMContentLoaded', initWrapper);
-    });
-  }
+  else { on(document, DOMContentLoadedEvent, initComponent, { once: true }); }
 
   return DLL;
 

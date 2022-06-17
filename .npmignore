@@ -1,4 +1,6 @@
-node_modules/
-assets/
-.vscode/
-index.html
+.vscode
+.github
+.gitignore
+experiments
+node_modules
+docs

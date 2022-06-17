@@ -1,7 +1,7 @@
 export default DLL;
 
-import './dll';
-import {default as DLL} from 'dll.js/src/dll'
+import { default as DLL } from 'dll/src/dll'
 
-// dependency
-export * from 'shorter-js';
+declare module "@thednp/dll" {
+  export default DLL;
+}

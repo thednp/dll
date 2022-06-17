@@ -1,5 +1,5 @@
-import querySelectorAll from 'shorter-js/src/selectors/querySelectorAll';
-import getAttribute from 'shorter-js/src/attr/getAttribute';
+import querySelectorAll from '@thednp/shorty/src/selectors/querySelectorAll';
+import getAttribute from '@thednp/shorty/src/attr/getAttribute';
 
 import dataSRC from './dataSRC';
 
@@ -7,8 +7,8 @@ import dataSRC from './dataSRC';
  * Returns an `Array` with all `<img>`, `<video>` or HTMLElement
  * with `data-src` attribute.
  *
- * @param {(HTMLElement | Element)=} source
- * @returns {(HTMLElement | Element | HTMLImageElement | HTMLSourceElement)[]?}
+ * @param {HTMLElement=} source
+ * @returns {(HTMLElement | HTMLImageElement | HTMLSourceElement)[]?}
  */
 export default function getMediaElements(source) {
   // element chidlren with data-src attribute

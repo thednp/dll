@@ -1,9 +1,8 @@
-import querySelector from 'shorter-js/src/selectors/querySelector';
-import isFunction from 'shorter-js/src/is/isFunction';
+import querySelector from '@thednp/shorty/src/selectors/querySelector';
+import isFunction from '@thednp/shorty/src/is/isFunction';
 
 import loadMedia from './loadMedia';
 import getMediaElements from './getMediaElements';
-// import dataSRC from './dataSRC';
 
 // DLL DEFINITION
 // ==============
@@ -23,6 +22,7 @@ export default function DLL(target, callback) {
   // callback
   const callbackFn = isFunction(callback) ? callback : null;
   const mediaTargets = getMediaElements(element);
+  // console.log(mediaTargets,callbackFn)
 
   if (mediaTargets && mediaTargets.length) {
     mediaTargets.forEach((x, i) => {

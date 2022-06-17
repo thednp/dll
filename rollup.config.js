@@ -10,9 +10,9 @@ const year = (new Date).getFullYear()
 const banner = `/*!
   * DLL.js v${pkg.version} (${pkg.homepage})
   * Copyright 2015-${year} © ${pkg.author}
-  * Licensed under MIT (https://github.com/thednp/dll.js/blob/master/LICENSE)
+  * Licensed under MIT (https://github.com/thednp/dll/blob/master/LICENSE)
   */`
-const miniBanner = `// DLL.js v${pkg.version} | ${year} © ${pkg.author} | ${pkg.license}-License`
+const miniBanner = `// DLL v${pkg.version} | ${year} © ${pkg.author} | ${pkg.license}-License`
 
 // set config
 const MIN = process.env.MIN === 'true' // true/false|unset
@@ -41,7 +41,7 @@ if (MIN){
 }
 
 if (ES==='es5') {
-  PLUGINS.push(buble());
+  PLUGINS.push(buble({objectAssign: 'Object.assign'}));
 }
 
 if (FORMAT!=='esm') {

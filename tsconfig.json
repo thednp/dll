@@ -9,11 +9,12 @@
     "allowJs": true,
     "checkJs": true,
     "rootDir": "../",
-    "outFile": "types/dll.d.ts", // comment after generate
+    // "outFile": "types/dll.d.ts", // comment after generate
     "outDir": "types"
   },
   "files": [
     "types/index.d.ts",
-    "src/dll.js",
+    // "src/dll.js", // un-comment to generate
+    "types/dll.d.ts" // un-comment after generate
   ]
 }

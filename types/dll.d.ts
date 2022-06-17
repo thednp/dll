@@ -1,31 +1,34 @@
-declare module "dll.js/src/dataSRC" {
+declare module "dll/src/dataSRC" {
     export default dataSRC;
     /** Global namespace for the `data-src` attribute. */
     const dataSRC: "data-src";
 }
-declare module "dll.js/src/loadMedia" {
+declare module "dll/src/loadMedia" {
     /**
      * Load media for single target.
-     * @param {HTMLImageElement | HTMLVideoElement | HTMLElement} mediaElement target media element
-     * @param {Function} imageCallback callback function
+     * @param {HTMLImageElement | HTMLSourceElement | HTMLElement} mediaElement
+     * @param {Function=} imageCallback callback function
      */
-    export default function loadMedia(mediaElement: HTMLImageElement | HTMLVideoElement | HTMLElement, imageCallback: Function): void;
+    export default function loadMedia(mediaElement: HTMLImageElement | HTMLSourceElement | HTMLElement, imageCallback?: Function | undefined): void;
 }
-declare module "dll.js/src/getMediaElements" {
+declare module "dll/src/getMediaElements" {
     /**
      * Returns an `Array` with all `<img>`, `<video>` or HTMLElement
      * with `data-src` attribute.
      *
-     * @param {(HTMLElement | Element)=} source
-     * @returns {(HTMLElement | Element)[]?} an `Array` of elements with data-src attribute
+     * @param {HTMLElement=} source
+     * @returns {(HTMLElement | HTMLImageElement | HTMLSourceElement)[]?}
      */
-    export default function getMediaElements(source?: (HTMLElement | Element) | undefined): (HTMLElement | Element)[] | null;
+    export default function getMediaElements(source?: HTMLElement | undefined): (HTMLElement | HTMLImageElement | HTMLSourceElement)[] | null;
 }
-declare module "dll.js/src/dll" {
+declare module "dll/src/dll" {
     /**
-     * Lazy load one / more data-src `<img>` / `<video>`.
-     * @param {HTMLElement | Element} target target
+     * Lazy load one or more items with `data-src` attribute.
+     * * target can be  `<img>` | `<video>` | `HTMLElement`
+     * * or any `HTMLElement` that contains the above elements
+     * * or `HTMLElement` that has the `data-src` attribute
+     * @param {HTMLElement | string} target target
      * @param {Function} callback
      */
-    export default function DLL(target: HTMLElement | Element, callback: Function): void;
+    export default function DLL(target: HTMLElement | string, callback: Function): void;
 }

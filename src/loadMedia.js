@@ -1,49 +1,49 @@
-import getAttribute from 'shorter-js/src/attr/getAttribute';
-import removeAttribute from 'shorter-js/src/attr/removeAttribute';
-import loadEvent from 'shorter-js/src/strings/loadEvent';
-import loadstartEvent from 'shorter-js/src/strings/loadstartEvent';
-import off from 'shorter-js/src/event/off';
-import on from 'shorter-js/src/event/on';
+import createElement from '@thednp/shorty/src/misc/createElement';
+import getAttribute from '@thednp/shorty/src/attr/getAttribute';
+import removeAttribute from '@thednp/shorty/src/attr/removeAttribute';
+import loadEvent from '@thednp/shorty/src/strings/loadEvent';
+import loadstartEvent from '@thednp/shorty/src/strings/loadstartEvent';
+import ObjectAssign from '@thednp/shorty/src/misc/ObjectAssign';
+import isFunction from '@thednp/shorty/src/is/isFunction';
+import off from '@thednp/shorty/src/event/off';
+import on from '@thednp/shorty/src/event/on';
 
 import dataSRC from './dataSRC';
 
 /**
  * Load media for single target.
- * @param {HTMLImageElement | HTMLSourceElement | HTMLElement | Element} mediaElement
+ * @param {HTMLImageElement | HTMLSourceElement | HTMLElement} mediaElement
  * @param {Function=} imageCallback callback function
  */
 export default function loadMedia(mediaElement, imageCallback) {
   const isVideo = mediaElement.tagName === 'SOURCE';
   const loadEv = isVideo ? loadstartEvent : loadEvent;
-  const newVideo = isVideo ? document.createElement('VIDEO') : null;
-  const mediaObject = isVideo ? document.createElement('SOURCE') : new Image();
+  const newVideo = isVideo ? createElement('VIDEO') : null;
+  const mediaObject = createElement(isVideo ? 'SOURCE' : 'IMG');
   const loadTarget = isVideo ? newVideo : mediaObject;
   const src = getAttribute(mediaElement, dataSRC);
-  const mediaElements = [HTMLImageElement, HTMLSourceElement];
+  const mediaElements = ['IMG', 'SOURCE'];
 
   if (!loadTarget || !src) return;
 
   on(loadTarget, loadEv, function loadWrapper() {
     // 'HTMLImageElement' | 'HTMLSourceElement'
-    if (mediaElements.some((x) => mediaElement instanceof x)) {
-      // @ts-ignore
+    if (mediaElements.includes(mediaElement.tagName)) {
       mediaElement.src = src;
-      if (mediaElement instanceof HTMLSourceElement) {
-        // @ts-ignore
+      if (isVideo) {
+      // if ( mediaElement instanceof HTMLSourceElement) {
         mediaElement.parentNode.load();
       }
     // `HTMLElement` background-image
     } else {
-      // @ts-ignore
-      mediaElement.style.backgroundImage = `url("${src}")`;
+      ObjectAssign(mediaElement.style, { backgroundImage: `url("${src}")` });
     }
     removeAttribute(mediaElement, dataSRC);
-    if (imageCallback) imageCallback();
+    if (isFunction(imageCallback)) imageCallback();
     off(loadTarget, loadEv, loadWrapper);
   });
 
-  if (mediaElements.some((x) => mediaObject instanceof x)) {
-    // @ts-ignore
+  if (mediaElements.includes(mediaObject.tagName)) {
     mediaObject.src = src;
     if (newVideo) newVideo.append(mediaObject);
   }
