@@ -1,21 +1,16 @@
 {
   "name": "@thednp/dll",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "thednp",
   "license": "MIT",
   "description": "Double Lazy Load for Images, Videos and Background Images.",
+  "url": "https://github.com/thednp/dll",
   "homepage": "https://thednp.github.io/dll",
   "source": "src/index.ts",
   "main": "dist/dll.js",
   "module": "dist/dll.cjs",
   "esnext": "dist/dll.mjs",
   "types": "dist/dll.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/dll.mjs",
-      "require": "./dist/dll.cjs"
-    }
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write \"src/**/*.ts\"",

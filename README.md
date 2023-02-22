@@ -52,7 +52,7 @@ DLL();
 ```
     
 
-If you want to lazy load on scroll, with [isElementInViewport](https://github.com/thednp/shorty/blob/master/src/is/isElementInViewport.js) you can do:
+If you want to lazy load on scroll, with [isElementInViewport](https://github.com/thednp/shorty/blob/master/src/is/isElementInViewport.ts) you can do:
 ```js
 // your target element
 var el = document.getElementById('myItem');
