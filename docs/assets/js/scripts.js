@@ -55,7 +55,7 @@ function pageLoadFinished() {
 		KUTE.fromTo('.navbar-wrapper', { opacity: 0 }, { opacity: 1 }, { delay: 4000, duration: 2000, easing: 'linear' }).start()
 	}, 3000)
 }
-new dll('.cover',pageLoadFinished);
+DLL('.cover',pageLoadFinished);
 
 // /////click
 var btn = document.querySelector('.btn');
@@ -79,7 +79,7 @@ function clickExample(e){
 	e.preventDefault();
 	if ( !testCols1.classList.contains('loaded') ){
 		btn.innerHTML = 'Loading..';
-		new dll(testCols1, callback);
+		DLL(testCols1, callback);
 	}
 }
 btn.addEventListener('click', clickExample, false);
@@ -129,11 +129,11 @@ function videoCallback(){
 
 function scrollExample(){
 	if ( elementInViewport(testCols2) ){
-		new dll(testCols2, imgCallback);
+		DLL(testCols2, imgCallback);
 	}
 
 	// VIDEO	
 	if ( elementInViewport(testCols3) ){
-		new dll(testCols3, videoCallback);
+		DLL(testCols3, videoCallback);
 	}
 }

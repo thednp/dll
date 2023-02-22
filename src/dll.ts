@@ -3,6 +3,7 @@ import isFunction from '@thednp/shorty/src/is/isFunction';
 
 import loadMedia from './loadMedia';
 import getMediaElements from './getMediaElements';
+import type { CallbackFunction } from './types';
 
 // DLL DEFINITION
 // ==============
@@ -11,10 +12,11 @@ import getMediaElements from './getMediaElements';
  * * target can be  `<img>` | `<video>` | `HTMLElement`
  * * or any `HTMLElement` that contains the above elements
  * * or `HTMLElement` that has the `data-src` attribute
- * @param {HTMLElement | string} target target
- * @param {Function} callback
+ *
+ * @param target target
+ * @param callback
  */
-export default function DLL(target, callback) {
+const DLL = (target: HTMLElement | string, callback?: CallbackFunction) => {
   // element
   const element = querySelector(target);
   if (!element) return;
@@ -33,4 +35,6 @@ export default function DLL(target, callback) {
       }
     });
   }
-}
+};
+
+export default DLL;

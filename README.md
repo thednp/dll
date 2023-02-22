@@ -3,10 +3,13 @@
 [![NPM Version](https://img.shields.io/npm/v/@thednp/dll.svg)](https://www.npmjs.com/package/@thednp/dll)
 [![NPM Downloads](https://img.shields.io/npm/dm/@thednp/dll.svg)](http://npm-stat.com/charts.html?package=@thednp/dll)
 [![jsDeliver](https://data.jsdelivr.com/v1/package/npm/@thednp/dll/badge)](https://www.jsdelivr.com/package/npm/@thednp/dll)
-![@thednp/shorty version](https://img.shields.io/badge/@thednp/shorty-1.0.3-brightgreen)
-![typescript version](https://img.shields.io/badge/typescript-4.5.2-brightgreen)
 
-Double Lazy Load for videos, images and background images. Sourced with ES6+ and strong TypeScript definitions.
+[![typescript version](https://img.shields.io/badge/typescript-4.9.4-brightgreen)](https://www.typescriptlang.org/)
+[![eslint version](https://img.shields.io/badge/eslint-8.30.0-brightgreen)](https://github.com/eslint)
+[![prettier version](https://img.shields.io/badge/prettier-2.8.3-brightgreen)](https://prettier.io/)
+[![vite version](https://img.shields.io/badge/vite-4.0.4-brightgreen)](https://github.com/vitejs)
+
+Double Lazy Load for videos, images and background images. Sourced with Typescript.
 
 
 # Demo
@@ -19,7 +22,7 @@ npm install @thednp/dll
 
 # Base syntax
 ```js
-new dll('selector',callback);
+new DLL('selector',callback);
 ```
 	
 # What it does
@@ -35,13 +38,13 @@ new dll('selector',callback);
 Any valid selector or no selector.
 ```js
 // lazy loads an element with a given class and it's children if any have data-src
-new dll('.uniqueClassName', callBack); 
+new DLL('.uniqueClassName', callBack); 
 
 // lazy loads an element with a given ID and it's children if any have data-src
-new dll('#uniqueID', callBack); 
+new DLL('#uniqueID', callBack); 
 
 // lazy loads any items with data-src from the entire page
-new dll(); 
+new DLL(); 
 ```
     
 
@@ -58,7 +61,7 @@ function callback(){
 // the scroll eventHandler
 function scrollHandler(){
   if ( isElementInViewport(el) ){
-    new dll(el, callback)
+    new DLL(el, callback)
   }
   window.removeEventListener('scroll', scrollHandler, false);
 }
@@ -69,7 +72,7 @@ window.addEventListener('scroll', scrollHandler, false);
 Lazy load a parent `<div id="myElement" data-src="..image.png">` with many elements inside subject to dll.js object:
 ```js
 var el = document.getElementById('myElement'); //this is a parent
-new dll(el, callback)
+new DLL(el, callback)
 function callback(){
   console.log('I just finished lazy loading the last element for #myElement')
 }

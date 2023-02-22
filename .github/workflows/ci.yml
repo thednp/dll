@@ -12,6 +12,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-      - uses: bahmutov/npm-install@v1
-      - run: npm run lint:js
-      - run: npm run build-esm
+      # - uses: bahmutov/npm-install@v1
+      - run: npm run lint:ts
+      - run: npm run build

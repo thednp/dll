@@ -51,7 +51,7 @@ function imageLoadFinished() {
 }
 
 // we lazy load to the .cover class element
-new dll('.cover',imageLoadFinished); 
+DLL('.cover',imageLoadFinished); 
 </code></pre>
 
     <p>Unlike the examples below, this is an example where the target element has no child elements and is the only subject to DLL lazy load.</p>
@@ -119,7 +119,7 @@ function callback(){
 function clickExample(){
   // if element is not loaded, we initiate dll.js
   if ( !el.classList.contains('loaded') ){
-    new dll(el, callback);
+    DLL(el, callback);
   }
 }
 
@@ -190,7 +190,7 @@ function callback(){
 function scrollHandler(){
   //when element is in viewport, we initiate dll.js
   if ( isElementInViewport(el) && !el.classList.contains('loaded') ){
-    new dll(el, callback);
+    DLL(el, callback);
   }
 }
 
@@ -245,14 +245,14 @@ window.addEventListener('scroll', scrollHandler, false);
 <pre><code class="language-javascript">// grab a video
 var myVideo = document.getElementById('myVideo');
 // initialize for a single video element
-new dll(myVideo, callback);
+DLL(myVideo, callback);
 
 // OR
 
 // grab a wrapper element
 var myWrapper = document.getElementById('myWrapper');
 // initialize for and element and/or all child elements
-new dll(myWrapper, callback);
+DLL(myWrapper, callback);
 </code></pre>
     <p>Both of the above produce the same effect.</p>
   </div>
@@ -268,12 +268,12 @@ new dll(myWrapper, callback);
   <div class="content-wrap">
     <h2>In case you missed the features</h2>
     <ul>
-      <li>Strong TypeScript definitions and ES6+ sourced code</li>
+      <li>TypeScript sourced code</li>
       <li>Lazy load a single element that has <code>data-src</code> attribute, ideally an <code>&lt;img&gt;</code> or a layer element with no child elements</li>
       <li>With DLL.js works with videos as well. How cool is that?</li>
       <li>Works for <code>&lt;img&gt;</code> and other elements as well, to update the <code>background-image</code></li>
       <li>When an element other than image/video is targeted, it will also lazy load it's child elements having the <code>data-src</code> attribute</li>
-      <li>You can also call DLL to do lazy load for all elements in a page at once, by simply using <code>new dll();</code></li>
+      <li>You can also call DLL to do lazy load for all elements in a page at once, by simply using <code>DLL();</code></li>
       <li>DLL has callback ability and it's triggered when the target element is loaded or it's last element is loaded</li>
       <li>With a <code>elementInViewport</code> function you can lazy load elements on scroll, like the example above</li>
       <li>It's super light, around 1Kb in size and you can do so much with it</li>
@@ -293,7 +293,7 @@ new dll(myWrapper, callback);
     <ul>
       <li>For SEO reasons, don't use it for content images unless their really big and affect the page load speed</li>
       <li>Use it wisely and you can achieve higher page load speed while allowing crawlers to cache your images, this can be done using two images: one hidden, with proper <code>src</code> attribute and another one visible with <code>data-src</code> attribute</li>
-      <li>Don't do <code>new dll();</code> or <code>new dll('body');</code> unless you really want to do that, you may want to change what happens with each element alone</li>
+      <li>Don't do <code>DLL();</code> or <code>DLL('body');</code> unless you really want to do that, you may want to change what happens with each element alone</li>
       <li>You may want to add a CSS class to a parent target and check it when a certain event such as scroll is used, you don't want bubbles, right?</li>
 
     </ul>
@@ -303,7 +303,7 @@ new dll(myWrapper, callback);
      <footer>
     <div class="content-wrap">
       <p class="pull-right"><a id="toTop" href="#">Back to top</a></p>
-      <p>2015-2022 &copy; <a href="https://github.com/thednp">thednp</a></p>
+      <p>2015-2023 &copy; <a href="https://github.com/thednp">thednp</a></p>
     </div>
     </footer>
 

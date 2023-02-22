@@ -1,5 +1,4 @@
-import querySelectorAll from '@thednp/shorty/src/selectors/querySelectorAll';
-import getAttribute from '@thednp/shorty/src/attr/getAttribute';
+import { querySelectorAll, getAttribute } from '@thednp/shorty';
 
 import dataSRC from './dataSRC';
 
@@ -7,10 +6,9 @@ import dataSRC from './dataSRC';
  * Returns an `Array` with all `<img>`, `<video>` or HTMLElement
  * with `data-src` attribute.
  *
- * @param {HTMLElement=} source
- * @returns {(HTMLElement | HTMLImageElement | HTMLSourceElement)[]?}
+ * @param source
  */
-export default function getMediaElements(source) {
+const getMediaElements = (source?: HTMLElement): (HTMLElement | HTMLImageElement | HTMLSourceElement)[] | null => {
   // element chidlren with data-src attribute
   const matchedSelectors = querySelectorAll(`[${dataSRC}]`, source);
   // element has own data-src attribute
@@ -30,4 +28,6 @@ export default function getMediaElements(source) {
   }
 
   return null;
-}
+};
+
+export default getMediaElements;
