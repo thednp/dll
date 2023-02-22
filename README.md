@@ -1,4 +1,4 @@
-# Double Lazy Load | dll.js
+# Double Lazy Load
 [![ci](https://github.com/thednp/dll/actions/workflows/ci.yml/badge.svg)](https://github.com/thednp/dll/actions/workflows/ci.yml)
 [![NPM Version](https://img.shields.io/npm/v/@thednp/dll.svg)](https://www.npmjs.com/package/@thednp/dll)
 [![NPM Downloads](https://img.shields.io/npm/dm/@thednp/dll.svg)](http://npm-stat.com/charts.html?package=@thednp/dll)
