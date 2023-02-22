@@ -1,6 +1,6 @@
 {
   "name": "@thednp/dll",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "thednp",
   "license": "MIT",
   "description": "Double Lazy Load for Images, Videos and Background Images.",
@@ -43,7 +43,6 @@
     "@thednp/shorty": "^2.0.0-alpha12"
   },
   "devDependencies": {
-    "@types/node": "^18.14.0",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
     "@typescript-eslint/parser": "^5.47.0",
     "dts-bundle-generator": "^7.2.0",

@@ -15,14 +15,14 @@
    "sourceMap": true,
    "resolveJsonModule": true,
    "esModuleInterop": true,
-   "isolatedModules": true,
+   "isolatedModules": false,
    "noUnusedLocals": true,
    "noUnusedParameters": true,
    "noImplicitReturns": true,
    "removeComments": false,
    "allowSyntheticDefaultImports": true,
    "noEmit": true,
-   "skipLibCheck": true // allows dts-bundle-generator to import from package.json
+  //  "skipLibCheck": true // allows dts-bundle-generator to import from package.json
  },
  "include": ["src/*"],
  "exclude": ["node_modules", "experiments", "dist"],
