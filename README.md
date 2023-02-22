@@ -21,7 +21,7 @@ npm install @thednp/dll
 ```
 
 # Base syntax
-```js/ts
+```js
 import DLL from '@thednp/dll';
 
 DLL('selector',callback);
@@ -38,7 +38,7 @@ DLL('selector',callback);
 
 # Works with
 Any valid selector or no selector.
-```js/ts
+```js
 import DLL from '@thednp/dll';
 
 // lazy loads an element with a given class and it's children if any have data-src

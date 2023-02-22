@@ -1,6 +1,6 @@
 {
   "name": "@thednp/dll",
-  "version": "1.0.0-alpha3",
+  "version": "1.0.0",
   "author": "thednp",
   "license": "MIT",
   "description": "Double Lazy Load for Images, Videos and Background Images.",
