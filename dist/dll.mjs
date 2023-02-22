@@ -166,7 +166,10 @@ var u = {};
       O.has(i) ? a = O.get(i) : (O.set(i, a), hn += 1);
     }
     return a;
-  }, sa = (e) => e ? X(e) ? e.defaultView : l(e) ? e?.ownerDocument?.defaultView : e : window, yn = (e) => Array.isArray(e) || !1, da = (e) => l(e) && e.nodeName === "CANVAS" || !1, wn = (e) => d(e) && !!e.shadowRoot || !1, ma = (e) => l(e) && [1, 2, 3, 4, 5, 6, 7, 8].some((t) => e.nodeType === t) || !1, ga = (e) => {
+  }, sa = (e) => {
+    var t;
+    return e ? X(e) ? e.defaultView : l(e) ? (t = e == null ? void 0 : e.ownerDocument) == null ? void 0 : t.defaultView : e : window;
+  }, yn = (e) => Array.isArray(e) || !1, da = (e) => l(e) && e.nodeName === "CANVAS" || !1, wn = (e) => d(e) && !!e.shadowRoot || !1, ma = (e) => l(e) && [1, 2, 3, 4, 5, 6, 7, 8].some((t) => e.nodeType === t) || !1, ga = (e) => {
     if (!l(e))
       return !1;
     const { top: t, bottom: a } = L(e), { clientHeight: i } = B(e);
