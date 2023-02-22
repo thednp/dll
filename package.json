@@ -21,10 +21,10 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "fix:ts": "eslint src --config .eslintrc.cjs --fix",
     "lint:ts": "eslint src --config .eslintrc.cjs",
-    "build": "npm run lint:ts && npm run build-vite && npm run dts",
-    "build-vite": "vite build && npm run docs",
-    "dts": "dts-bundle-generator --config ./dts.config.ts",
-    "docs": "ncp dist/dll.js docs/assets/js/dll.js && ncp dist/dll.js.map docs/assets/js/dll.js.map"
+    "build": "npm run lint:ts && npm run build-vite && npm run build-dts",
+    "build-vite": "vite build && npm run build-docs",
+    "build-dts": "dts-bundle-generator --config ./dts.config.ts",
+    "build-docs": "ncp dist/dll.js docs/assets/js/dll.js && ncp dist/dll.js.map docs/assets/js/dll.js.map"
   },
   "bugs": {
     "url": "https://github.com/thednp/dll/issues"
