@@ -21,8 +21,10 @@ npm install @thednp/dll
 ```
 
 # Base syntax
-```js
-new DLL('selector',callback);
+```js/ts
+import DLL from '@thednp/dll';
+
+DLL('selector',callback);
 ```
 	
 # What it does
@@ -36,15 +38,17 @@ new DLL('selector',callback);
 
 # Works with
 Any valid selector or no selector.
-```js
+```js/ts
+import DLL from '@thednp/dll';
+
 // lazy loads an element with a given class and it's children if any have data-src
-new DLL('.uniqueClassName', callBack); 
+DLL('.uniqueClassName', callBack); 
 
 // lazy loads an element with a given ID and it's children if any have data-src
-new DLL('#uniqueID', callBack); 
+DLL('#uniqueID', callBack); 
 
 // lazy loads any items with data-src from the entire page
-new DLL(); 
+DLL(); 
 ```
     
 
@@ -61,7 +65,7 @@ function callback(){
 // the scroll eventHandler
 function scrollHandler(){
   if ( isElementInViewport(el) ){
-    new DLL(el, callback)
+    DLL(el, callback)
   }
   window.removeEventListener('scroll', scrollHandler, false);
 }
@@ -71,8 +75,7 @@ window.addEventListener('scroll', scrollHandler, false);
 # A nasty example
 Lazy load a parent `<div id="myElement" data-src="..image.png">` with many elements inside subject to dll.js object:
 ```js
-var el = document.getElementById('myElement'); //this is a parent
-new DLL(el, callback)
+DLL(document.getElementById('myElement'), callback)
 function callback(){
   console.log('I just finished lazy loading the last element for #myElement')
 }
