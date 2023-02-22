@@ -37,6 +37,6 @@ const DLL = (target: HTMLElement | string, callback?: CallbackFunction) => {
   }
 };
 
-ObjectAssign(DLL, { version });
+ObjectAssign(DLL, { version, loadMedia, getMediaElements });
 
 export default DLL;

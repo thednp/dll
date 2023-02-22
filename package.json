@@ -1,6 +1,6 @@
 {
   "name": "@thednp/dll",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "thednp",
   "license": "MIT",
   "description": "Double Lazy Load for Images, Videos and Background Images.",
@@ -32,11 +32,10 @@
     "url": "git+https://github.com/thednp/dll.git"
   },
   "keywords": [
-    "dll.js",
+    "dll",
     "lazy-load",
-    "lazy-load-image",
-    "lazy-load-video",
-    "double-lazy-load",
+    "image",
+    "video",
     "typescript"
   ],
   "dependencies": {
