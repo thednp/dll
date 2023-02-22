@@ -1,5 +1,5 @@
-import querySelector from '@thednp/shorty/src/selectors/querySelector';
-import isFunction from '@thednp/shorty/src/is/isFunction';
+import { querySelector, isFunction, ObjectAssign } from '@thednp/shorty';
+import { version } from '../package.json';
 
 import loadMedia from './loadMedia';
 import getMediaElements from './getMediaElements';
@@ -36,5 +36,7 @@ const DLL = (target: HTMLElement | string, callback?: CallbackFunction) => {
     });
   }
 };
+
+ObjectAssign(DLL, { version });
 
 export default DLL;
