@@ -202,7 +202,7 @@ const F = "data-src", Pa = (n) => u.isHTMLElement(n) && n.tagName === "VIDEO", q
 }, Nn = (n) => {
   const m = u.querySelectorAll(`[${F}]`, n), g = n && u.getAttribute(n, F);
   return g && !m ? [n] : !g && m ? [...m] : g && m ? [n, ...m] : !g && !m ? [...u.querySelectorAll(`[${F}]`)] : null;
-}, Ba = "1.0.4", Fa = (n, m) => {
+}, Ba = "1.0.5", Fa = (n, m) => {
   const g = u.querySelector(n);
   if (!g)
     return;

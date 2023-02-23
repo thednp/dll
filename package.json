@@ -1,6 +1,6 @@
 {
   "name": "@thednp/dll",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Double Lazy Load for Images, Videos and Background Images.",
   "homepage": "https://thednp.github.io/dll",
   "author": "thednp",
