@@ -1,10 +1,10 @@
-import { querySelector, isFunction, ObjectAssign } from '@thednp/shorty';
+import { querySelector, isFunction /* , ObjectAssign */ } from '@thednp/shorty';
 
 import loadMedia from './loadMedia';
 import getMediaElements from './getMediaElements';
 import type { CallbackFunction } from './types';
 
-import { version } from '../package.json';
+// import version from './version';
 
 // DLL DEFINITION
 // ==============
@@ -38,5 +38,5 @@ const DLL = (target: HTMLElement | string, callback?: CallbackFunction) => {
   }
 };
 
-ObjectAssign(DLL, { version, getMediaElements, loadMedia });
+// ObjectAssign(DLL, { version, getMediaElements, loadMedia });
 export default DLL;
