@@ -1,6 +1,6 @@
 {
   "name": "@thednp/dll",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Double Lazy Load for Images, Videos and Background Images.",
   "homepage": "https://thednp.github.io/dll",
   "author": "thednp",
@@ -8,9 +8,9 @@
   "source": "./src/index.ts",
   "main": "./dist/dll.js",
   "module": "./dist/dll.mjs",
-  "types": "./dist/dll.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/dll.d.ts",
       "require": "./dist/dll.cjs",
       "import": "./dist/dll.mjs"
     }
@@ -44,20 +44,20 @@
     "url": "https://github.com/thednp/dll/issues"
   },
   "devDependencies": {
-    "@types/node": "^20.3.0",
-    "@typescript-eslint/eslint-plugin": "^5.59.9",
-    "@typescript-eslint/parser": "^5.59.9",
+    "@types/node": "^20.3.3",
+    "@typescript-eslint/eslint-plugin": "^5.61.0",
+    "@typescript-eslint/parser": "^5.61.0",
     "dts-bundle-generator": "^8.0.1",
-    "eslint": "^8.42.0",
-    "eslint-plugin-jsdoc": "^46.2.6",
+    "eslint": "^8.44.0",
+    "eslint-plugin-jsdoc": "^46.4.3",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-prettier": "^4.2.1",
     "ncp": "^2.0.0",
     "prettier": "^2.8.8",
-    "typescript": "^5.1.3",
+    "typescript": "^5.1.6",
     "vite": "^4.3.9"
   },
   "dependencies": {
-    "@thednp/shorty": "^2.0.0-alpha15"
+    "@thednp/shorty": "^2.0.0-alpha16"
   }
 }
