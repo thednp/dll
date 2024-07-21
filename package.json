@@ -1,6 +1,6 @@
 {
   "name": "@thednp/dll",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Double Lazy Load for Images, Videos and Background Images.",
   "homepage": "https://thednp.github.io/dll",
   "author": "thednp",
@@ -17,13 +17,16 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "badges": "npx -p dependency-version-badge update-badge typescript eslint prettier vite",
     "format": "prettier --write \"src/**/*.ts\"",
     "fix:ts": "eslint src --config .eslintrc.cjs --fix",
     "lint:ts": "eslint src --config .eslintrc.cjs",
-    "build": "npm run lint:ts && npm run build-vite && npm run build-dts",
+    "check:ts": "tsc --noEmit",
+    "build": "npm run lint:ts && npm run check:ts && npm run build-vite && npm run badges && npm run build-dts",
     "build-vite": "vite build && npm run build-docs",
-    "build-dts": "dts-bundle-generator --config ./dts.config.ts",
-    "build-docs": "ncp dist/dll.js docs/assets/js/dll.js && ncp dist/dll.js.map docs/assets/js/dll.js.map"
+    "build-dts": "dts-bundle-generator --config ./dts.config.cjs",
+    "build-docs": "ncp dist/dll.js docs/assets/js/dll.js && ncp dist/dll.js.map docs/assets/js/dll.js.map",
+    "prepublishOnly": "npm update && npm run format && npm run lint:ts && npm run build && npm run badges"
   },
   "repository": {
     "type": "git",
@@ -44,20 +47,20 @@
     "url": "https://github.com/thednp/dll/issues"
   },
   "devDependencies": {
-    "@types/node": "^20.3.3",
-    "@typescript-eslint/eslint-plugin": "^5.61.0",
-    "@typescript-eslint/parser": "^5.61.0",
-    "dts-bundle-generator": "^8.0.1",
-    "eslint": "^8.44.0",
-    "eslint-plugin-jsdoc": "^46.4.3",
+    "@types/node": "^20.14.11",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "dts-bundle-generator": "^9.5.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-jsdoc": "^46.10.1",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-prettier": "^4.2.1",
     "ncp": "^2.0.0",
     "prettier": "^2.8.8",
-    "typescript": "^5.1.6",
-    "vite": "^4.3.9"
+    "typescript": "^5.5.3",
+    "vite": "^5.3.4"
   },
   "dependencies": {
-    "@thednp/shorty": "^2.0.0-alpha16"
+    "@thednp/shorty": "^2.0.0"
   }
 }

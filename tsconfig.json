@@ -2,12 +2,12 @@
   // https://janessagarrow.com/blog/typescript-and-esbuild/
  "compilerOptions": {
    "lib": ["DOM", "ESNext", "DOM.Iterable"],
-   "types": ["vite", "vite/client", "@thednp/shorty"],
+  //  "types": ["vite", "vite/client", "@thednp/shorty"],
    "rootDir": "./",
    "baseUrl": "./",
    "module": "ESNext",
    "target": "ESNext",
-   "moduleResolution": "Node",
+   "moduleResolution": "Bundler",
    "allowJs": true,
    "forceConsistentCasingInFileNames": true,
    "useDefineForClassFields": true,
@@ -25,5 +25,5 @@
    "skipLibCheck": true // allows dts-bundle-generator to import from package.json
  },
  "include": ["src/*"],
- "exclude": ["node_modules", "experiments", "dist"],
+ "exclude": ["node_modules", "experiments", "dist"]
 }
