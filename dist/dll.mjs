@@ -1,78 +1,56 @@
-const I = "DOMContentLoaded", N = "load", R = "loadstart", k = navigator.userAgentData, l = k, { userAgent: E } = navigator, f = E, v = /iPhone|iPad|iPod|Android/i;
-l ? l.brands.some((e) => v.test(e.brand)) : v.test(f);
-const S = /(iPhone|iPod|iPad)/;
-l ? l.brands.some((e) => S.test(e.brand)) : (
-  /* istanbul ignore next */
-  S.test(f)
-);
-f && f.includes("Firefox");
-const { head: p } = document;
-["webkitPerspective", "perspective"].some((e) => e in p.style);
-const h = (e, t, n, o) => {
-  const s = o || !1;
-  e.addEventListener(t, n, s);
-}, T = (e, t, n, o) => {
-  const s = o || !1;
-  e.removeEventListener(t, n, s);
-}, L = (e, t, n, o) => {
-  const s = (r) => {
-    (r.target === e || r.currentTarget === e) && (n.apply(e, [r]), T(e, t, s, o));
-  };
-  h(e, t, s, o);
-}, V = () => {
-};
-(() => {
-  let e = !1;
-  try {
-    const t = Object.defineProperty({}, "passive", {
-      get: () => (e = !0, e)
-    });
-    L(document, I, V, t);
-  } catch {
-  }
-  return e;
-})();
-["webkitTransform", "transform"].some((e) => e in p.style);
-["webkitAnimation", "animation"].some((e) => e in p.style);
-["webkitTransition", "transition"].some((e) => e in p.style);
-const A = (e, t) => e.getAttribute(t), $ = (e, t) => e.removeAttribute(t), M = (e) => e != null && typeof e == "object" || !1, a = (e) => M(e) && typeof e.nodeType == "number" && [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].some((t) => e.nodeType === t) || !1, y = (e) => a(e) && e.nodeType === 1 || !1, j = (e) => typeof e == "string" || !1, q = (e) => M(e) && e.constructor.name === "Window" || !1, x = (e) => a(e) && e.nodeType === 9 || !1, m = (e) => q(e) ? e.document : x(e) ? e : a(e) ? e.ownerDocument : window.document, C = (e, ...t) => Object.assign(e, ...t), g = (e) => {
-  if (!e)
-    return;
-  if (j(e))
-    return m().createElement(e);
-  const { tagName: t } = e, n = g(t);
-  if (!n)
-    return;
+const R = "load", j = "loadstart", m = (e, n, t, o) => {
+  e.addEventListener(
+    n,
+    t,
+    !1
+  );
+}, C = (e, n, t, o) => {
+  e.removeEventListener(
+    n,
+    t,
+    !1
+  );
+}, h = (e, n) => e.getAttribute(n), E = (e, n) => e.removeAttribute(n), v = (e) => e != null && typeof e == "object" || !1, l = (e) => v(e) && typeof e.nodeType == "number" && [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].some(
+  (n) => e.nodeType === n
+) || !1, u = (e) => l(e) && e.nodeType === 1 || !1, T = (e) => typeof e == "string" || !1, L = (e) => v(e) && e.constructor.name === "Window" || !1, D = (e) => l(e) && e.nodeType === 9 || !1, p = (e) => D(e) ? e : l(e) ? e.ownerDocument : L(e) ? e.document : globalThis.document, I = (e, ...n) => Object.assign(e, ...n), d = (e) => {
+  if (!e) return;
+  if (T(e))
+    return p().createElement(e);
+  const { tagName: n } = e, t = d(n);
+  if (!t) return;
   const o = { ...e };
-  return delete o.tagName, C(n, o);
-}, G = (e) => Object.entries(e), U = (e, t) => {
-  G(t).forEach(([n, o]) => {
-    if (o && j(n) && n.includes("--"))
-      e.style.setProperty(n, o);
+  return delete o.tagName, I(t, o);
+}, M = (e) => Object.entries(e), V = (e, n) => {
+  M(n).forEach(([t, o]) => {
+    if (o && T(t) && t.includes("--"))
+      e.style.setProperty(t, o);
     else {
       const s = {};
-      s[n] = o, C(e.style, s);
+      s[t] = o, I(e.style, s);
     }
   });
-}, D = (e) => typeof e == "function" || !1, W = (e, t) => y(e) ? e : (a(t) ? t : m()).querySelector(e), w = (e, t) => (a(t) ? t : m()).querySelectorAll(e), c = "data-src", F = (e) => y(e) && e.tagName === "VIDEO", u = (e) => y(e) && e.tagName === "SOURCE", O = (e) => y(e) && e.tagName === "IMG", P = (e, t) => {
-  const n = u(e), o = n ? R : N, s = n ? g("VIDEO") : null, r = g(n ? "SOURCE" : "IMG"), i = n ? s : r, d = A(e, c);
-  if (!i || !d) return;
-  const b = () => {
-    O(e) || u(e) ? (e.src = d, u(e) && F(e.parentElement) && e.parentElement.load()) : U(e, { backgroundImage: `url("${d}")` }), $(e, c), D(t) && t(), T(i, o, b);
+}, S = (e, n) => (l(n) ? n : p()).querySelectorAll(e), g = (e) => u(e) && "offsetWidth" in e || !1, N = (e) => typeof e == "function" || !1, q = (e, n) => u(e) ? e : (u(n) ? n : p()).querySelector(e), i = "data-src", w = (e) => g(e) && e.tagName === "VIDEO", f = (e) => g(e) && e.tagName === "SOURCE", b = (e) => g(e) && e.tagName === "IMG", O = (e, n) => {
+  const t = f(e), o = t ? j : R, s = t ? d("VIDEO") : null, r = d(t ? "SOURCE" : "IMG"), c = t ? s : r, a = h(e, i);
+  if (!c || !a) return;
+  const y = () => {
+    b(e) || f(e) ? (e.src = a, f(e) && w(e.parentElement) && e.parentElement.load()) : V(e, { backgroundImage: `url("${a}")` }), E(e, i), N(n) && n(), C(c, o, y);
   };
-  h(i, o, b), (O(r) || u(r)) && (r.src = d, s && s.append(r));
-}, z = (e) => {
-  const t = w(`[${c}]`, e), n = e && A(e, c);
-  return n && !t ? [e] : !n && t ? [...t] : n && t ? [e, ...t] : !n && !t ? [...w(`[${c}]`)] : null;
-}, J = (e, t) => {
-  const n = W(e);
-  if (!n) return;
-  const o = D(t) ? t : null, s = z(n);
-  s && s.length && s.forEach((r, i) => {
-    i === s.length - 1 && o ? P(r, o) : P(r);
+  m(c, o, y), (b(r) || f(r)) && (r.src = a, s && s.append(r));
+}, A = (e) => {
+  const n = S(
+    `[${i}]`,
+    e
+  ), t = e && h(e, i);
+  return t && !n ? [e] : !t && n ? [...n] : t && n ? [e, ...n] : !t && !n ? [...S(`[${i}]`)] : null;
+}, G = (e, n) => {
+  const t = q(e);
+  if (!t) return;
+  const o = N(n) ? n : null, s = A(t);
+  s && s.length && s.forEach((r, c) => {
+    c === s.length - 1 && o ? O(r, o) : O(r);
   });
 };
 export {
-  J as default
+  G as default
 };
 //# sourceMappingURL=dll.mjs.map

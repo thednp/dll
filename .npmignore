@@ -4,3 +4,7 @@
 experiments
 node_modules
 docs
+src
+test
+tsconfig.json
+vite.config.mts

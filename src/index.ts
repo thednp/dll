@@ -1,8 +1,8 @@
-import { querySelector, isFunction /* , ObjectAssign */ } from '@thednp/shorty';
+import { isFunction, querySelector } from "@thednp/shorty";
 
-import loadMedia from './loadMedia';
-import getMediaElements from './getMediaElements';
-import type { CallbackFunction } from './types';
+import loadMedia from "./loadMedia";
+import getMediaElements from "./getMediaElements";
+import type { CallbackFunction } from "./types";
 
 // import version from './version';
 
@@ -10,14 +10,14 @@ import type { CallbackFunction } from './types';
 // ==============
 /**
  * Lazy load one or more items with `data-src` attribute.
- * * target can be  `<img>` | `<video>` | `HTMLElement`
- * * or any `HTMLElement` that contains the above elements
- * * or `HTMLElement` that has the `data-src` attribute
+ * * target can be  `<img>` | `<video>` | `Element`
+ * * or any `Element` that contains the above elements
+ * * or `Element` that has the `data-src` attribute
  *
  * @param target target
  * @param callback
  */
-const DLL = (target: HTMLElement | string, callback?: CallbackFunction) => {
+const DLL = (target: Element | string, callback?: CallbackFunction) => {
   // element
   const element = querySelector(target);
   if (!element) return;

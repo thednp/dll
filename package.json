@@ -1,6 +1,6 @@
 {
   "name": "@thednp/dll",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Double Lazy Load for Images, Videos and Background Images.",
   "homepage": "https://thednp.github.io/dll",
   "author": "thednp",
@@ -17,16 +17,16 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "badges": "npx -p dependency-version-badge update-badge typescript eslint prettier vite",
-    "format": "prettier --write \"src/**/*.ts\"",
-    "fix:ts": "eslint src --config .eslintrc.cjs --fix",
-    "lint:ts": "eslint src --config .eslintrc.cjs",
+    "badges": "npx -p dependency-version-badge update-badge typescript vite",
+    "format": "deno fmt src",
+    "fix:ts": "deno lint src --fix",
+    "lint": "pnpm lint:ts && pnpm check:ts",
+    "lint:ts": "deno lint src",
     "check:ts": "tsc --noEmit",
-    "build": "npm run lint:ts && npm run check:ts && npm run build-vite && npm run badges && npm run build-dts",
-    "build-vite": "vite build && npm run build-docs",
-    "build-dts": "dts-bundle-generator --config ./dts.config.cjs",
-    "build-docs": "ncp dist/dll.js docs/assets/js/dll.js && ncp dist/dll.js.map docs/assets/js/dll.js.map",
-    "prepublishOnly": "npm update && npm run format && npm run lint:ts && npm run build && npm run badges"
+    "build": "pnpm build-vite",
+    "build-vite": "vite build && pnpm build-docs",
+    "build-docs": "cp dist/dll.js docs/assets/js/dll.js && cp dist/dll.js.map docs/assets/js/dll.js.map",
+    "prepublishOnly": "pnpm up && pnpm format && pnpm lint && pnpm build && pnpm badges"
   },
   "repository": {
     "type": "git",
@@ -47,20 +47,17 @@
     "url": "https://github.com/thednp/dll/issues"
   },
   "devDependencies": {
-    "@types/node": "^20.14.11",
-    "@typescript-eslint/eslint-plugin": "^5.62.0",
-    "@typescript-eslint/parser": "^5.62.0",
-    "dts-bundle-generator": "^9.5.1",
-    "eslint": "^8.57.0",
-    "eslint-plugin-jsdoc": "^46.10.1",
-    "eslint-plugin-prefer-arrow": "^1.2.3",
-    "eslint-plugin-prettier": "^4.2.1",
-    "ncp": "^2.0.0",
-    "prettier": "^2.8.8",
-    "typescript": "^5.5.3",
-    "vite": "^5.3.4"
+    "@types/node": "^20.17.7",
+    "typescript": "^5.7.2",
+    "vite-plugin-dts": "^4.3.0",
+    "vite": "^5.4.11"
   },
   "dependencies": {
-    "@thednp/shorty": "^2.0.0"
+    "@thednp/shorty": "^2.0.9"
+  },
+  "packageManager": "pnpm@8.6.12",
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=8.6.0"
   }
 }

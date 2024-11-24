@@ -1,2 +1,6 @@
-export type CallbackFunction = (...args: any[]) => any;
-export type LoadMediaTarget = HTMLImageElement | HTMLSourceElement | HTMLElement;
+export type CallbackFunction = (...args: unknown[]) => void;
+export type LoadMediaTarget =
+  | Element
+  | HTMLImageElement
+  | HTMLSourceElement
+  | HTMLElement;

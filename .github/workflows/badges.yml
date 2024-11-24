@@ -13,13 +13,13 @@ on:
 
 jobs:
   badges:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout 🛎
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Update version badges 🏷
-        run: npx -p dependency-version-badge update-badge typescript eslint prettier vite
+        run: npx -p dependency-version-badge update-badge typescript vite
 
       - name: Commit any changed files 💾
         uses: stefanzweifel/git-auto-commit-action@v4

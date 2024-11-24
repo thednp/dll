@@ -2,3 +2,4 @@ node_modules
 experiments
 .npmignore
 .vscode
+test/_screenshots_
