@@ -3,8 +3,8 @@
 [![NPM Version](https://img.shields.io/npm/v/@thednp/dll.svg)](https://www.npmjs.com/package/@thednp/dll)
 [![NPM Downloads](https://img.shields.io/npm/dm/@thednp/dll.svg)](http://npm-stat.com/charts.html?package=@thednp/dll)
 [![jsDeliver](https://data.jsdelivr.com/v1/package/npm/@thednp/dll/badge)](https://www.jsdelivr.com/package/npm/@thednp/dll)
-[![typescript version](https://img.shields.io/badge/typescript-5.7.2-brightgreen)](https://www.typescriptlang.org/)
-[![vite version](https://img.shields.io/badge/vite-5.4.11-brightgreen)](https://github.com/vitejs)
+[![typescript version](https://img.shields.io/badge/typescript-5.8.3-brightgreen)](https://www.typescriptlang.org/)
+[![vite version](https://img.shields.io/badge/vite-6.3.5-brightgreen)](https://github.com/vitejs)
 
 Double Lazy Load for videos, images and background images. Sourced with Typescript.
 

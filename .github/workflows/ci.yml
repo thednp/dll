@@ -5,7 +5,13 @@ on:
       - master
     paths:
       - src
-      - test
+      - package.json
+      - .github/workflows/ci.yml
+  pull_request:
+    branches:
+      - master
+    paths:
+      - src
       - package.json
       - .github/workflows/ci.yml
 jobs:

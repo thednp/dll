@@ -1,56 +1,56 @@
-const R = "load", j = "loadstart", m = (e, n, t, o) => {
+const I = "load", N = "loadstart", j = (e, n, s, t) => {
   e.addEventListener(
     n,
-    t,
+    s,
     !1
   );
-}, C = (e, n, t, o) => {
+}, R = (e, n, s, t) => {
   e.removeEventListener(
     n,
-    t,
+    s,
     !1
   );
-}, h = (e, n) => e.getAttribute(n), E = (e, n) => e.removeAttribute(n), v = (e) => e != null && typeof e == "object" || !1, l = (e) => v(e) && typeof e.nodeType == "number" && [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].some(
+}, T = (e, n) => e.getAttribute(n), C = (e, n) => e.removeAttribute(n), h = (e) => e != null && typeof e == "object" || !1, i = (e) => h(e) && typeof e.nodeType == "number" && [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].some(
   (n) => e.nodeType === n
-) || !1, u = (e) => l(e) && e.nodeType === 1 || !1, T = (e) => typeof e == "string" || !1, L = (e) => v(e) && e.constructor.name === "Window" || !1, D = (e) => l(e) && e.nodeType === 9 || !1, p = (e) => D(e) ? e : l(e) ? e.ownerDocument : L(e) ? e.document : globalThis.document, I = (e, ...n) => Object.assign(e, ...n), d = (e) => {
+) || !1, u = (e) => i(e) && e.nodeType === 1 || !1, m = (e) => typeof e == "string" || !1, D = (e) => h(e) && e.constructor.name === "Window" || !1, L = (e) => i(e) && e.nodeType === 9 || !1, p = (e) => L(e) ? e : i(e) ? e.ownerDocument : D(e) ? e.document : globalThis.document, v = (e, ...n) => Object.assign(e, ...n), d = (e) => {
   if (!e) return;
-  if (T(e))
+  if (m(e))
     return p().createElement(e);
-  const { tagName: n } = e, t = d(n);
-  if (!t) return;
-  const o = { ...e };
-  return delete o.tagName, I(t, o);
+  const { tagName: n } = e, s = d(n);
+  if (!s) return;
+  const t = { ...e };
+  return delete t.tagName, v(s, t);
 }, M = (e) => Object.entries(e), V = (e, n) => {
-  M(n).forEach(([t, o]) => {
-    if (o && T(t) && t.includes("--"))
-      e.style.setProperty(t, o);
+  M(n).forEach(([s, t]) => {
+    if (t && m(s) && s.includes("--"))
+      e.style.setProperty(s, t);
     else {
-      const s = {};
-      s[t] = o, I(e.style, s);
+      const o = {};
+      o[s] = t, v(e.style, o);
     }
   });
-}, S = (e, n) => (l(n) ? n : p()).querySelectorAll(e), g = (e) => u(e) && "offsetWidth" in e || !1, N = (e) => typeof e == "function" || !1, q = (e, n) => u(e) ? e : (u(n) ? n : p()).querySelector(e), i = "data-src", w = (e) => g(e) && e.tagName === "VIDEO", f = (e) => g(e) && e.tagName === "SOURCE", b = (e) => g(e) && e.tagName === "IMG", O = (e, n) => {
-  const t = f(e), o = t ? j : R, s = t ? d("VIDEO") : null, r = d(t ? "SOURCE" : "IMG"), c = t ? s : r, a = h(e, i);
-  if (!c || !a) return;
+}, S = (e, n) => (i(n) ? n : p()).querySelectorAll(e), g = (e) => u(e) && "offsetWidth" in e || !1, E = (e) => typeof e == "function" || !1, W = (e, n) => u(e) ? e : (u(n) ? n : p()).querySelector(e), a = "data-src", q = (e) => g(e) && e.tagName === "VIDEO", l = (e) => g(e) && e.tagName === "SOURCE", b = (e) => g(e) && e.tagName === "IMG", O = (e, n) => {
+  const s = l(e), t = s ? N : I, o = s ? d("VIDEO") : null, r = d(s ? "SOURCE" : "IMG"), c = s ? o : r, f = T(e, a);
+  if (!c || !f) return;
   const y = () => {
-    b(e) || f(e) ? (e.src = a, f(e) && w(e.parentElement) && e.parentElement.load()) : V(e, { backgroundImage: `url("${a}")` }), E(e, i), N(n) && n(), C(c, o, y);
+    b(e) || l(e) ? (e.src = f, l(e) && q(e.parentElement) && e.parentElement.load()) : V(e, { backgroundImage: `url("${f}")` }), C(e, a), E(n) && n(), R(c, t, y);
   };
-  m(c, o, y), (b(r) || f(r)) && (r.src = a, s && s.append(r));
-}, A = (e) => {
+  j(c, t, y), (b(r) || l(r)) && (r.src = f, o && o.append(r));
+}, w = (e) => {
   const n = S(
-    `[${i}]`,
+    `[${a}]`,
     e
-  ), t = e && h(e, i);
-  return t && !n ? [e] : !t && n ? [...n] : t && n ? [e, ...n] : !t && !n ? [...S(`[${i}]`)] : null;
-}, G = (e, n) => {
-  const t = q(e);
-  if (!t) return;
-  const o = N(n) ? n : null, s = A(t);
-  s && s.length && s.forEach((r, c) => {
-    c === s.length - 1 && o ? O(r, o) : O(r);
+  ), s = e && T(e, a);
+  return s && !n ? [e] : !s && n ? [...n] : s && n ? [e, ...n] : !s && !n ? [...S(`[${a}]`)] : null;
+}, A = (e, n) => {
+  const s = W(e);
+  if (!s) return;
+  const t = E(n) ? n : null, o = w(s);
+  o && o.length && o.forEach((r, c) => {
+    c === o.length - 1 && t ? O(r, t) : O(r);
   });
 };
 export {
-  G as default
+  A as default
 };
 //# sourceMappingURL=dll.mjs.map
